@@ -60,16 +60,15 @@ include(APP_PATH."libs/head.php");
 $('.lstPress li').hide();
 $(document).ready(function () {
 	size_li = $(".lstPress li").size();
-	x=4;
-	if(size_li>=4) {
+	x = 8;
+	if(size_li>= 8) {
 		$('.lstPress li:lt('+x+')').show(300);
 		$(window).scroll(function() {
 			var sT = $(window).scrollTop();
             var a = $('.scrollmore').offset().top;
             var toS = a - 200;
             if (sT > toS) {
-                x = (x+4 <= size_li) ? x+4 : size_li;
-                console.log(x);
+                x = (x+8 <= size_li) ? x+8 : size_li;
                 $('.lstPress li:lt('+x+')').show(300);
 			}
             
