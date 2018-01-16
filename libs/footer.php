@@ -1,5 +1,4 @@
 <p id="pageTop"><span>back to top</span></p>
-
 <footer id="footer">
    <div class="footerInner">
         
