@@ -1,0 +1,46 @@
+//Fixed body
+		var __cur_p = $(window).scrollTop();
+		var __cur_h = $("body").outerHeight();
+
+		/*if ( !$('.menuCircle').hasClass("active") ) {
+			$(".header").removeClass("menuFixed");
+			$("body").removeClass("hscroll");
+		}*/
+
+		if ( $('body').hasClass("layer") ) {
+			$("body").attr("data-position",__cur_p);
+			$("body").addClass("bdFixed");
+			$("body").css({
+				"top" : "-"+__cur_p+"px",
+				"left" : 0,
+				"width" : "100%",
+				"height" : __cur_h+"px",
+				"position" : "fixed",
+				"z-index" : "-1",
+				"touch-action" : "none",
+				"overflow-y":"auto",	
+			});
+		} else {
+			$("body").removeClass("bdFixed");
+			$("body").css({
+				"touch-action":"auto",
+				"overflow-x":"hidden",	
+				"overflow-y":"auto",
+				"position":"static",
+				"top":"auto",
+				"height": "auto"	
+			});
+			$("html, body").scrollTop( $("body").attr("data-position") );
+		}
+
+
+.bdFixed {
+    top: 20px;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    position: fixed;
+    z-index: -1;
+    touch-action: none;
+    overflow-y: auto
+}

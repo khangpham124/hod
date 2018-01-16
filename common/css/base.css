@@ -1,0 +1,1024 @@
+@charset "UTF-8";
+
+/*==================================================================
+	0. BoxModel change
+===================================================================*/
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+/* ------------------------------------------------------------------
+	1. Reset styles
+-------------------------------------------------------------------*/
+
+html {
+    overflow-x: hidden;
+    background: #FFF;
+}
+
+body {
+    overflow-x: hidden;
+    -webkit-text-size-adjust: none;
+    -ms-text-size-adjust: none;
+    word-wrap: break-word;
+}
+
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+object,
+iframe,
+pre,
+code,
+p,
+blockquote,
+form,
+fieldset,
+legend,
+table,
+th,
+td,
+caption,
+tbody,
+tfoot,
+thead,
+article,
+aside,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+audio,
+video,
+canvas {
+    margin: 0;
+    padding: 0;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+nav,
+section,
+menu {
+    display: block;
+}
+
+audio:not([controls]) {
+    display: none;
+    height: 0;
+}
+
+[hidden] {
+    display: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+fieldset,
+img {
+    border: none;
+}
+
+address,
+caption,
+cite,
+code,
+dfn,
+em,
+strong,
+th,
+var {
+    font-style: normal;
+    font-weight: normal;
+}
+
+ul,
+ol,
+menu {
+    list-style: none;
+}
+
+caption,
+th {
+    text-align: left;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-size: 100%;
+    font-weight: normal;
+}
+
+q:before,
+q:after {
+    content: '';
+}
+
+abbr,
+acronym {
+    border: none;
+    font-variant: normal;
+}
+
+sup {
+    vertical-align: text-top;
+}
+
+sub {
+    vertical-align: text-bottom;
+}
+
+input,
+textarea,
+select {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+legend {
+    color: #000;
+}
+
+a img,
+map a {
+    border: none;
+}
+
+a:hover,
+a:active,
+a:focus {
+    outline: 0;
+}
+
+embed {
+    width: 100%;
+}
+
+audio,
+canvas,
+video {
+    display: inline-block;
+}
+
+audio:not([controls]) {
+    display: none;
+    height: 0;
+}
+
+img,
+object,
+embed {
+    max-width: 100%;
+    height: auto;
+}
+
+object,
+embed {
+    height: 100%;
+}
+
+img {
+    -ms-interpolation-mode: bicubic;
+    line-height: 1;
+    vertical-align: bottom;
+}
+
+
+/* Font styles
+-------------------------------------------------------------------*/
+
+body {
+    font: 13px/1.231 Verdana, Arial, sans-serif;
+}
+
+select,
+input,
+button,
+textarea,
+button {
+    font: 99% arial, sans-serif;
+}
+
+table {
+    font-size: inherit;
+    font: 100%;
+}
+
+pre,
+code,
+kbd,
+samp,
+tt {
+    font-family: monospace;
+    line-height: 1;
+}
+
+
+/* General styles
+-------------------------------------------------------------------*/
+
+table {
+    empty-cells: show;
+}
+
+input {
+    line-height: 1;
+}
+
+form img,
+input,
+select {
+    vertical-align: middle;
+}
+
+textarea {
+    resize: none;
+}
+
+select {
+    padding: 1px;
+}
+
+label {
+    margin-right: 5px;
+}
+
+legend {
+    display: none;
+}
+
+input[type="text"],
+input[type="password"],
+textarea {
+    padding: 3px 4px 0 3px;
+    border: 1px solid #999;
+    border-right: 1px solid #CCC;
+    border-bottom: 1px solid #CCC;
+    font-size: 13px;
+}
+
+
+/* ------------------------------------------------------------------
+	1-2. VisualFormattingModel styles
+-------------------------------------------------------------------*/
+
+.noDisplay {
+    display: none;
+}
+
+.block {
+    display: block !important;
+}
+
+.inline {
+    display: inline !important;
+}
+
+.inlineBlock {
+    display: inline-block !important;
+}
+
+.static {
+    position: static !important;
+}
+
+.relative {
+    position: relative !important;
+}
+
+.absolute {
+    position: absolute !important;
+}
+
+.fixed {
+    position: fixed !important;
+}
+
+.leftBox {
+    float: left;
+}
+
+.rightBox {
+    float: right;
+}
+
+.nofloat {
+    float: none !important;
+}
+
+.clearfix {
+    zoom: 1;
+}
+
+.clearfix:after {
+    display: block;
+    clear: both;
+    content: "";
+}
+
+.clear {
+    clear: both !important;
+}
+
+a.hover:hover,
+input.hover:hover {
+    filter: alpha(opacity=70);
+    -moz-opacity: 0.7;
+    -khtml-opacity: 0.7;
+    opacity: 0.7;
+}
+
+
+/* ------------------------------------------------------------------
+	1-5. List styles
+-------------------------------------------------------------------*/
+
+.disc {
+    padding-left: 2em;
+    list-style: disc;
+}
+
+.circle {
+    padding-left: 2em;
+    list-style: circle;
+}
+
+.decimal {
+    padding-left: 2.4em;
+    list-style: decimal;
+}
+
+
+/*-----------------------------------------------------------
+FLOAT
+------------------------------------------------------------*/
+
+.floatL {
+    float: left;
+    display: inline-block;
+}
+
+.floatR {
+    float: right;
+    display: inline-block;
+}
+
+
+/*-----------------------------------------------------------
+Text-Align
+------------------------------------------------------------*/
+
+.taL {
+    text-align: left;
+}
+
+.taC {
+    text-align: center;
+}
+
+.taR {
+    text-align: right;
+}
+
+
+/*-----------------------------------------------------------
+Link
+------------------------------------------------------------*/
+
+a:link {
+    color: #333;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #333;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #aaa;
+    text-decoration: none;
+    -moz-transition: all 0.26s ease-out;
+    -o-transition: all 0.26s ease-out;
+    -webkit-transition: all 0.26s ease-out;
+    -ms-transition: all 0.26s ease-out;
+}
+
+a:active {
+    color: #64AB18;
+    text-decoration: none;
+}
+
+.f_lapresse {
+    font-family: 'Conv_LaPresse';
+}
+
+@font-face {
+    font-family: 'Conv_LaPresse';
+    src: url('../fonts/LaPresse.eot');
+    src: local('☺'), url('../fonts/LaPresse.woff') format('woff'), url('../fonts/LaPresse.ttf') format('truetype'), url('../fonts/LaPresse.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+::selection {
+    background-color: #98252c;
+    color: #fff;
+}
+
+-webkit-::selection {
+    background-color: #98252c;
+    color: #fff;
+}
+
+::-moz-selection {
+    background-color: #98252c;
+    color: #fff;
+}
+
+
+/*==================================================================
+	2 Layout setting
+===================================================================*/
+
+
+/*-----------------------------------------------------------
+Body
+-------------------------------------------------------------*/
+
+body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    letter-spacing: 0;
+    font-size: 16px;
+    color: #333;
+    min-width: 320px;
+    font-family: 'Oswald', sans-serif;
+}
+
+.pc {
+    display: block;
+}
+
+.sp {
+    display: none;
+}
+
+.maxW {
+    margin: 0 auto 40px;
+    max-width: 1220px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.imgMax {
+    width: 100%;
+}
+
+
+/*-----------------------------------------------------------
+Header
+------------------------------------------------------------*/
+
+#header {
+    width: 100%;
+    margin: 0 auto;
+    padding: 12px 0;
+    background: #fff;
+    -webkit-box-shadow: 0px 0px 3px 0px rgba(201, 201, 201, 0.5);
+    -moz-box-shadow: 0px 0px 3px 0px rgba(201, 201, 201, 0.5);
+    box-shadow: 0px 0px 3px 0px rgba(201, 201, 201, 0.5);
+    -moz-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    -webkit-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+}
+
+#header .headerInner {
+    padding: 0 15px;
+    max-width: 1320px;
+    margin: 0 auto;
+}
+
+#logo {
+    float: left;
+}
+
+.lstLang {
+    float: right;
+    margin-top: 25px;
+    margin-bottom: 10px;
+    opacity: 0;
+}
+
+.lstLang li {
+    float: left;
+    font-size: 16px;
+    margin-left: 7px;
+}
+
+.lstLang li.active a {
+    color: #98252c;
+}
+
+.rightHead {
+    float: right;
+    width: calc( 100% - 115px);
+}
+
+
+/*-----------------------------------------------------------
+Global Navi
+-------------------------------------------------------------*/
+
+.gNavi {
+    float: right;
+    width: 82%;
+    margin-top: 7px;
+}
+
+.gNavi li {
+    float: left;
+    margin: 0 30px;
+    text-align: center;
+    line-height: 1;
+    -moz-transition: all 0.2s ease-out;
+    -o-transition: all 0.2s ease-out;
+    -webkit-transition: all 0.2s ease-out;
+    -ms-transition: all 0.2s ease-out;
+}
+
+#top .gNavi li:nth-child(1) a {
+    color: #98252c;
+}
+
+#beer .gNavi li:nth-child(2) a {
+    color: #98252c;
+}
+
+#food .gNavi li:nth-child(3) a {
+    color: #98252c;
+}
+
+#location .gNavi li:nth-child(4) a {
+    color: #98252c;
+}
+
+#press .gNavi li:nth-child(6) a {
+    color: #98252c;
+}
+
+#shop .gNavi li:nth-child(9) a {
+    color: #98252c;
+}
+
+#find .gNavi li:nth-child(5) a {
+    color: #98252c;
+}
+
+#career .gNavi li:nth-child(7) a {
+    color: #98252c;
+}
+
+#about .gNavi li:nth-child(8) a {
+    color: #98252c;
+}
+
+#food {
+    .gNavi {
+        li:nth-child(3) {
+            a {
+                color: #98252c;
+            }
+        }
+    }
+}
+
+.gNavi li a {
+    font-size: 14px;
+    line-height: 1;
+}
+
+.gNavi li a:hover {
+    color: #98252c;
+}
+
+.infoUser {
+    width: 16%;
+    float: right;
+    font-size: 12px;
+    opacity: 0;
+    display: none;
+}
+
+.infoUser p {
+    position: relative;
+}
+
+.infoUser p a i {
+    color: #98252c;
+    font-size: 22px;
+    margin-right: 8px;
+}
+
+.infoUser p a span {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    border-radius: 100%;
+    border: 1px solid #98252c;
+    color: #98252c;
+    text-align: center;
+    line-height: 14px;
+    font-size: 10px;
+    font-weight: 700;
+    position: absolute;
+    top: -3px;
+    left: 14px;
+    background: #fff;
+    z-index: 90;
+}
+
+.iconCart {
+    float: left;
+    width: 40%;
+}
+
+.iconLogin {
+    float: right;
+    width: 60%;
+    text-align: right;
+}
+
+
+/*-----------------------------------------------------------
+Container
+------------------------------------------------------------*/
+
+.container {
+    margin: 0 auto;
+    max-width: 1020px;
+    padding: 0 10px
+}
+
+
+/*-----------------------------------------------------------
+PageTop
+------------------------------------------------------------*/
+
+#pageTop {
+    text-align: center;
+    padding: 18px 0 15px;
+    text-transform: uppercase;
+    color: #98252c;
+    font-size: 16px;
+    font-family: 'Conv_LaPresse';
+    background: #fff;
+}
+
+#pageTop span {
+    display: inline-block;
+    position: relative;
+    padding-right: 25px;
+    cursor: pointer;
+}
+
+#pageTop span:hover {
+    opacity: .6;
+}
+
+#pageTop span:before {
+    content: '';
+    width: 10px;
+    height: 25px;
+    background: url(../img/footer/arrow_red2.svg) no-repeat center center;
+    background-size: 14px auto;
+    position: absolute;
+    top: -5px;
+    right: 0px;
+}
+
+
+/*-----------------------------------------------------------
+Footer
+------------------------------------------------------------*/
+
+#footer {
+    background: #e6e6e6;
+    padding: 25px 0 15px;
+}
+
+.footerInner {
+    max-width: 860px;
+    margin: 0 auto;
+}
+
+.contactInfo {
+    padding: 0 45px;
+    margin-bottom: 20px;
+}
+
+.contactInfo .p1,
+.contactInfo .p2,
+.contactInfo .p3 {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.contactInfo .p1 img,
+.contactInfo .p1 span,
+.contactInfo .p1 em {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.contactInfo .p1 img {
+    margin-right: 10px;
+}
+
+.contactInfo .p1 em {
+    font-family: 'Conv_LaPresse';
+    color: #98252c;
+    font-size: 36px;
+    margin-left: 15px;
+}
+
+.contactInfo .p1 span {
+    text-align: left;
+}
+
+.contactInfo .p2 {
+    padding: 16px 25px 13px;
+    font-family: 'Conv_LaPresse';
+    background: #98252c;
+    font-size: 16px;
+    -webkit-box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.5);
+    box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.5);
+}
+
+.contactInfo .p2 a {
+    color: #fff;
+    text-transform: lowercase;
+}
+
+.contactInfo .p2 a i {
+    margin-right: 10px;
+}
+
+.contactInfo .p3 {
+    font-size: 18px;
+    margin: 0 15px;
+}
+
+#footer h3 {
+    font-family: 'Conv_LaPresse';
+    color: #98252c;
+    font-size: 25px;
+    margin-bottom: 15px;
+    line-height: 1;
+    padding-left: 40px;
+}
+
+.footBar {
+    padding: 25px 10px 22px;
+    max-width: 1320px;
+    margin: 0 auto;
+}
+
+.footBar .lstFoot,
+.footBar .addHod,
+.footBar .copyright {
+    float: left;
+    width: 33.33%;
+}
+
+.footBar .lstFoot li {
+    float: left;
+    margin-right: 70px;
+}
+
+.footBar .lstFoot li:last-child {
+    margin-right: 0;
+}
+
+.footBar .lstFoot li a {
+    color: #98252c;
+    font-size: 14px;
+}
+
+.footBar .addHod {
+    text-align: center;
+    font-size: 16px;
+}
+
+.footBar .copyright {
+    text-align: right;
+    font-size: 14px;
+}
+
+.footBar .copyright span {
+    color: #98252c;
+}
+
+#wrapper {
+    position: relative;
+}
+
+.followBox {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    font-size: 16px;
+    text-align: center;
+    width: 100px;
+    -moz-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    -webkit-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+}
+
+@media only screen and (max-width:1100px) {
+    .followBox {
+        display: none;
+    }
+}
+
+.fixedFollow {
+    position: fixed;
+    top: 120px;
+}
+
+.lstSs {
+    max-width: 85px;
+    margin: 0 auto;
+}
+
+.lstSs li {
+    float: left;
+    width: 50%;
+    padding: 0 2px;
+    margin-bottom: 4px;
+}
+
+.txtConn {
+    margin-top: 5px;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 1);
+    display: none;
+}
+
+.age_rest {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    z-index: 1001;
+    color: #fff;
+    width: 600px;
+    text-align: center;
+}
+
+.age_rest span {
+    color: #98252c;
+    display: inline-block;
+}
+
+.txtAge_desc {
+    font-size: 30px;
+    margin: 50px 0;
+    font-family: 'Conv_LaPresse';
+    text-transform: uppercase;
+}
+
+.age_rest img {
+    width: 260px;
+}
+
+.txtAge span {
+    display: block;
+    width: 49%;
+    text-align: center;
+    border: 1px solid #98252c;
+    color: #fff;
+    font-family: 'Conv_LaPresse';
+    font-size: 14px;
+    cursor: pointer;
+    position: relative;
+    padding: 18px 0 15px;
+}
+
+.txtAge span:hover {
+    background: #98252c;
+    color: #fff;
+}
+
+.txtAge span:before {
+    content: '';
+    width: 14px;
+    height: 14px;
+    background: url(../../img/top/arrow.svg) no-repeat center center;
+    background-size: 14px auto;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+
+/*-----------------------------------------------------------
+Media
+------------------------------------------------------------*/
+
+.slick-arrow {
+    border: none;
+    background: none;
+    font-size: 0;
+    position: absolute;
+    z-index: 500;
+    outline: none;
+}
+
+
+/* Tablet */
+
+@media only screen and (min-width:768px) and (max-width:1024px) {
+    .gNavi li {
+        margin: 0 17px;
+    }
+}
+
+
+/* End Tablet */
+
+
+/* Smartphone */
+
+@media only screen and (max-width:767px) {
+    body {
+        font-size: 15px;
+    }
+    .pc {
+        display: none;
+    }
+    .sp {
+        display: block;
+    }
+    #beer .rightBeer {
+        width: 100% !important;
+    }
+    #beer .lstBeer li .wrap {
+        position: relative;
+    }
+    .btnTel_sp {
+        padding-top: 8px !important;
+    }
+    .btnChat_sp {
+        padding-top: 16px !important;
+    }
+}
+
+
+/* End Smartphone */
