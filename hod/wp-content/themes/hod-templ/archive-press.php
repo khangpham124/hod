@@ -70,11 +70,15 @@ $(document).ready(function () {
             if (sT > toS) {
                 x = (x+8 <= size_li) ? x+8 : size_li;
                 $('.lstPress li:lt('+x+')').show(300);
+                $('.lstPress li:lt('+x+')').addClass('showItem');
 			}
-            
+            size_li_show = $(".lstPress .showItem").size();
+            if(size_li_show == <?php echo $total ?> ) {
+                $('.scrollmore').hide(200);
+            }
 		});	
 	}
 });
-</script>    
+</script>  
 </body>
 </html>	
