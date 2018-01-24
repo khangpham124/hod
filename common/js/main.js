@@ -1,0 +1,89 @@
+$(window).scroll(function() {
+    var sT = $(window).scrollTop();
+    var vWrap = $('#wrapper').offset().top;
+    var vFoot = $('#pageTop').offset().top;
+    var h_btot = $('#pageTop').height();
+    var h_foot = $('#footer').height();
+    var outFix = h_btot + h_foot + 100;
+    var vInfix = vFoot - 450;
+    if ((sT >= vWrap) && (sT < vInfix)) {
+        $(".followBox").addClass("fixedFollow");
+    } else if (sT < vWrap) {
+        $(".followBox").removeClass("fixedFollow");
+    }
+});
+
+$('.menuCircle').click(function() {
+    $(this).toggleClass('active');
+    $('#menuSP').slideToggle(200);
+    $('body').toggleClass('layer');
+    if ($('body').hasClass("layer")) {
+        $('.menuOver').animate({
+            left: "0"
+        }, 300);
+    } else {
+        $('.menuOver').animate({
+            left: "-100%"
+        }, 300);
+    }
+});
+
+$('.closeBtn').click(function() {
+    $('#menuSP').slideUp(200);
+    $('body').toggleClass('layer');
+});
+
+$('.hassub').click(function() {
+    $(this).find('ul').slideToggle(200);
+    $(this).toggleClass('active');
+});
+
+$('.chatFb').click(function() {
+    $('#ztb-fbc-show-widget').trigger('click');
+});
+
+$('.iconLogin').click(function() {
+    $('.boxRegis').fadeToggle(200);
+});
+
+function closPop() {
+    $('.popupRegister').fadeOut(200);
+    $('.overlay_regis').fadeOut(200);
+    $('#popupCart').fadeOut(100);
+}
+
+$('.linkRegis').click(function() {
+    $('.overlay_regis').fadeIn(200);
+    $('.popupRegister').fadeIn(200);
+    $('.boxRegis').fadeOut(200);
+});
+
+$('.closeBtn').click(function() {
+    closPop();
+});
+
+$('.overlay_regis').click(function() {
+    closPop();
+});
+
+$('.contBtn').live('click', function() {
+    closPop();
+});
+
+$(".submitRegis").click(function() {
+    $(".formRegis").submit(function(e) {
+        //$("#simple-msg").html("<img src='loading.gif'/>");
+        var postData = $(this).serializeArray();
+        var formURL = 'http://heartofdarknessbrewery.com/ajax/register.php';
+        $.ajax({
+            url: formURL,
+            type: "POST",
+            data: postData,
+            success: function(data, textStatus, jqXHR) {
+                $('.popupRegister').html(data);
+            },
+        });
+        e.preventDefault(); //STOP default action
+        e.unbind();
+    });
+});
