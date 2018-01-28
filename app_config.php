@@ -1,8 +1,8 @@
 <?php
-	define("APP_URL", "http://heartofdarknessbrewery.com/");
-	define("APP_PATH", "/home/accroot/public_html/");
-	define("APP_PATH_WP", "/home/accroot/public_html/hod/");
-	function getArrUrl($var)
+define("APP_URL", "http://heartofdarknessbrewery.com/");
+define("APP_PATH", "/home/accroot/public_html/");
+define("APP_PATH_WP", "/home/accroot/public_html/hod/");
+function getArrUrl($var)
 	  {
 			$nvar = Array();
 			$na = explode("/", $var);
@@ -12,8 +12,6 @@
 			}
 			return $nvar;
 	  }
-	
-	  $args = getArrUrl($_GET['args']);
+$args = getArrUrl($_GET['args']);
+$_SESSION['cart'] = 'true';
 ?>
-
-

@@ -83,29 +83,7 @@ $pt = 'shop';
 <!--===================================================-->
 </div>
 <!--/wrapper-->
-<div id="popupCart"></div>
 <!--===================================================-->
-<script type="text/javascript" src="<?php  echo APP_URL; ?>common/js/addcart.js"></script>
-<script>
-    $(function() { 
-        $('.listFeature__btn').click(function() {
-            $('#popupCart').fadeIn(200);
-            $('.overlay_regis').fadeIn(200);
-            var d_cart = $(this).attr('data-id');
-            $('#popupCart').html('<div class="taC"><img src="<?php echo APP_URL; ?>common/img/other/load.gif" alt=""></div>');
-            $.ajax({
-                data: {},
-                url: '/ajax/loadPro.php?addtocart=' + d_cart,
-                type: 'GET',
-                success: function(data){
-                    $('#popupCart').html(data);
-                }
-            })
-        });
-});   
-</script>
-    
-<?php include( APP_PATH .'ajax/function.php' ); ?>    
-    
+
 </body>
 </html>	

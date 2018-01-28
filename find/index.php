@@ -83,7 +83,8 @@ include(APP_PATH."libs/head.php");
             <div id="gmap-mixed<?php echo $n; ?>"></div>
             </div>
                     
-                    <p class="btnMore btnIntro f_lapresse" id="stf"><a href="https://maps.google.com/?q=10.767035,106.692222" target="_blank">send to phone</a></p>
+                    <p class="btnMore btnIntro f_lapresse" id="stf" style="margin-bottom:30px"><a href="https://maps.google.com/?q=10.767035,106.692222" target="_blank">send to phone</a></p>
+                
                     <ul class="lstCity pc">
                     <?php
                             $args1 = array(

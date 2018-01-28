@@ -90,16 +90,9 @@ include(APP_PATH."libs/head.php");
         <?php
             $wp_query = new WP_Query();
             $param=array(
-            'post_type'=>'beer',
-            'posts_per_page' => '-1',
-             'meta_query' => array(array('key' => '_thumbnail_id')),    
-            'tax_query' => array(
-            array(
-            'taxonomy' => 'beercat',
-            'field' => 'slug',
-            'terms' => array('flagship-beer','seasonal')
-            )
-            )
+            'post_type' => 'flagship',
+            'posts_per_page' => '-1',  
+            'meta_query' => array(array('key' => '_thumbnail_id')),    
             );
             $wp_query->query($param);
             if($wp_query->have_posts()):while($wp_query->have_posts()) : $wp_query->the_post();
@@ -122,7 +115,47 @@ include(APP_PATH."libs/head.php");
                             <p class="nameBeer"><?php the_field('cf_abv'); ?> ABV</p>
                             <p class="subName"><?php the_field('cf_ibu'); ?> IBU</p>
                         </div>    
-                        <p class="flag"><span><?php echo $termname; ?></span></p>
+                        <p class="flag"><span><?php echo get_post_type(); ?></span></p>
+
+                </div>
+                <div class="flipCard">
+                    <?php echo $post->post_content; ?>
+                </div>
+            </div>
+        </li>
+        <?php endwhile; endif; ?>
+    </ul>
+    
+    <ul class="lstBeer clearfix">
+        <?php
+            $wp_query = new WP_Query();
+            $param=array(
+            'post_type' => 'seasonal',
+            'posts_per_page' => '-1',  
+            'meta_query' => array(array('key' => '_thumbnail_id')),    
+            );
+            $wp_query->query($param);
+            if($wp_query->have_posts()):while($wp_query->have_posts()) : $wp_query->the_post();
+            $thumb = get_post_thumbnail_id($post->ID);
+            $img_label = wp_get_attachment_image_src($thumb,'full');
+            $img_cup = wp_get_attachment_image_src(get_field('image_beer'),'full');
+            $terms = get_the_terms($post->ID, 'beercat');
+            foreach($terms as $term) { 
+            $termname = $term->name;
+            }
+        ?>
+        <li class="matchHeight">
+            <p class="thumb">
+                <img src="<?php echo $img_label[0]; ?>" class="imgBeer" alt="<?php the_title(); ?>">
+            </p>
+            <div class="wrap">
+                <div class="inner">
+                        <img src="<?php echo $img_cup[0]; ?>" class="cupB" alt="<?php the_title(); ?>">
+                        <div class="info">
+                            <p class="nameBeer"><?php the_field('cf_abv'); ?> ABV</p>
+                            <p class="subName"><?php the_field('cf_ibu'); ?> IBU</p>
+                        </div>    
+                        <p class="flag"><span><?php echo get_post_type(); ?></span></p>
 
                 </div>
                 <div class="flipCard">
@@ -252,7 +285,9 @@ include(APP_PATH."libs/head.php");
                 </div>
     
                 <p class="listFeature__price">VND <?php the_field('cf_price'); ?></p>
-                <!-- <a href="" class="listFeature__btn">add to cart</a> !-->
+                <?php if ( is_user_logged_in() ) { ?>
+                <a href="javascript:void(0)" class="listFeature__btn" data-id="<?php the_ID(); ?>">add to cart</a>
+                <?php } ?>
             </li>
             <?php endwhile;endif; ?>
         </ul>

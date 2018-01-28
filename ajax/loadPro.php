@@ -22,7 +22,7 @@ $addtocart = $_GET['addtocart'];
 		foreach($terms as $term) { 
 		$slug = $term->slug;
 		}
-        $pt =get_post_type();
+        $pt = get_post_type();
 ?>
     <div class="clearfix">
         <p class="thumbPop"><img src="<?php echo $image_shop[0]; ?>" alt="<?php the_title(); ?>"></p>
@@ -43,7 +43,7 @@ $addtocart = $_GET['addtocart'];
                         <td>SIZE</td>
                         <?php } ?>
                         <td>QTY</td>
-                        <td>PRIZE</td>
+                        <td>PRICE</td>
                     </thead>
                     <tbody>
                         <?php if($slug=='t-shirt') { ?>
@@ -71,12 +71,12 @@ $addtocart = $_GET['addtocart'];
             
         </div>
     </div>
-    <p class="taR">
+    <p class="taR_popup">
     <a href="javascript:void(0)" class="contBtn">continue shopping</a>
     <?php if($_COOKIE['cart_'.$pt.'_'.$post->ID]) { ?>
-    <a href="javascript:void(0)" class="addToCard disable" data-id="<?php echo $pt ?>_<?php the_ID(); ?>"><i class="fa fa-shopping-cart"></i>Added</a>
+    <a href="javascript:void(0)" class="addToCard disable" data-id="<?php echo $pt ?>_<?php the_ID(); ?>" data-price="<?php the_field('cf_price'); ?>"><i class="fa fa-shopping-cart"></i>Added</a>
     <?php } else { ?>
-    <a href="javascript:void(0)" class="addToCard" data-id="<?php echo $pt ?>_<?php the_ID(); ?>">add to cart</a>    
+    <a href="javascript:void(0)" class="addToCard" data-id="<?php echo $pt ?>_<?php the_ID(); ?>" data-price="<?php the_field('cf_price'); ?>">add to cart</a>    
     <?php } ?>    
     </p>    
 <?php endwhile;endif; ?>

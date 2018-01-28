@@ -4,14 +4,14 @@
         
        <div class="contactInfo">
            <h3>CONTACT US</h3>
-           <a href="" class="sp btnTel_sp btnFooter">
+           <a href="tel:0903 017 596" class="sp btnTel_sp btnFooter">
                <img src="<?php echo APP_URL; ?>common/img/footer/phone_icon_white.svg" alt="">
                <em>If you have any question simply call<br>
                 <span>0903 017 596</span>
                 </em>
            </a>
            <p class="txtOr sp">or</p>
-           <a href="" class="sp btnChat_sp btnFooter f_lapresse"><i class="fa fa-comment" aria-hidden="true"></i>send message</a>
+           <a href="javascript:void(0)" class="sp btnChat_sp btnFooter f_lapresse chatFb"><i class="fa fa-comment" aria-hidden="true"></i>send message</a>
            
            <div class="taC pc">
            <p class="p1"><img src="<?php echo APP_URL; ?>common/img/footer/phone_icon.svg" alt="">
@@ -55,11 +55,14 @@
         <li><a href="https://www.facebook.com/heartofdarknessbrewery/"><img src="<?php echo APP_URL; ?>common/img/footer/icon_fb.svg" alt=""></a></li>
         <li><a href="https://www.instagram.com/heart_of_darkness_brewery/"><img src="<?php echo APP_URL; ?>common/img/footer/icon_ins.svg" alt=""></a></li>
         <li><a href="https://goo.gl/U3kvyG"><img src="<?php echo APP_URL; ?>common/img/footer/icon_trip.svg" alt=""></a></li>
-        <li><a href=""><img src="<?php echo APP_URL; ?>common/img/footer/icon_gg.svg" alt=""></a></li>
+        <li><a href="https://plus.google.com/107623965653103231573"><img src="<?php echo APP_URL; ?>common/img/footer/icon_gg.svg" alt=""></a></li>
     </ul>
 </div>
 
 <div class="overlay"></div>
+<div class="overlay_regis"></div>
+
+<!-- POPUP AGE !-->
 <div class="age_rest">
     <img src="<?php echo APP_URL; ?>common/img/header/logo.svg" alt="">
     <p class="txtAge_desc">
@@ -71,6 +74,44 @@
     </p>
 </div>
 
+<!-- POPUP REGISTER !-->
+<div class="popupRegister">
+    <p class="labeltext">Register</p>
+    <form method="POST" action="" class="formRegis">
+        <input type="email" value="" name="regis1" placeholder="Email" required>
+        <input type="number" value="" name="regis2" placeholder="Phone" required>
+        <input type="password" value="" name="regis3" placeholder="Password" required>
+        <input type="text" value="" name="regis4" placeholder="Fullname" required>
+        <input type="radio" value="Mr" name="regis5" id="regis4a"><label for="regis4a">Mr</label><br>
+        <input type="radio" value="Ms" name="regis5" id="regis4b"><label for="regis4b">Ms</label>
+        <input type="submit" class="submitRegis" value="REGISTER">
+    </form>
+    
+    <div class="loginSoc">
+        <p class="labeltext">Already Registered? <a href="">SIGN IN HERE</a></p>
+        <p class="labeltext">Or sign in with:</p>
+        <div class="btnSoc">
+           <a href=""><img src="<?php echo APP_URL; ?>common/img/header/btn_fb.svg" alt ></a>
+           <a href=""><img src="<?php echo APP_URL; ?>common/img/header/btn_gg.svg" alt ></a>
+        </div>
+    </div>    
+    <span class="closeBtn"><i class="fa fa-times" aria-hidden="true"></i></span>
+</div>
+<!-- POPUP CART !-->
+<div id="popupCart"></div>
+<!-- POPUP EVENT !-->
+<div id="popupEvent">
+    <a href="https://www.facebook.com/pg/heartofdarknessbrewery/events/?ref=page_internal&mt_nav=1" target="_blank">
+    <?php 
+    $post_event = get_post( 518 );
+    $img_event = wp_get_attachment_image_src(get_field('image_event',$post_event->ID),'full');
+    ?>
+        <img src="<?php echo thumbCrop($img_event[0],640,640); ?>" alt="" >
+    </a>    
+</div>
+<!-- Current Cart !-->
+<div id="currentCart"></div>
+
 <script src="<?php  echo APP_URL; ?>common/js/jquery-1.8.3.min.js"></script>
 <script type="text/javascript" src="<?php  echo APP_URL; ?>common/js/smoothscroll.js"></script>
 <script type="text/javascript" src="<?php  echo APP_URL; ?>common/js/common.js"></script>
@@ -79,59 +120,14 @@
 <script type="text/javascript" src="<?php  echo APP_URL; ?>common/js/biggerlink.js"></script>
 <script type="text/javascript" src="<?php  echo APP_URL; ?>common/js/cookies.js"></script>
 <script type="text/javascript">
-    $(function(){	
+    $(function(){
         $('.biggerlink li').biggerlink();
         $('#pageTop').click(function(){$('body,html').animate({scrollTop:0},800);});
         $('.matchHeight').matchHeight();
-        
-        $(window).scroll(function(){
-            var sT = $(window).scrollTop();
-            var vWrap = $('#wrapper').offset().top;
-            var vFoot = $('#pageTop').offset().top;
-            var h_btot = $('#pageTop').height();
-            var h_foot = $('#footer').height();
-            var outFix = h_btot + h_foot + 100;
-            var vInfix = vFoot - 450;
-            //console.log(vFoot);
-            if((sT >= vWrap) && (sT < vInfix)) {
-                $(".followBox").addClass("fixedFollow");
-            } else if(sT < vWrap) {
-                $(".followBox").removeClass("fixedFollow");
-            }
-        });
-        
-        $('.menuCircle').click(function() {
-            $(this).toggleClass('active');
-            $('#menuSP').slideToggle(200);
-            $('body').toggleClass('layer');
-            if ($('body').hasClass("layer")) {
-                $('.menuOver').animate({
-                    left: "0"
-                }, 300);
-            } else {
-                $('.menuOver').animate({
-                    left: "-100%"
-                }, 300);
-            }
-        });
-
-        $('.closeBtn').click(function() {
-            $('#menuSP').slideUp(200);
-             $('body').toggleClass('layer');
-        });
-
-        $('.hassub').click(function() {
-            $(this).find('ul').slideToggle(200);
-            $(this).toggleClass('active');
-        });
-        
-        $('.chatFb').click(function() {
-            $('#ztb-fbc-show-widget').trigger('click');
-        });    
-
     });
-</script>    
-
+</script>
+<script type="text/javascript" src="<?php  echo APP_URL; ?>common/js/main.js"></script>
+<script type="text/javascript" src="<?php  echo APP_URL; ?>common/js/addcart.js"></script>
 <script type="text/javascript">
 (function(d,s,id){var z=d.createElement(s);z.type="text/javascript";z.id=id;z.async=true;z.src="//static.zotabox.com/d/1/d1b972bbdf6ee10b0c1e806d3a96699d/widgets.js";var sz=d.getElementsByTagName(s)[0];sz.parentNode.insertBefore(z,sz)}(document,"script","zb-embed-code"));
 </script>

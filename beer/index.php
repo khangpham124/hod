@@ -99,7 +99,7 @@ include(APP_PATH."libs/head.php");
                 $img_label = wp_get_attachment_image_src($thumb,'full');
                 $img_cup = wp_get_attachment_image_src(get_field('image_beer'),'full');
         ?>
-        <li class="<?php if($img_label=='') { ?>no_label<?php } else { ?> matchHeight<?php } ?>" >
+        <li class="matchHeight <?php if($img_label=='') { ?>no_label <?php } ?>" >
             <?php if(($img_label!='')&&($img_cup!='')) { ?>
             <p class="thumb">
                 <img src="<?php echo $img_label[0] ; ?>" class="imgBeer" alt="">
@@ -174,7 +174,9 @@ include(APP_PATH."libs/head.php");
                     <?php if(get_field('price')) { ?>
                     <p class="listFeature__price">VND <?php the_field('price'); ?></p>
                     <?php } ?>
-                    <!-- <a href="" class="listFeature__btn">add to cart</a> !-->
+                    <?php if ( is_user_logged_in() ) { ?>
+                    <a href="javascript:void(0)" class="listFeature__btn" data-id="<?php the_ID(); ?>">add to cart</a>
+                    <?php } ?>
                 </li>
                 <?php endwhile;endif; ?>
             </ul>

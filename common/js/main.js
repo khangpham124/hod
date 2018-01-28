@@ -46,10 +46,17 @@ $('.iconLogin').click(function() {
     $('.boxRegis').fadeToggle(200);
 });
 
+$('.whaton').click(function() {
+    $('#popupEvent').fadeToggle(200);
+    $('.overlay_regis').fadeIn(200);
+});
+
 function closPop() {
     $('.popupRegister').fadeOut(200);
     $('.overlay_regis').fadeOut(200);
     $('#popupCart').fadeOut(100);
+    $('#popupEvent').fadeOut(100);
+    $('#currentCart').fadeOut(100);
 }
 
 $('.linkRegis').click(function() {
@@ -86,4 +93,34 @@ $(".submitRegis").click(function() {
         e.preventDefault(); //STOP default action
         e.unbind();
     });
+});
+
+$('.listFeature__btn').click(function() {
+    $('#popupCart').fadeIn(200);
+    $('.overlay_regis').fadeIn(200);
+    var d_cart = $(this).attr('data-id');
+    $('#popupCart').html('<div class="taC"><img src="http://heartofdarknessbrewery.com/common/img/other/load.gif" alt=""></div>');
+    $.ajax({
+        data: {},
+        url: '/ajax/loadPro.php?addtocart=' + d_cart,
+        type: 'GET',
+        success: function(data){
+        $('#popupCart').html(data);
+        }
+    })
+});
+
+
+$('.viewCart').click(function() {
+    $('#currentCart').fadeIn(200);
+    $('.overlay_regis').fadeIn(200);
+    $('#currentCart').html('<div class="taC"><img src="http://heartofdarknessbrewery.com/common/img/other/load.gif" alt=""></div>');
+    $.ajax({
+        data: {},
+        url: '/ajax/currentCart.php',
+        type: 'GET',
+        success: function(data){
+        $('#currentCart').html(data);
+        }
+    })
 });
