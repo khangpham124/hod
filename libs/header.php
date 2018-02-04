@@ -16,12 +16,11 @@
                 <div class="infoUser clearfix">
                     <p class="iconCart"><a href="javascript:void(0)" class="viewCart"><i class="fa fa-shopping-cart" aria-hidden="true"></i><span id="numbCart">0</span><em>My cart</em></a></p>
                     
-                    <?php                    
-                    if($_SESSION['customer']['email']=='') { ?>
+                    <?php if($_SESSION['customer']['email']=='') { ?>
                     <p class="iconLogin" id="iconLogin"><a href="javascript:void(0)"><i class="fa fa-user" aria-hidden="true"></i><em>Sign In/ <br class="sp">Register</em></a></p>
                     <?php } else { ?>
                     <p class="iconLogin" id="iconLogout"><a href="javascript:void(0)"><i class="fa fa-user" aria-hidden="true"></i>
-                        <em>Hello, <?php echo $_SESSION['customer']['gender']; ?> <?php echo $_SESSION['customer']['fullname']; ?>
+                        <em><?php echo $_SESSION['customer']['gender']; ?> <?php echo $_SESSION['customer']['fullname']; ?>
                     </em></a></p>
                     <?php } ?>
                 </div> 
@@ -52,7 +51,7 @@
                     <a href=""><img src="<?php echo APP_URL; ?>common/img/header/btn_gg.svg" alt ></a>
                 </div>
                 <p class="label">Or sign in as a member:</p>
-                <a href="" class="btnRegis">HEART OF DARKNESS account</a>
+                <a href="javascript:void(0)" class="btnRegis">HEART OF DARKNESS account</a>
                 <p class="txtRegis">Not a member yet? <a href="javascript:void(0)" class="linkRegis">REGISTER NOW</a></p>
                 <?php } else { ?>
                 <ul>

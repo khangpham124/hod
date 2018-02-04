@@ -46,13 +46,33 @@ $('.iconLogin').click(function() {
     $('.boxRegis').fadeToggle(200);
 });
 
+
+$("#chose2").click(function() {
+    if ($("#chose2").prop("checked", true)) {
+        $('.popupLogin').fadeIn(200);
+        $('.overlay_regis').fadeIn(200);
+    }
+});
+
+$('.inputRadio input').click(function() {
+    $('.inputRadio input').parent().removeClass('chosen');
+    $(this).parent().addClass('chosen');
+});
+
 $('.whaton').click(function() {
     $('#popupEvent').fadeToggle(200);
     $('.overlay_regis').fadeIn(200);
 });
 
+$('.btnRegis').click(function() {
+    $('.popupRegister').fadeOut(200);
+    $('.popupLogin').fadeIn(200);
+    $('.overlay_regis').fadeIn(200);
+});
+
 function closPop() {
     $('.popupRegister').fadeOut(200);
+    $('.popupLogin').fadeOut(200);
     $('.overlay_regis').fadeOut(200);
     $('#popupCart').fadeOut(100);
     $('#popupEvent').fadeOut(100);
@@ -65,15 +85,15 @@ $('.linkRegis').click(function() {
     $('.boxRegis').fadeOut(200);
 });
 
-$('.closeBtn').click(function() {
-    closPop();
-});
-
 $('.overlay_regis').click(function() {
     closPop();
 });
 
 $('.contBtn').live('click', function() {
+    closPop();
+});
+
+$('.closeBtn').live('click', function() {
     closPop();
 });
 
@@ -104,8 +124,8 @@ $('.listFeature__btn').click(function() {
         data: {},
         url: '/ajax/loadPro.php?addtocart=' + d_cart,
         type: 'GET',
-        success: function(data){
-        $('#popupCart').html(data);
+        success: function(data) {
+            $('#popupCart').html(data);
         }
     })
 });
@@ -119,8 +139,26 @@ $('.viewCart').click(function() {
         data: {},
         url: '/ajax/currentCart.php',
         type: 'GET',
-        success: function(data){
-        $('#currentCart').html(data);
+        success: function(data) {
+            $('#currentCart').html(data);
         }
     })
+});
+
+$("#submitLogin").click(function() {
+    $(".formLogin").submit(function(e) {
+        var postData = $(this).serializeArray();
+        var formURL = $(this).attr("action");
+        $.ajax({
+            url: formURL,
+            type: "POST",
+            data: postData,
+            success: function(data, textStatus, jqXHR) {
+                $('#messageLogin').html(data);
+                setTimeout(location.reload.bind(location), 500);
+            },
+        });
+        e.preventDefault(); //STOP default action
+        e.unbind();
+    });
 });

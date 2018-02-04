@@ -21,6 +21,7 @@ include(APP_PATH."libs/head.php");
 </div> !-->
     
 <div id="sliderTop">    
+<div class="pc">
 <section class="main-slider">
     <?php
         $wp_query = new WP_Query();
@@ -47,6 +48,32 @@ include(APP_PATH."libs/head.php");
     </div>
     <?php endwhile;endif; ?>
 </section>
+</div>
+<div class="sp">
+<ul id="spSlider">
+    <?php
+        $wp_query = new WP_Query();
+        $param = array (
+        'posts_per_page' => '-1',
+        'post_type' => 'video',
+        'post_status' => 'publish',
+        'order' => 'DESC',
+        'meta_query' => array(
+        array(
+        'key' => 'slide_mobile',
+        'value' => '',
+        'compare' => '!='
+        ))
+        );
+        $wp_query->query($param);
+        if($wp_query->have_posts()): while($wp_query->have_posts()) :$wp_query->the_post();
+        $image_sp = wp_get_attachment_image_src(get_field('slide_mobile'),'full');
+    ?>
+    <li><img src="<?php echo $image_sp[0] ?>" alt=""></li>
+    <?php endwhile;endif; ?>
+</ul> 
+</div>    
+    
 <p class="hashTag">#enterthedarkness</p>
 <span id="muteBtn"><i class="fa fa-volume-off" aria-hidden="true"></i></span>    
 </div>    
@@ -195,8 +222,6 @@ include(APP_PATH."libs/head.php");
                     $term_id=$category->term_id;
                     $img_cate = get_field( 'image_menu', 'foodcat_'.$term_id.'' );
                     $image_c = wp_get_attachment_image_src( $img_cate, 'full' );
-                    $i++;
-                    if($i%3==0) {$ul='</ul><ul class="lstMenu clearfix lstMenu--center">';} else {$ul='';}
                 ?>
                 <li>
                     <img src="<?php echo $image_c[0]; ?>" class="" alt="">
@@ -209,8 +234,18 @@ include(APP_PATH."libs/head.php");
                         </div>    
                     </div>
                 </li>
-                <?php echo $ul; ?>
                 <?php endforeach; ?>
+                <li>
+                    <img src="<?php echo APP_URL; ?>img/food/delici.png" class="" alt="">
+                    <p class="name">Other<br>Special<br>Menus</p>
+                    <div class="invi f_lapresse">
+                        <img src="<?php echo APP_URL; ?>img/food/delici.png" class="" alt="">
+                        <div class="invi_info">
+                            <p class="name_invi">Other<br>Special<br>Menus</p>
+                            <p class="btnMore btnWhite"><a href="<?php echo APP_URL; ?>menu-special/#menuFood">MORE</a></p>
+                        </div>    
+                    </div>
+                </li>
             </ul>
         </div>
         
@@ -240,6 +275,10 @@ include(APP_PATH."libs/head.php");
                     <p class="name"><a href="<?php echo APP_URL; ?>food/#h3_<?php echo $slug; ?>"><?php echo $category->name; ?></a></p>
                 </li>
                 <?php endforeach; ?>
+                <li>
+                    <img src="<?php echo APP_URL; ?>img/food/delici.png" class="" alt="">
+                    <p class="name"><a href="<?php echo APP_URL; ?>menu-special/#menuFood">Other<br>Special<br>Menus</a></p>
+                </li>
             </ul>
             
         </div>
@@ -447,6 +486,44 @@ $('.listFeature').slick({
    
   ]
 });
+ 
+$('#spSlider').slick({
+  dots: false,
+  infinite: true,
+  speed: 1000,
+  autoplay: true,
+  fade: true,
+  autoplaySpeed: 2000,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        infinite: true,
+        dots: false
+      }
+    },
+    {
+      breakpoint: 767,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    }
+  ]
+});
+
+    
 });
 </script>
 

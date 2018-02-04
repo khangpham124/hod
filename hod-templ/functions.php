@@ -238,6 +238,7 @@ function my_custom_food()
     'menu_position' => 5,
     'supports' => array('title','editor','thumbnail'),
     'has_archive' => true,
+    'menu_icon' => 'dashicons-carrot',
   );
   register_post_type('food',$args);
 }
@@ -294,6 +295,7 @@ function my_custom_shop()
     'menu_position' => 5,
     'supports' => array('title','editor','thumbnail'),
     'has_archive' => true,
+    'menu_icon' => 'dashicons-cart',
   );
   register_post_type('shop',$args);
 }
@@ -351,6 +353,7 @@ function my_custom_find()
     'menu_position' => 5,
     'supports' => array('title'),
     'has_archive' => true,
+    'menu_icon' => 'dashicons-location',
   );
   register_post_type('find',$args);
 }
@@ -407,6 +410,7 @@ function my_custom_press()
     'menu_position' => 5,
     'supports' => array('title','editor','thumbnail'),
     'has_archive' => true,
+    'menu_icon' => 'dashicons-megaphone',
   );
   register_post_type('Press',$args);
 }
@@ -440,6 +444,7 @@ function my_custom_career()
     'menu_position' => 5,
     'supports' => array('title','editor','thumbnail'),
     'has_archive' => true,
+    'menu_icon' => 'dashicons-nametag',
   );
   register_post_type('career',$args);
 }
@@ -497,6 +502,7 @@ function my_custom_video()
     'menu_position' => 5,
     'supports' => array('title'),
     'has_archive' => true,
+    'menu_icon' => 'dashicons-video-alt3',
   );
   register_post_type('video',$args);
 }
@@ -529,6 +535,7 @@ function my_custom_customer()
     'menu_position' => 5,
     'supports' => array('title'),
     'has_archive' => true,
+    'menu_icon' => 'dashicons-businessman',
   );
   register_post_type('customer',$args);
 }
@@ -557,11 +564,42 @@ function my_custom_order() {
 		'capability_type' => 'post',
 		'hierarchical' => false,
 		'menu_position' => 5,
-		'supports' => array('title', 'editor'),
+		'supports' => array('title'),
 		'has_archive' => true,
-		//'menu_icon' => 'dashicons-media-spreadsheet',
+		'menu_icon' => 'dashicons-media-spreadsheet',
 	);
 	register_post_type('customer_order',$args);
+}
+
+add_action('init', 'my_custom_seo');
+function my_custom_seo() {
+	$labels = array(
+		'name' => _x('SEO', 'post type general name'),
+		'singular_name' => _x('SEO', 'post type singular name'),
+		'add_new' => _x('Thêm', 'SEO'),
+		'add_new_item' => __('Add'),
+		'edit_item' => __('Edit'),
+		'new_item' => __('Add'),
+		'view_item' => __('Xem'),
+		'search_item' => __('Search'),
+		'not_found' =>  __('Not found'),
+		'not_found_in_trash' => __('Not found in trash'),
+		'parent_item_colon' => ''
+	);
+	$args = array(
+		'labels' => $labels,
+		'public' => true,
+		'publicly_queryable' => true,
+		'show_ui' => true,
+		'query_var' => true,
+		'capability_type' => 'post',
+		'hierarchical' => false,
+		'menu_position' => 5,
+		'supports' => array('title','thumbnail'),
+		'has_archive' => true,
+		'menu_icon' => 'dashicons-admin-site',
+	);
+	register_post_type('seo',$args);
 }
 
 

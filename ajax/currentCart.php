@@ -3,6 +3,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . '/app_config.php');
 include(APP_PATH . '/hod/wp-load.php');
 ?>
 <h3 class="h3_popup f_lapresse">CART</h3>
+<p class="h3_popup_sub"><?php echo $_COOKIE['totalcart']; ?> item(s)</p>
 <?php 
     $listCart = array();
     $arr_ids = array();
@@ -74,6 +75,6 @@ include(APP_PATH . '/hod/wp-load.php');
     <a href="<?php echo APP_URL; ?>checkout" class="checkOut" >Checkout</a>
 </p>
 <?php } else { ?>
-    <p class="txtEmpty">Your cart is empty</p>
+    <p class="taC"><a href="javascript:void(0)" class="contBtn">continue shopping</a></p>
 <?php } ?>
 <span class="closeBtn"><i class="fa fa-times" aria-hidden="true"></i></span>

@@ -69,7 +69,7 @@ include(APP_PATH."libs/head.php");
     
 <div id="wrapper">
     
-<h2 class="h2_site">OUR MENU</h2>
+<h2 class="h2_site" id="menuFood">OUR MENU</h2>
     
       <div class="greyBox">
         <div class="inner">
@@ -246,12 +246,13 @@ include(APP_PATH."libs/head.php");
 </div>
 <!--/wrapper-->
 <!--===================================================-->
+
 <script>
     $(document).ready(function(){
         $('#tab1').addClass('active');
         $('#call1').parent('li').addClass('active');
         $('#menu1').addClass('active');
-		$('.listCountries li').click(function(){
+        $('.listCountries li').click(function(){
             $(".loadingFood").fadeIn(200).delay(300).fadeOut(200);
             var elm = $(this).find('a');
 			var id_elm = elm.attr('id');
@@ -269,8 +270,6 @@ include(APP_PATH."libs/head.php");
             $('.btnMenu_sp').removeClass('active');
             elm.addClass('active');
             var scr = $(this).offset().top;
-            
-            //$('html,body').animate({scrollTop:scr + 45 }, 300);
 		});
     });    
 </script>

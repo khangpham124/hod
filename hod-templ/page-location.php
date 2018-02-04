@@ -46,7 +46,6 @@ include(APP_PATH."libs/head.php");
         <li><img src="<?php echo $image[0]; ?>" alt=""></li>
         <?php endwhile;endif; ?>
     </ul>
-    
 </div>
     
 

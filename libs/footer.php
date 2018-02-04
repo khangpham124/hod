@@ -74,6 +74,19 @@
     </p>
 </div>
 
+<!-- POPUP LOGIN !-->
+<div class="popupLogin">
+    <div id="messageLogin">
+        <h3 class="h3_popup"><img src="<?php echo APP_URL; ?>common/img/header/logo.svg" alt="<?php echo $txtH1; ?>"></h3>
+        <form method="POST" action="http://heartofdarknessbrewery.com/ajax/login.php" class="formLogin">
+            <input type="text" value="" name="field1" placeholder="Email/Phone" required>
+            <input type="password" value="" name="field2" placeholder="Password" required>
+            <input type="submit" class="submitRegis" id="submitLogin" value="LOGIN">
+        </form>
+    </div>
+    <span class="closeBtn"><i class="fa fa-times" aria-hidden="true"></i></span>
+</div>    
+
 <!-- POPUP REGISTER !-->
 <div class="popupRegister">
     <p class="labeltext">Register</p>
@@ -88,7 +101,7 @@
     </form>
     
     <div class="loginSoc">
-        <p class="labeltext">Already Registered? <a href="">SIGN IN HERE</a></p>
+        <p class="labeltext">Already Registered? <a href="javascript:void(0)" class="btnRegis">SIGN IN HERE</a></p>
         <p class="labeltext">Or sign in with:</p>
         <div class="btnSoc">
            <a href=""><img src="<?php echo APP_URL; ?>common/img/header/btn_fb.svg" alt ></a>

@@ -84,11 +84,16 @@ $('.updateBtn').live('click', function() {
 /* remove Item from cart */
 $('.removeItem').live('click', function() {
     var itemDel = $(this).attr('data-id');
+    var itemCost = $(this).parent().parent().parent().next().next().next().find('.totalNumb').val();
     var qtyDel = readCookie(itemDel);
     var curr_qty = readCookie('totalcart');
     var update_qty = curr_qty - qtyDel;
+    var totalcost = readCookie('totalCost');
+    var new_totalcost = totalcost - itemCost;
     eraseCookie(itemDel);
+    eraseCookie('totalCost');
     createCookie('totalcart', update_qty, 2);
+    createCookie('totalCost', new_totalcost, 2);
     $('#numbCart').html(update_qty);
     $(this).parent().parent().parent().parent().remove();
 });

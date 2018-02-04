@@ -28,9 +28,9 @@
 <!--facebook-->
 <meta property="og:title" content="<?php echo $titlepage; ?>">
 <meta property="og:type" content="website">
-<meta property="og:url" content="<?php echo APP_URL; ?>">
-<meta property="og:image" content="">
-<meta property="og:site_name" content="">
+<meta property="og:url" content="<?php echo $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";?>">
+<meta property="og:image" content="<?php echo $img_og; ?>">
+<meta property="og:site_name" content="Heart of Darkness Craft Brewery">
 <meta property="og:description" content="<?php echo $desPage; ?>">
 <!--/facebook-->
 

@@ -59,7 +59,10 @@ $pt = 'shop';
                 <p class="listFeature__thumb"><img src="<?php echo $image_shop[0]; ?>" class="" alt=""></p>
                 <p class="listFeature__name"><a href=""><?php the_title(); ?></a></p>
                 <div class="listFeature__desc matchHeight">
-                <?php if($slug=='t-shirt') { ?>    
+                <?php if(($slug!='t-shirt')&&($slug!='framed-poster')&&($slug!='poster')) { ?>
+                    <?php echo $post->post_content; ?>    
+                <?php } ?>
+                <?php if($slug=='t-shirt') { ?>
                     <p><?php the_field('t_shirt_type'); ?></p>
                     <p><?php the_field('cf_size'); ?></p>
                 <?php } ?>

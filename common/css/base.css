@@ -487,6 +487,11 @@ body {
     color: #333;
     min-width: 320px;
     font-family: 'Oswald', sans-serif;
+    
+}
+
+#food {
+    overflow-y: hidden;
 }
 
 .pc {
@@ -494,7 +499,7 @@ body {
 }
 
 .sp {
-    display: none;
+    display: none ;
 }
 
 .maxW {
@@ -615,6 +620,27 @@ Header
     padding: 30px 15px;
 }
 
+.popupLogin {
+    display: none;
+    background: #fff;
+    width: 330px;
+    position: fixed;
+    top: 50%;
+    -moz-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    left: 50%;
+    margin-left: -165px;
+    z-index: 1000;
+    padding: 30px 15px;
+}
+
+.popupLogin .h3_popup {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
 .closeBtn {
     position: absolute;
     top: 0;
@@ -630,7 +656,10 @@ Header
     cursor: pointer;
 }
 
-.formRegis input[type=text],.formRegis input[type=tel],.formRegis input[type=email],.formRegis input[type=number],
+.formRegis input[type=text],
+.formRegis input[type=tel],
+.formRegis input[type=email],
+.formRegis input[type=number],
 .formRegis input[type=password] {
     background-color: #ffffff;
     color: #696b6f;
@@ -660,7 +689,43 @@ Header
     text-align: center;
     width: 100%;
     margin-top: 10px;
-    border:none;
+    border: none;
+}
+
+.formLogin input[type=text],
+.formLogin input[type=tel],
+.formLogin input[type=email],
+.formLogin input[type=number],
+.formLogin input[type=password] {
+    background-color: #ffffff;
+    color: #696b6f;
+    padding: 8px 5px 8px 10px;
+    max-width: 100%;
+    border-width: 1px;
+    border-style: solid;
+    -webkit-transition: border-color .2s ease-in-out;
+    -moz-transition: border-color .2s ease-in-out;
+    -ms-transition: border-color .2s ease-in-out;
+    -o-transition: border-color .2s ease-in-out;
+    transition: border-color .2s ease-in-out;
+    font-size: 15px;
+    line-height: 20px;
+    border: 1px solid #ccc;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.formLogin input[type=submit] {
+    background: #98252c;
+    color: #fff;
+    font-size: 16px;
+    display: block;
+    font-family: 'Conv_LaPresse';
+    padding: 15px 0 12px;
+    text-align: center;
+    width: 100%;
+    margin-top: 10px;
+    border: none;
 }
 
 .loginSoc {
@@ -692,7 +757,7 @@ Header
     text-align: center;
     font-size: 60px;
     color: #98252c;
-    line-height:1;
+    line-height: 1;
 }
 
 ::-webkit-input-placeholder {
@@ -802,19 +867,6 @@ Global Navi
 }
 
 #shop .gNavi li:nth-child(10) a {
-    color: #98252c;
-}
-
-
-
-
-
-
-#about .gNavi li:nth-child(8) a {
-    color: #98252c;
-}
-
-#food .gNavi li:nth-child(3) a {
     color: #98252c;
 }
 
@@ -950,7 +1002,6 @@ PageTop
     padding: 30px 15px;
     border: 1px solid #98252c;
 }
-
 
 
 /*-----------------------------------------------------------
