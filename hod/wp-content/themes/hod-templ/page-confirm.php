@@ -37,22 +37,23 @@ include(APP_PATH."libs/head.php");
 					'post_type' => 'customer_order'
 				);
         $pid = wp_insert_post($new_post); 
-        add_post_meta($pid, 'cf_customer', $customer_mail);
+        /* add_post_meta($pid, 'cf_customer', $customer_mail);
         add_post_meta($pid, 'cf_grand_total', $grandTotal);
         add_post_meta($pid, 'cf_payment_method', $payment);
         add_post_meta($pid, 'cf_address', $address);
         add_post_meta($pid, 'cf_city', $city);
         add_post_meta($pid, 'cf_country', $country);
         add_post_meta($pid, 'cf_fullname', $fullname);
-        add_post_meta($pid, 'cf_phone', $phone);
+        add_post_meta($pid, 'cf_phone', $phone);*/
         //LIST PORDUCT
+        var_dump($order_detail);
         $count_product = count($order_detail);
-        add_post_meta($pid, 'cf_order_products_list', $count_product, true);
+        //add_post_meta($pid, 'cf_order_products_list', $count_product, true);
         /*add_post_meta($pid, '_'.'cf_order_products_list', $repeater_key, true);*/
         for($i=0;$i<=$count_product;$i++) {
             $sub_field_name1 = 'cf_order_products_list'.'_'.$i.'_'.'cf_product_name';
             $sub_field_name2 = 'cf_order_products_list'.'_'.$i.'_'.'cf_quantity';
-            add_post_meta($pid, $sub_field_name1, $order_detail['sku'], false);
+            //add_post_meta($pid, $sub_field_name1, $order_detail['sku'], false);
             //add_post_meta($pid, $sub_field_name1, $order_detail[$i], false);
         }
     ?>

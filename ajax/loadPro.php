@@ -25,11 +25,11 @@ $addtocart = $_GET['addtocart'];
         $pt = get_post_type();
 ?>
     <div class="clearfix">
-        <p class="thumbPop"><img src="<?php echo $image_shop[0]; ?>" alt="<?php the_title(); ?>"></p>
+        <div class="thumbPop"><img src="<?php echo $image_shop[0]; ?>" id="thumbImg" alt="<?php the_title(); ?>"></div>
         <div class="overflow">
             <p class="titlePop"><?php the_title(); ?></p>
             <?php if($slug=='t-shirt') { ?>    
-                <p><?php the_field('t_shirt_type'); ?></p>
+            <p><?php the_field('t_shirt_type'); ?></p>
             <?php } ?>
             <?php if(($slug=='framed-poster')||($slug=='poster')) { ?> 
             <?php } ?> 
@@ -46,17 +46,6 @@ $addtocart = $_GET['addtocart'];
                         <td>PRICE</td>
                     </thead>
                     <tbody>
-                        <?php if($slug=='t-shirt') { ?>
-                        <td>
-                            <select id="sizetshirt">
-                                <?php $size = get_field('cf_size');
-                                foreach($size as $s) {
-                                ?>
-                                <option value="<?php echo $s ?>"><?php echo $s ?></option>
-                                <?php } ?>
-                            </select>
-                        </td>
-                        <?php } ?>
                         <td>
                             <div class="numbers-row clearfix">
                                 <div class='inc button cal' rel='+' ><i class="fa fa-caret-up" aria-hidden="true"></i></div>
@@ -68,17 +57,47 @@ $addtocart = $_GET['addtocart'];
                     </tbody>
                 </table>
             </div>
-            
+            <?php if($slug=='t-shirt') { ?>
+                <div class="select-style">
+                <select id="sizetshirt">
+                    <?php $size = get_field('cf_size');
+                    foreach($size as $s) {
+                    ?>
+                    <option value="<?php echo $s ?>"><?php echo $s ?></option>
+                    <?php } ?>
+                </select>
+                </div>    
+             <?php } ?>
+            <?php if($slug=='framed-poster') { ?>
+            <?php $type_frame = get_field('label_poster');
+                foreach($type_frame as $labelID) {
+                    $thumb = get_post_thumbnail_id($labelID);
+                    $imgEmbed = wp_get_attachment_image_src($thumb,'fll');
+            ?>
+                <p style="display:none" id="p_<?php echo $labelID ?>"><?php echo thumbCrop($imgEmbed[0],0,320); ?></p>
+            <?php } ?>
+                <div class="select-style">
+                <select id="framePoster">
+                    <?php foreach($type_frame as $label) { ?>
+                        <option value="<?php echo $label ?>"><?php echo get_the_title($label); ?></option>
+                    <?php } ?>
+                </select>
+                </div>    
+            <?php } ?>
         </div>
     </div>
-    <p class="taR_popup">
+    <!--<p class="taR_popup">
     <a href="javascript:void(0)" class="contBtn">continue shopping</a>
     <?php if($_COOKIE['cart_'.$pt.'_'.$post->ID]) { ?>
     <a href="javascript:void(0)" class="addToCard disable" data-id="<?php echo $pt ?>_<?php the_ID(); ?>" data-price="<?php the_field('cf_price'); ?>"><i class="fa fa-shopping-cart"></i>Added</a>
     <?php } else { ?>
     <a href="javascript:void(0)" class="addToCard" data-id="<?php echo $pt ?>_<?php the_ID(); ?>" data-price="<?php the_field('cf_price'); ?>">add to cart</a>    
     <?php } ?>    
-    </p>    
+    </p>!-->
+    <p class="taR_popup">
+    <a href="javascript:void(0)" class="contBtn">continue shopping</a>
+    <a href="javascript:void(0)" class="addToCard" data-id="<?php echo $pt ?>_<?php the_ID(); ?>" data-price="<?php the_field('cf_price'); ?>">add to cart</a>    
+    </p>
 <?php endwhile;endif; ?>
 </div>
 <span class="closeBtn"><i class="fa fa-times" aria-hidden="true"></i></span>
