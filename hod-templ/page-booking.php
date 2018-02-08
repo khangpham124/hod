@@ -18,8 +18,8 @@ include(APP_PATH."libs/head.php");
     <h2 class="h2_site">BOOKING</h2>
     <div class="greyBox bookingBox">
             <ul class="listCountries clearfix f_lapresse pc">
-                <li class="active"><a href="<?php echo APP_URL; ?>booking-now/" id="call1">STEP 1</a></li>
-                <li><a href="<?php echo APP_URL; ?>booking-now/?step=2" id="call2">STEP 2</a></li>
+                <li <?php if($_GET['step']=='') { ?>class="active"<?php } ?>><a href="<?php echo APP_URL; ?>booking-now/" id="call1">STEP 1</a></li>
+                <li <?php if($_GET['step']==2) { ?>class="active"<?php } ?>><a href="<?php echo APP_URL; ?>booking-now/?step=2" id="call2">STEP 2</a></li>
             </ul>
             <?php if($_GET['step']==2) { ?>
                 <?php echo $_POST['time']; ?>
@@ -28,7 +28,7 @@ include(APP_PATH."libs/head.php");
             <div class="bookingContent">
                 <div class="clearfix">
                     <div class="leftBooking">
-                        <input type="text" id="datechose">
+                        <input type="text" id="datechose" name="datechose">
                         <div id="datepicker"></div>
                     </div>
                     <div class="rigthBooking"></div>
@@ -82,22 +82,38 @@ include(APP_PATH."libs/head.php");
         });
     });
     
-    var currTime = new Date();
-    var hour = currTime.getHours();
-    var hourText = hour.toString()
-    var minutes = currTime.getMinutes();
-    var minText = minutes.toString()
-    var timeCompText = hourText + minText;
-    var timeComp = parseInt(timeCompText);
-    //alert(timeComp);
-    $('.labelBook').each(function(){
-        var hourLabel = $(this).text();
-        var hourLabel_rep = hourLabel.replace(':','');
-        var hourComp = parseInt(hourLabel_rep);
-        if(hourComp < timeComp) {
-            $(this).addClass('disable');
+    $('#datechose').change(function(){  
+        var choseDate = $(this).val();
+        alert(choseDate);
+        /*
+        var currTime = new Date();
+        var hour = currTime.getHours();
+        var hourText = hour.toString()
+        var minutes = currTime.getMinutes();
+        var minText = minutes.toString();
+        var timeCompText = hourText + minText;
+        var timeComp = parseInt(timeCompText);
+        
+        var currDate =currTime.getDate()+"-"+(currTime.getMonth()+1)+"-"+currTime.getFullYear();
+
+        var compare_chose = Date.parse(choseDate);
+        var compare_curr = Date.parse(currDate);
+        
+        if(compare_chose==compare_curr){
+            alert('trong ngay');
+        } else if(compare_chose > compare_curr){
+            alert('ngay mai');
         }
-    });
+            $('.labelBook').each(function(){
+                var hourLabel = $(this).text();
+                var hourLabel_rep = hourLabel.replace(':','');
+                var hourComp = parseInt(hourLabel_rep);
+                if(hourComp < timeComp) {
+                    $(this).addClass('disable');
+                }
+            }); */
+    });    
+    
   });
 </script>  
 </body>
