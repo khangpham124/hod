@@ -278,7 +278,7 @@
     -ms-transform: rotate(-90deg);
     transform: rotate(-90deg);
 }
-    
+
 .btnWhite {
     background: #fff;
 }
@@ -2063,7 +2063,8 @@
     margin-bottom: 10px;
 }
 
-#shop .h2_site, #checkout .h2_site {
+#shop .h2_site,
+#checkout .h2_site {
     margin-top: 50px;
     margin-bottom: 25px;
 }
@@ -2551,25 +2552,26 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-    
-    .inputRadio {
-        border: 1px solid #98252c;
-        padding: 5px 15px;
-        margin: 5px 0;
-    }
-    
-    .inputRadio.chosen {
-        background: #98252c;
-        color: #fff;
-    }
-    
-    .inputRadio input, .inputRadio label {
-        display: inline-block;
-        vertical-align: middle;
-        margin-right: 10px;
-    }
-    
-    .select-style {
+
+.inputRadio {
+    border: 1px solid #98252c;
+    padding: 5px 15px;
+    margin: 5px 0;
+}
+
+.inputRadio.chosen {
+    background: #98252c;
+    color: #fff;
+}
+
+.inputRadio input,
+.inputRadio label {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+.select-style {
     padding: 0;
     margin: 0;
     border: 1px solid #e6e6e6;
@@ -2578,175 +2580,263 @@
     overflow: hidden;
     background-color: #fff;
     background: #fff;
-        position: relative;
-    }
+    position: relative;
+}
+
+.select-style:before {
+    content: "";
+    position: absolute;
+    right: 15px;
+    top: 38%;
+    width: 0;
+    height: 0;
+    border-bottom: 8px solid transparent;
+    border-left: 10px solid #98252c;
+    border-top: 8px solid transparent;
+    -moz-transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+.select-style select {
+    padding: 5px 8px;
+    width: 130%;
+    height: 42px;
+    border: none;
+    box-shadow: none;
+    background-color: transparent;
+    background-image: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.mt30 {
+    margin-top: 30px;
+}
+
+#booking .h2_site {
+    margin: 50px 0 40px;
+}
+
+.bookingBox {
+    max-width: 500px;
+    margin: 0 auto 50px;
+    background: none;
+    padding: 0;
+}
+
+.bookingBox .listCountries li {
+    width: 50%;
+}
+
+.bookingContent {
+    padding: 40px 30px;
+    border: 1px solid #e6e6e6;
+}
+
+.leftBooking {
+    float: left;
+    width: 50%;
+    position: relative;
+}
+
+.rigthBooking {
+    float: right;
+    width: 30%;
+}
+
+.rigthBooking .qtyBook {
+    background: #f2f2f2;
+    border: none;
+    font-family: 'Oswald', sans-serif;
+    font-size: 14px;
+    text-align: center;
+    padding: 8px 0;
+    width: 100%;
+}
+
+.radioBook {
+    display: none;
+}
+
+.radioBox {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.labelBook {
+    display: block;
+    background: #f2f2f2;
+    border: 1px solid #f2f2f2;
+    font-size: 16px;
+    width: 19%;
+    text-align: center;
+    padding: 5px 0;
+    margin: 0 0px 4px;
+    cursor: pointer;
+}
+
+.txtBooking {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+    margin: 20px 0 10px;
+}
+
+.labelBook.selected {
+    background: #98252c;
+    border: 1px solid #98252c;
+    color: #fff;
+}
+
+.labelBook.disable {
+    background: #fff;
+    border: 1px solid #f2f2f2;
+    color: #b3b3b3;
+    pointer-events: none;
+}
+
+.btnNext {
+    width: 290px;
+    height: 50px;
+    font-family: 'Conv_LaPresse';
+    background: #98252c;
+    color: #fff !important;
+    display: block;
+    font-size: 16px;
+    line-height: 50px;
+    text-align: center;
+    margin: 60px auto;
+    border: none;
+}
+
+.ui-datepicker-inline {
+    background: #f2f2f2 !important;
+    border: none !important;
+}
+
+.ui-datepicker-prev,
+.ui-datepicker-next {
+    background: #98252c;
+    position: relative;
+}
+
+.ui-widget-header .ui-icon {
+    background: none !important;
+}
+
+.ui-datepicker-prev:before {
+    content: "";
+    position: absolute;
+    left: 36%;
+    top: 30%;
+    width: 10px;
+    height: 10px;
+    border-left: 2px solid #fff;
+    border-top: 2px solid #fff;
+    -moztransform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+.ui-datepicker-next:before {
+    content: "";
+    position: absolute;
+    right: 36%;
+    top: 30%;
+    width: 10px;
+    height: 10px;
+    border-left: 2px solid #fff;
+    border-top: 2px solid #fff;
+    -moztransform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+    -ms-transform: rotate(135deg);
+    transform: rotate(135deg);
+}
+
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active,
+a.ui-button:active,
+.ui-button:active,
+.ui-button.ui-state-active:hover {
+    background: #98252c !important;
+    border: 1px solid #98252c !important;
+    color: #fff !important;
+}
+
+.ui-datepicker td a {
+    text-align: center !important;
+}
+
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default,
+.ui-button,
+html .ui-button.ui-state-disabled:hover,
+html .ui-button.ui-state-disabled:active {
+    border: none !important;
+}
+
+.ui-widget-header {
+    border: none !important;
+    background: none !important;
+}
+
+.ui-state-highlight,
+.ui-widget-content .ui-state-highlight,
+.ui-widget-header .ui-state-highlight {
+    background: #b2b2b2 !important;
+}
+
+#datechose {
+    display: none;
+}
+
+.guyBook {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.bookGuys {
+    margin-bottom: 30px;
+}
+
+.summaryBox {
+    background: #F2F2F2;
+    padding: 40px 0;
+    margin-bottom: 10px;
+}
+
+.wrapSum {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.tblSum {
+    width: 100%;
+}
+
+.inputBook {
+    border: 1px solid #e6e6e6;
+    height: 42px;
+    width: 100%;
+    font-size: 16px;
+    padding: 0 15px;
+}
     
-    .select-style:before {
-	content: "";
-	position: absolute;
-	right: 15px;
-	top: 38%;
-	width: 0;
-	height: 0;
-	border-bottom: 8px solid transparent;
-	border-left: 10px solid #98252c;
-	border-top: 8px solid transparent;
-      -moz-transform: rotate(90deg);
-        -webkit-transform: rotate(90deg);
-        -ms-transform: rotate(90deg);
-        transform: rotate(90deg);
+    .labelStep {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 10px;
     }
-    
-    .select-style select {
-        padding: 5px 8px;
-        width: 130%;
-        height: 42px;
-        border: none;
-        box-shadow: none;
-        background-color: transparent;
-        background-image: none;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-    }
-    
-    .mt30 {
-        margin-top: 30px;
-    }
-    
-    #booking .h2_site {
-        margin: 50px 0 40px;
-    }
-    
-    .bookingBox {
-        max-width: 500px;
-        margin: 0 auto 50px;
-        background: none;
-        padding: 0;
-    }
-    
-    .bookingBox .listCountries li {
-        width: 50%;
-    }
-    
-    .bookingContent {
-        padding: 40px 30px;
-        border: 1px solid #e6e6e6;
-    }
-    
-    .leftBooking {
-        float: left;
-        width: 50%;
-        position: relative;
-    }
-    
-    .radioBook {
-        display: none;
-    }
-    .radioBox {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-    }
-    
-    .labelBook {
-        display: block;
-        background: #f2f2f2;
-        border: 1px solid #f2f2f2;
-        font-size: 16px;
-        width: 19%;
-        text-align: center;
-        padding: 5px 0;
-        margin: 0 0px 4px;
-        cursor: pointer;
-    }
-    .txtBooking {
-        text-align: center;
-        font-size: 18px;
-        font-weight: 700;
-        margin: 20px 0 10px;
-    }
-    
-    .labelBook.selected {
-        background: #98252c;
-        border: 1px solid #98252c;
-        color: #fff;
-    }
-    
-    .labelBook.disable {
-        background: #fff;
-        border: 1px solid #f2f2f2;
-        color: #b3b3b3;
-        pointer-events: none;
-    }
-    
-    .btnNext {
-        width: 290px;
-        height: 50px;
-        font-family: 'Conv_LaPresse';
-        background: #98252c;
-        color: #fff !important;
-        display: block;
-        font-size: 16px;
-        line-height: 50px;
-        text-align: center;
-        margin: 60px auto;
-        border: none;
-    }
-    
-    .ui-datepicker-inline {
-        background: #f2f2f2 !important;
-        border: none !important;
-    }
-    
-    .ui-datepicker-prev, .ui-datepicker-next {
-        background: #98252c;
-        position: relative;
-    }
-    .ui-widget-header .ui-icon {
-        background: none !important;
-    }
-    
-    .ui-datepicker-prev:before {
-        content: "";
-        position: absolute;
-        left: 36%;
-        top: 30%;
-        width: 10px;
-        height: 10px;
-        border-left: 2px solid #fff;
-        border-top: 2px solid #fff;
-        -moztransform: rotate(-45deg);
-        -webkit-transform: rotate(-45deg);
-        -ms-transform: rotate(-45deg);
-        transform: rotate(-45deg);
-    }
-    
-    .ui-datepicker-next:before {
-        content: "";
-        position: absolute;
-        right: 36%;
-        top: 30%;
-        width: 10px;
-        height: 10px;
-        border-left: 2px solid #fff;
-        border-top: 2px solid #fff;
-        -moztransform: rotate(135deg);
-	-webkit-transform: rotate(135deg);
-	-ms-transform: rotate(135deg);
-	transform: rotate(135deg);
-    }
-    
-    .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, a.ui-button:active, .ui-button:active, .ui-button.ui-state-active:hover {
-        background: #98252c !important;
-        border: 1px solid #98252c !important;
-        color: #fff !important;
-    }
-    
-    .ui-datepicker td a {
-        text-align: center !important;
-    }
-    
-    .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active {
-        border: none !important;
-    }
+.titleSum {
+    text-align: center;
+    color: #98252c;
+    font-size: 17px;
+    margin-bottom: 20px;
+}
