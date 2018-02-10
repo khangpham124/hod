@@ -131,20 +131,20 @@ include(APP_PATH."libs/head.php");
   $( function() {
     var currTime = new Date();  
     var hour = currTime.getHours();
-            var hourText = hour.toString()
-            var minutes = currTime.getMinutes();
-            var minText = minutes.toString();
-            var timeCompText = hourText + minText;
-            var timeComp = parseInt(timeCompText);  
-            $('.labelBook').each(function(){
-                var hourLabel = $(this).text();
-                var hourLabel_rep = hourLabel.replace(':','');
-                var hourComp = parseInt(hourLabel_rep);
-                var hourComp_real = hourComp - 100;
-                if( hourComp_real < timeComp) {
-                    $(this).addClass('disable');
-                }
-    });   
+    var hourText = hour.toString()
+    var minutes = currTime.getMinutes();
+    var minText = minutes.toString();
+    var timeCompText = hourText + minText;
+    var timeComp = parseInt(timeCompText);
+    $('.labelBook').each(function(){
+            var hourLabel = $(this).text();
+            var hourLabel_rep = hourLabel.replace(':','');
+            var hourComp = parseInt(hourLabel_rep);
+            var hourComp_real = hourComp - 100;
+            if( hourComp_real < timeComp) {
+                $(this).addClass('disable');
+            }
+    });
       
     var dateToday = new Date();  
     $('#datepicker').datepicker({
