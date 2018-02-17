@@ -12,7 +12,7 @@
 ####################################################################
 
 //PHPMailerを読み込む
-require("./mailer/phpmailer/class.phpmailer.php");
+require("./phpmailer/class.phpmailer.php");
 
 /**
  * JPHPMailer - PHPMailer Japanese Edition

@@ -1,9 +1,11 @@
 <?php /* Template Name: Booking */ ?>
 <?php
 include_once($_SERVER['DOCUMENT_ROOT'] . '/app_config.php');
+require_once(APP_PATH."ajax/recaptchalib.php");
 include(APP_PATH."libs/head.php"); 
 ?>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 
 <body id="booking">
@@ -18,13 +20,13 @@ include(APP_PATH."libs/head.php");
     <h2 class="h2_site">BOOKING</h2>
     <div class="greyBox bookingBox">
             <ul class="listCountries clearfix f_lapresse pc">
-                <li <?php if($_GET['step']=='') { ?>class="active"<?php } ?>><a href="<?php echo APP_URL; ?>booking-now/" id="call1">STEP 1</a></li>
-                <li <?php if($_GET['step']==2) { ?>class="active"<?php } ?>><a href="<?php echo APP_URL; ?>booking-now/?step=2" id="call2">STEP 2</a></li>
+                <li <?php if($_GET['step']=='') { ?>class="active"<?php } ?>><a href="<?php echo APP_URL; ?>booking/" id="call1">STEP 1</a></li>
+                <li <?php if($_GET['step']==2) { ?>class="active"<?php } ?>><a href="<?php echo APP_URL; ?>booking/?step=2" id="call2">STEP 2</a></li>
             </ul>
             <?php if(($_GET['step']==2)&&($_POST['time']!='')) { ?>   
-                <p class="btnMenu_sp sp">STEP 1</p>
-                <p class="btnMenu_sp sp active">STEP 2</p>
-                <form action="<?php echo APP_URL; ?>booking-now/success/" method="POST">
+                <p class="btnMenu_sp sp"><a href="<?php echo APP_URL; ?>booking/?step=2">STEP 1</a></p>
+                <p class="btnMenu_sp sp active"><a href="<?php echo APP_URL; ?>booking/?step=2">STEP 2</a></p>
+                <form action="<?php echo APP_URL; ?>book_confirm/" id="ajaxform" method="POST">
                 <div class="summaryBox">
                     <p class="titleSum">BOOKING SUMMARY</p>
                     <div class="wrapSum">
@@ -55,22 +57,39 @@ include(APP_PATH."libs/head.php");
             <input type="text" class="inputBook" name="book_phone" required value="<?php if($_SESSION['customer']['phone']) { echo $_SESSION['customer']['phone']; } ?>">
             <label class="labelStep">Email*</label>        
             <input type="text" class="inputBook" name="book_email" required value="<?php if($_SESSION['customer']['email']) { echo $_SESSION['customer']['email']; } ?>">
-            <label class="labelStep">Message</label> 
-            <textarea name="book_message" class="textAreaBook"></textarea>
+            <!--<label class="labelStep">Message</label> 
+            <textarea name="book_message" class="textAreaBook"></textarea> !-->
+            
+            <div class="g-recaptcha mt30" data-sitekey="6LfMFEYUAAAAABgON63tzlMcRpI2HwY-kmL0tw1h"></div>
+            <?php 
+                $secret = "6LfMFEYUAAAAABgON63tzlMcRpI2HwY-kmL0tw1h";
+                // empty response
+                $response = null;
+                // check secret key
+                $reCaptcha = new ReCaptcha($secret);
+                if ($_POST["g-recaptcha-response"]) {
+                    $response = $reCaptcha->verifyResponse(
+                        $_SERVER["REMOTE_ADDR"],
+                        $_POST["g-recaptcha-response"]
+                    );
+                }
+            ?>    
             </div>    
                     <input type="hidden" name="date" value="<?php echo $_POST['datechose']; ?>">
                     <input type="hidden" name="time" value="<?php echo $_POST['time']; ?>">
                     <input type="hidden" name="guests" value="<?php echo $_POST['guests']; ?>">
                     <input type="hidden" name="kids" value="<?php echo $_POST['kids']; ?>">
+                    <input type="hidden" name="action" value="send">
                     <div class="clearfix buttonBook">
-                        <a href="javascript:void(0)" class="contBtn floatL">BACK</a>
-                        <input type="submit" class="btnNext floatR" value="NEXT">
+                        <a href="javascript:void(0)" class="btnBack_book floatL">BACK</a>
+                        <input type="submit" class="btnNext floatR" id="btnSend" value="CONFIRM">
                     </div>
             </form>
+            <p id="simple-msg" class="taC"></p>
             <?php } else { ?>
-            <p class="btnMenu_sp sp active">STEP 1</p>
-            <p class="btnMenu_sp sp">STEP 2</p>
-            <form action="<?php echo APP_URL; ?>booking-now/?step=2" method="POST">
+            <p class="btnMenu_sp sp active"><a href="<?php echo APP_URL; ?>booking/?step=2">STEP 1</a></p>
+            <p class="btnMenu_sp sp"><a href="<?php echo APP_URL; ?>booking/?step=2">STEP 2</a></p>
+            <form action="<?php echo APP_URL; ?>booking/?step=2" method="POST">
             <div class="bookingContent">
                 <div class="clearfix">
                     <div class="leftBooking">
@@ -187,10 +206,43 @@ include(APP_PATH."libs/head.php");
             $('.labelBook').removeClass('selected');    
             $(this).addClass('selected');
         });
-    });
-    
-    
+    });    
   });
-</script>  
+</script>
+
+<script>
+$(document).ready(function(){
+    $(document).bind("contextmenu",function(e){
+        e.preventDefault();
+    });
+
+    $("#btnSend").click(function()
+		{
+			$("#ajaxform").submit(function(e)
+			{
+				$("#simple-msg").html("<img src='<?php echo APP_URL; ?>common/img/other/load.gif' alt=''>");
+				var postData = $(this).serializeArray();
+				var formURL = $(this).attr("action");
+				$.ajax(
+				{
+					url : formURL,
+					type: "POST",
+					data : postData,
+					success:function(data, textStatus, jqXHR) 
+					{
+                        window.location.href = "http://heartofdarknessbrewery.com/booking/success/";
+					},
+					error: function(jqXHR, textStatus, errorThrown) 
+					{
+						$("#simple-msg").html('<pre><code class="prettyprint">AJAX Request Failed<br/> textStatus='+textStatus+', errorThrown='+errorThrown+'</code></pre>');
+					}
+				});
+				e.preventDefault();	//STOP default action
+				e.unbind();
+			});
+	});
+});
+</script>
+
 </body>
 </html>	

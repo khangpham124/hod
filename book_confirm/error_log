@@ -1,0 +1,7 @@
+[17-Feb-2018 06:03:04 UTC] PHP Warning:  session_start(): Cannot send session cache limiter - headers already sent (output started at /home/accroot/public_html/libs/head.php:1) in /home/accroot/public_html/hod/wp-content/themes/hod-templ/functions.php on line 2
+[17-Feb-2018 06:05:00 UTC] PHP Fatal error:  Cannot redeclare class phpmailerException in /home/accroot/public_html/confirm/phpmailer/class.phpmailer.php on line 2319
+[17-Feb-2018 06:22:54 UTC] PHP Warning:  session_start(): Cannot send session cache limiter - headers already sent (output started at /home/accroot/public_html/libs/head.php:1) in /home/accroot/public_html/hod/wp-content/themes/hod-templ/functions.php on line 2
+[17-Feb-2018 07:50:56 UTC] PHP Fatal error:  Call to a member function addTo() on a non-object in /home/accroot/public_html/confirm/index.php on line 69
+[17-Feb-2018 09:11:35 UTC] PHP Fatal error:  Call to a member function addTo() on a non-object in /home/accroot/public_html/confirm/index.php on line 65
+[17-Feb-2018 09:27:01 UTC] PHP Fatal error:  Call to a member function addTo() on a non-object in /home/accroot/public_html/confirm/index.php on line 84
+[17-Feb-2018 10:45:43 UTC] PHP Fatal error:  Call to a member function addTo() on a non-object in /home/accroot/public_html/confirm/index.php on line 84
