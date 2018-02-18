@@ -2655,6 +2655,7 @@
     text-align: center;
     padding: 8px 0;
     width: 100%;
+    pointer-events: none;
 }
 
 .radioBook {
@@ -2698,9 +2699,13 @@
     color: #b3b3b3;
     pointer-events: none;
 }
+    
+    .buttonBook {
+        margin: 60px 0;
+    }
 
 .btnNext {
-    width: 290px;
+    width: 46%;
     height: 50px;
     font-family: 'Conv_LaPresse';
     background: #98252c;
@@ -2709,9 +2714,11 @@
     font-size: 16px;
     line-height: 50px;
     text-align: center;
-    margin: 60px auto;
+    margin: 0px auto;
     border: none;
+    -webkit-appearance: none;
 }
+ 
 
 .ui-datepicker-inline {
     background: #f2f2f2 !important;
@@ -2808,7 +2815,7 @@ html .ui-button.ui-state-disabled:active {
 
 .summaryBox {
     background: #F2F2F2;
-    padding: 40px 0;
+    padding: 30px 0;
     margin-bottom: 10px;
 }
 
@@ -2820,14 +2827,26 @@ html .ui-button.ui-state-disabled:active {
 .tblSum {
     width: 100%;
 }
+.tblSum tr td {
+    padding: 5px 0;
+    }
 
 .inputBook {
-    border: 1px solid #e6e6e6;
+    border: 1px solid #e6e6e6 !important;
     height: 42px;
     width: 100%;
-    font-size: 16px;
-    padding: 0 15px;
+    font-size: 16px !important;;
+    padding: 0 15px !important;
 }
+    
+.inputBook + .labelStep {
+    margin-top: 30px;
+    }
+    .textAreaBook {
+        border: 1px solid #e6e6e6 !important;
+        height: 150px;
+        width: 100%;
+    }    
     
     .labelStep {
     display: block;
@@ -2840,3 +2859,52 @@ html .ui-button.ui-state-disabled:active {
     font-size: 17px;
     margin-bottom: 20px;
 }
+    
+    .boxThx {
+        max-width: 500px;
+        margin: 60px auto;
+        font-size: 16px;
+        color: #333;
+    }
+    
+    .boxThx .warningTxt {
+        font-size: 30px;
+        margin-bottom: 20px;
+    }
+    
+    .boxThx .warningTxt i {
+        color: #98252c;
+        font-size: 35px;
+        margin-right: 10px;
+    }
+    
+    .btnBack_book {
+        border: 1px solid #98252c;
+        text-align: center;
+        color: #98252c !important;
+        font-family: 'Conv_LaPresse';
+        font-size: 14px;
+        line-height: 1;
+        width: 46%;
+        line-height: 50px;
+        height: 50px;
+        padding: 0;
+        position: relative;
+    }
+
+    .listInfo li {
+        padding: 10px 0;
+        font-size: 16px;
+    }
+
+    .listInfo li i {
+        font-size: 22px;
+        margin-right: 10px;
+        color: #98252c;
+    }
+
+    .disableInput {
+        cursor: not-allowed;
+        background-color: #eeeeee;
+        opacity: 1;
+    }

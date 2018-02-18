@@ -58,7 +58,7 @@ $addtocart = $_GET['addtocart'];
                 </table>
             </div>
             <?php if($slug=='t-shirt') { ?>
-                <div class="select-style">
+                <div class="select-style mt30">
                 <select id="sizetshirt">
                     <?php $size = get_field('cf_size');
                     foreach($size as $s) {
@@ -76,7 +76,7 @@ $addtocart = $_GET['addtocart'];
             ?>
                 <p style="display:none" id="p_<?php echo $labelID ?>"><?php echo thumbCrop($imgEmbed[0],0,320); ?></p>
             <?php } ?>
-                <div class="select-style">
+                <div class="select-style mt30">
                 <select id="framePoster">
                     <?php foreach($type_frame as $label) { ?>
                         <option value="<?php echo $label ?>"><?php echo get_the_title($label); ?></option>
@@ -101,3 +101,25 @@ $addtocart = $_GET['addtocart'];
 <?php endwhile;endif; ?>
 </div>
 <span class="closeBtn"><i class="fa fa-times" aria-hidden="true"></i></span>
+
+<script>
+$(".button").click(function(){
+    var $button = $(this);
+    var oldValue = $button.parent().find("input").val();
+    if ($button.attr("rel") == '+') {
+        var newVal = parseFloat(oldValue) + 1;
+    } else {
+        if (oldValue > 0) {
+            var newVal = parseFloat(oldValue) - 1;
+        } else {
+            newVal = 0;
+        }
+    }
+    $('.updateBtn').removeClass('disable');
+    $button.parent().find("input").val(newVal);
+    var dg = $(this).parent().parent().parent().prev().find('.priceNumb').val();
+    var calc = parseInt(dg) * parseInt(newVal);
+    var numb_calc = parseInt(calc);
+    $(this).parent().parent().parent().next().find('.qtyPro .totalNumb').val(numb_calc);
+});
+</script>

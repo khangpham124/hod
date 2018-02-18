@@ -773,7 +773,7 @@
     #food .greyBox .tabBox {
         padding-top: 0;
     }
-    #food .btnMenu_sp {
+    .btnMenu_sp {
         border: 1px solid #98252c;
         margin-bottom: 10px;
         color: #98252c;
@@ -790,7 +790,12 @@
         -ms-transition: all 0.2s ease-out;
         font-family: 'Conv_LaPresse';
     }
-    #food .btnMenu_sp:before {
+    
+    .btnMenu_sp a {
+        color: #98252c;
+    }
+    
+    .btnMenu_sp:before {
         content: '';
         width: 14px;
         height: 14px;
@@ -800,11 +805,14 @@
         top: 15px;
         right: 20px;
     }
-    #food .btnMenu_sp.active {
+    .btnMenu_sp.active {
         background: #98252c;
-        color: #fff;
+        color: #fff !important;
     }
-    #food .btnMenu_sp.active:before {
+    .btnMenu_sp.active a {
+        color: #fff !important;
+    }
+    .btnMenu_sp.active:before {
         -moztransform: rotate(90deg);
         -webkit-transform: rotate(90deg);
         -ms-transform: rotate(90deg);
@@ -1098,7 +1106,73 @@
         left: 15px;
         z-index: 400;
         top: 45%;
-    }    
+    } 
+        .leftBooking {
+            margin-bottom: 20px;
+        }
+        .leftBooking, .rigthBooking {
+            width: 100%;
+        }
+        .bookingContent {
+            border: none;
+            padding: 0;
+        }
+        .ui-widget.ui-widget-content {
+            width: 100% !important;
+        }
+        
+        .flex_sp {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        #booking .bookGuys {
+            width: 48%;
+        }
+        #booking .numbers-row .button.inc {
+            right: 4px;
+            top:12px;
+        }
+        
+        #booking .numbers-row .button.dec {
+            left: 4px;
+            right: inherit;
+            bottom: 10px;
+        }
+        
+        #booking .numbers-row .button.inc i {
+            -moztransform: rotate(90deg);
+            -webkit-transform: rotate(90deg);
+            -ms-transform: rotate(90deg);
+            transform: rotate(90deg);
+        }
+        
+        
+        
+        #booking .numbers-row .button.dec i {
+            -moztransform: rotate(90deg);
+            -webkit-transform: rotate(90deg);
+            -ms-transform: rotate(90deg);
+            transform: rotate(90deg);
+            }
+            .btnNext {
+                margin: 20px auto 40px;
+                width: 100%;
+            } 
+            .summaryBox {
+                margin-left: -15px;
+                margin-right: -15px;
+            }
+            
+            .wrapSum {
+                width: 60%;
+            }
+        #booking .btnBack_book {
+                width: 100%;
+            display: block;
+                margin-top: 30px;
+        } 
+        
 }
 
 @media only screen and (min-width: 320px) and (max-width: 374px) {

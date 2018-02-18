@@ -3,7 +3,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . '/app_config.php');
 include(APP_PATH . '/hod/wp-load.php');
 ?>
 <h3 class="h3_popup f_lapresse">CART</h3>
-<p class="h3_popup_sub"><?php echo $_COOKIE['totalcart']; ?> item(s)</p>
+<p class="h3_popup_sub"><?php  if($_COOKIE['totalcart']!=0) { echo $_COOKIE['totalcart']; } else { ?>0<?php } ?> item(s)</p>
 <?php 
     $listCart = array();
     $arr_ids = array();
@@ -53,7 +53,7 @@ include(APP_PATH . '/hod/wp-load.php');
             </div>
             
         </td>
-        <td><p class="pricePro"><input type="text" readonly class="priceNumb" value="<?php echo $cost = get_field('cf_price'); ?>"></p></td>
+        <td><p class="pricePro"><input type="text" readonly class="priceNumb" value="<?php echo $cost = number_format(get_field('cf_price')); ?>"></p></td>
         <td class="qtyField">
             <div class="qtyPro">
             <div class="numbers-row clearfix">
@@ -63,7 +63,7 @@ include(APP_PATH . '/hod/wp-load.php');
             </div>
             </div>
         </td>
-        <td><p class="subTotal qtyPro"><input type="number" readonly class="totalNumb totalCost" value="<?php echo $total_curr = $cost * $curr_wty; ?>" alt=""></p></td>
+        <td><p class="subTotal qtyPro"><input type="number" readonly class="totalNumb totalCost" value="<?php echo number_format($total_curr = $cost * $curr_wty); ?>" alt=""></p></td>
         </tr> 
         <?php endwhile;endif; ?>
     </tbody>    

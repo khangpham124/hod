@@ -162,3 +162,9 @@ $("#submitLogin").click(function() {
         e.unbind();
     });
 });
+
+$('#framePoster').live('change', function() {
+    var v_label = $(this).val();
+    var imgEmbed = $('#p_'+ v_label).text();
+    $('#thumbImg').attr('src',imgEmbed);
+});
