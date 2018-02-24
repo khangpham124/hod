@@ -1,6 +1,7 @@
 <?php
 //email list
-$aMailto = array("khangpham421@gmail.com", "ann@heartofdarknessbrewery.com");
+$aMailto = array("khangpham421@gmail.com", "annheartofdarkness@gmail.com","ryo@heartofdarknessbrewery.com");
+//$aMailto = array("khangpham421@gmail.com");
 $from = "ann@heartofdarknessbrewery.com";
 
 // 設定
@@ -22,6 +23,7 @@ if($action == "confim"){
 <?php
 }elseif($action == "send"){
 //========================================================================================== お問い合わせ確認画面
+mb_internal_encoding("UTF-8");
 
 $name_book = $_POST['book_name'];
 $phone = $_POST['book_phone'];
@@ -35,14 +37,14 @@ if($kids!=0) {$kid=$kids;} else {$kid='n/a';}
 if($message!='') {$content= 'Message:'.$message;} else {$content='';}
         
     $msgBody = "
-        BOOKING SUMMARY FROM HEART OF DARKNESS
-        Fullname: $name_book
-        Number of guest(s): $guests
-        Kid(s): $kid
-        Phone: $phone
-        Email: $email_book
-        Time: [$date] at [$time]
-        $content
+BOOKING SUMMARY FROM HEART OF DARKNESS
+Fullname: $name_book
+Number of guest(s): $guests
+Kid(s): $kid
+Phone: $phone
+Email: $email_book
+Time: [$date] at [$time]
+$content
         ";
 
         $subject = "BOOKING SUMMARY FROM HEART OF DARKNESS";
@@ -53,13 +55,13 @@ if($message!='') {$content= 'Message:'.$message;} else {$content='';}
         //お客様用メッセージ
         $subject1 = "CONFIRM BOOKING SUMMARY FROM HEART OF DARKNESS";
         $msgBody_customer = "
-        Dear $name_book,
+Dear $name_book,
 
-        Number of guest(s): $guests
-        Kid(s): $kid
-        Phone: $phone
-        Email: $email_book
-        $content
+Number of guest(s): $guests
+Kid(s): $kid
+Phone: $phone
+Email: $email_book
+$content
     
         Thanks for confirming your reservation, we look forward to seeing you on [$date] at [$time].
         ---------------------------------------------------------------
@@ -76,6 +78,7 @@ $email1->addTo($email_book);
 $email1->setFrom($from,$fromname);
 $email1->setSubject($subject1);
 $email1->setBody($msgBody_customer);
+$email1->CharSet = 'UTF-8';
 if($email1->Send()) {};
 
 $email = new JPHPmailer();
@@ -86,6 +89,7 @@ for($i = 0; $i < count($aMailto); $i++)
 $email->setFrom($email_book, 'HOD Booking System');
 $email->setSubject($subject);
 $email->setBody($msgBody);
+$email->CharSet = 'UTF-8';
 if($email->Send()) {
     ?>
         <div class='boxThx'>

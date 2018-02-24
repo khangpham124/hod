@@ -144,17 +144,41 @@ class JPHPMailer extends PHPMailer {
 	 * @param string $body 本文
 	 */
 	function setBody($body){
-		$this->Body = mb_convert_encoding($body,"JIS",$this->in_enc);
+		$this->Body = mb_convert_encoding($body,"UTF-8",$this->in_enc);
 		$this->AltBody = "";
 		$this->IsHtml(false);
 	}
+	
+	/* FIX */
+	
+	function setBody2($body){
+		$this->Body = $body;
+		$this->AltBody = "";
+		$this->IsHtml(false);
+	}
+	
+	function setFromName2($fromname){
+		$this->FromName = $fromname;
+	}
+	
+	function setFrom2($from,$fromname=""){
+		
+		$this->From = $from;
+		if ($fromname){
+			$this->setFromName2($fromname);
+		}
+	}
+	
+	/* END FIX */
+	
+	
 
 	/**
 	 * 本文をセットする。(text/html)
 	 * 
 	 * @param string $htmlbody 本文 (HTML)
 	 */
-	function setHtmlBody($htmlbody){
+	function setHtmlBody($htmlbody) {
 		$this->Body = mb_convert_encoding($htmlbody,"JIS",$this->in_enc);
 		$this->IsHtml(true);
 	}

@@ -54,7 +54,7 @@ include(APP_PATH."libs/head.php");
             <label class="labelStep">Fullname*</label>
             <input type="text" class="inputBook" name="book_name" required value="<?php if($_SESSION['customer']['fullname']) { echo $_SESSION['customer']['fullname']; } ?>">
             <label class="labelStep">Phone*</label>        
-            <input type="text" class="inputBook" name="book_phone" required value="<?php if($_SESSION['customer']['phone']) { echo $_SESSION['customer']['phone']; } ?>">
+            <input type="number" pattern="[0-9]*" class="inputBook" name="book_phone" required value="<?php if($_SESSION['customer']['phone']) { echo $_SESSION['customer']['phone']; } ?>">
             <label class="labelStep">Email*</label>        
             <input type="text" class="inputBook" name="book_email" required value="<?php if($_SESSION['customer']['email']) { echo $_SESSION['customer']['email']; } ?>">
             <!--<label class="labelStep">Message</label> 
@@ -170,6 +170,7 @@ include(APP_PATH."libs/head.php");
     inline: true,
     dateFormat: 'd-m-yy',
     minDate: dateToday,
+    maxDate: "+2w",
     altField: '#datechose',
     onSelect: function (date) {
         var currTime = new Date();
@@ -212,9 +213,9 @@ include(APP_PATH."libs/head.php");
 
 <script>
 $(document).ready(function(){
-    $(document).bind("contextmenu",function(e){
+    /* $(document).bind("contextmenu",function(e){
         e.preventDefault();
-    });
+    });*/
 
     $("#btnSend").click(function()
 		{
