@@ -26,6 +26,7 @@ if($action == "confim"){
 mb_internal_encoding("UTF-8");
 
 $name_book = $_POST['book_name'];
+$zip = $_POST['zip'];
 $phone = $_POST['book_phone'];
 $email_book = $_POST['book_email'];
 $message = $_POST['book_message'];
@@ -41,7 +42,7 @@ BOOKING SUMMARY FROM HEART OF DARKNESS
 Fullname: $name_book
 Number of guest(s): $guests
 Kid(s): $kid
-Phone: $phone
+Phone: ($zip)$phone
 Email: $email_book
 Time: [$date] at [$time]
 $content

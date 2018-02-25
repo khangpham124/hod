@@ -1,41 +1,92 @@
-<?php
-session_start(); 
-?>
-<!doctype html>
-<html xmlns:fb="http://www.facebook.com/2008/fbml">
-  <head>
-    <title>Login with Facebook</title>
-<link href="http://www.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet"> 
- </head>
-  <body>
-      <?php echo $_SESSION['FBID']; ?>
-  <?php if ($_SESSION['FBID']): ?>      <!--  After user login  -->
-<div class="container">
-<div class="hero-unit">
-  <h1>Hello <?php echo $_SESSION['USERNAME']; ?></h1>
-  <p>Welcome to "facebook login" tutorial</p>
-  </div>
-<div class="span4">
- <ul class="nav nav-list">
-<li class="nav-header">Image</li>
-	<li><img src="https://graph.facebook.com/<?php echo $_SESSION['FBID']; ?>/picture"></li>
-<li class="nav-header">Facebook ID</li>
-<li><?php echo  $_SESSION['FBID']; ?></li>
-<li class="nav-header">Facebook fullname</li>
-<li><?php echo $_SESSION['FULLNAME']; ?></li>
-<li class="nav-header">Facebook Email</li>
-<li><?php echo $_SESSION['EMAIL']; ?></li>
-<div><a href="logout.php">Logout</a></div>
-</ul></div></div>
-    <?php else: ?>     <!-- Before login --> 
-<div class="container">
-<h1>Login with Facebook</h1>
-           Not Connected
-<div>
-      <a href="fbconfig.php">Login with Facebook</a></div>
-	 <div> <a href="http://www.krizna.com/general/login-with-facebook-using-php/"  title="Login with facebook">View Post</a>
-	  </div>
-      </div>
-    <?php endif ?>
-  </body>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Demo Facebook Login Javascript</title>
+</head>
+<body>
+    <script>
+        // Init application
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '554020094959929', // Đổi App ID của bạn ở đây
+                cookie: true,
+                xfbml: true,
+                version: 'v2.5'
+            });
+            // Kiểm tra trạng thái hiện tại
+        };
+        
+         function checkLoginState() {
+            FB.getLoginStatus(function(response) {
+                statusChangeCallback(response);
+            });
+            }
+        
+
+        // Xử lý trạng thái đăng nhập
+        function statusChangeCallback(response) {
+            // Người dùng đã đăng nhập FB và đã đăng nhập vào ứng dụng
+            if (response.status === 'connected') {
+                ShowWelcome();
+            }
+            // Người dùng đã đăng nhập FB nhưng chưa đăng nhập ứng dụng
+            else if (response.status === 'not_authorized') {
+                ShowLoginButton();
+            }
+            // Người dùng chưa đăng nhập FB
+            else {
+                ShowLoginButton();
+            }
+        }
+
+        // Gửi yêu cầu đăng nhập tới FB
+        function RequestLoginFB() {
+            window.location = 'http://graph.facebook.com/oauth/authorize?' + 'client_id=554020094959929&scopes=' + // Đổi App ID của bạn ở đây
+'public_profile,email,user_likes&redirect_uri=http://heartofdarknessbrewery.com/';
+        }
+
+        // Hiển thị nút đăng nhập
+        function ShowLoginButton() {
+            document.getElementById('btb').setAttribute('style', 'display:block');
+            document.getElementById('lbl').setAttribute('style', 'display:none');
+        }
+
+        // Chào mừng người dùng đã đăng nhập
+        function ShowWelcome() {
+            document.getElementById('btb').setAttribute('style', 'display:none');            
+            FB.api('/me', function (response) {
+                var name = response.name;
+                var id = response.id;
+                var email = response.email;
+                createCookie('fb_acc', id, 24);
+                document.getElementById('lbl').innerHTML = 
+				'<h4>You are logged with:</h4>Name: ' + name + ' <br/>Facebook ID: ' + id + ' <br/>Facebook ID: ' + email;
+                document.getElementById('lbl').setAttribute('style', 'display:block');
+            });
+        }
+
+    </script>
+    <div id="fb-root"></div>
+    <script>
+    // Load facebook SDK
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&"
+ + "version=v2.7&appId=554020094959929"; // Đổi App ID của bạn ở đây
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+    
+
+    <!-- Nút đăng nhập -->
+    <!--\\<fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button> !-->
+    <?php if(!$_COOKIE['fb_acc']) { ?>
+    <input id="btb" type="button" value="Login with Facebook" onclick="checkLoginState()" >
+    <?php } else { ?>
+    <p id="lbl">BẠN ĐÃ ĐĂNG NHẬP FB rồi</p>
+    <?php } ?>
+    <script type="text/javascript" src="http://heartofdarknessbrewery.com/common/js/cookies.js"></script>
+</body>
 </html>
