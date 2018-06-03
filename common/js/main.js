@@ -1,17 +1,3 @@
-$(window).scroll(function() {
-    var sT = $(window).scrollTop();
-    var vWrap = $('#wrapper').offset().top;
-    var vFoot = $('#pageTop').offset().top;
-    var h_btot = $('#pageTop').height();
-    var h_foot = $('#footer').height();
-    var outFix = h_btot + h_foot + 100;
-    var vInfix = vFoot - 450;
-    if ((sT >= vWrap) && (sT < vInfix)) {
-        $(".followBox").addClass("fixedFollow");
-    } else if (sT < vWrap) {
-        $(".followBox").removeClass("fixedFollow");
-    }
-});
 
 $('.menuCircle').click(function() {
     $(this).toggleClass('active');
@@ -163,8 +149,63 @@ $("#submitLogin").click(function() {
     });
 });
 
+
 $('#framePoster').live('change', function() {
     var v_label = $(this).val();
     var imgEmbed = $('#p_'+ v_label).text();
     $('#thumbImg').attr('src',imgEmbed);
 });
+
+//LOGIN FACEBOOK
+// Init application
+window.fbAsyncInit = function () {
+    FB.init({
+        appId: '554020094959929', // Đổi App ID của bạn ở đây
+        cookie: true,
+        xfbml: true,
+        version: 'v2.5'
+    });
+    // Kiểm tra trạng thái hiện tại
+};
+
+ function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+        statusChangeCallback(response);
+    });
+    }
+
+
+// Xử lý trạng thái đăng nhập
+function statusChangeCallback(response) {
+    // Người dùng đã đăng nhập FB và đã đăng nhập vào ứng dụng
+    if (response.status === 'connected') {
+        ShowWelcome();
+    }
+    // Người dùng đã đăng nhập FB nhưng chưa đăng nhập ứng dụng
+    else if (response.status === 'not_authorized') {
+        //ShowLoginButton();
+    }
+    // Người dùng chưa đăng nhập FB
+    else {
+        //ShowLoginButton();
+    }
+}
+
+// Gửi yêu cầu đăng nhập tới FB
+function RequestLoginFB() {
+    window.location = 'http://graph.facebook.com/oauth/authorize?' + 'client_id=554020094959929&scopes=' + // Đổi App ID của bạn ở đây
+'public_profile,email,user_likes&redirect_uri=http://heartofdarknessbrewery.com/';
+}
+
+
+// Chào mừng người dùng đã đăng nhập
+function ShowWelcome() {
+    FB.api('/me', function (response) {
+        var name = response.name;
+        var id = response.id;
+        var email = response.email;
+        createCookie('fb_acc', id, 24);
+        createCookie_fb('fb_name', name, 24);
+        setTimeout(location.reload.bind(location), 500);
+    });
+}

@@ -1,7 +1,8 @@
 <?php /* Template Name: Career */ ?>
 <?php
 include_once($_SERVER['DOCUMENT_ROOT'] . '/app_config.php');
-include(APP_PATH."libs/head.php"); 
+include(APP_PATH."libs/head.php");
+$pt = 'shop';
 ?>
 </head>
 
@@ -15,6 +16,24 @@ include(APP_PATH."libs/head.php");
 
 <div id="wrapper">
 <h2 class="h2_site">featured items</h2>
+        <?php
+            $wp_query = new WP_Query();
+            $param=array(
+            'order' => 'DESC',
+            'posts_per_page' => '1',
+            'tax_query' => array(
+            array(
+            'taxonomy' => 'category',
+            'field' => 'slug',
+            'terms' => 'shoppage'
+            )
+            )
+            );
+            $wp_query->query($param);
+            if($wp_query->have_posts()):while($wp_query->have_posts()) : $wp_query->the_post();
+        ?> 
+       <h3 class="sub_h2_site"><?php echo $post->post_content; ?></h3>
+        <?php endwhile;endif; ?>   
     <div class="container">
         <ul class="listFeature clearfix">
             <?php
@@ -40,7 +59,10 @@ include(APP_PATH."libs/head.php");
                 <p class="listFeature__thumb"><img src="<?php echo $image_shop[0]; ?>" class="" alt=""></p>
                 <p class="listFeature__name"><a href=""><?php the_title(); ?></a></p>
                 <div class="listFeature__desc matchHeight">
-                <?php if($slug=='t-shirt') { ?>    
+                <?php if(($slug!='t-shirt')&&($slug!='framed-poster')&&($slug!='poster')) { ?>
+                    <?php echo $post->post_content; ?>    
+                <?php } ?>
+                <?php if($slug=='t-shirt') { ?>
                     <p><?php the_field('t_shirt_type'); ?></p>
                     <p><?php the_field('cf_size'); ?></p>
                 <?php } ?>
@@ -50,7 +72,7 @@ include(APP_PATH."libs/head.php");
                 </div>
                 <p class="listFeature__price">VND <?php the_field('cf_price'); ?></p>
                 <?php if ( is_user_logged_in() ) { ?>
-                <a href="" class="listFeature__btn">add to cart</a>
+                <a href="javascript:void(0)" class="listFeature__btn" data-id="<?php the_ID(); ?>">add to cart</a>
                 <?php } ?>
             </li>
             <?php endwhile;endif; ?>
@@ -66,7 +88,5 @@ include(APP_PATH."libs/head.php");
 <!--/wrapper-->
 <!--===================================================-->
 
-
-    
 </body>
 </html>	

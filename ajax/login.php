@@ -1,4 +1,5 @@
-<?php 
+<?php
+ob_start(); 
 include_once($_SERVER['DOCUMENT_ROOT'] . '/app_config.php');
 include(APP_PATH . '/hod/wp-load.php');
 $user = $_POST['field1'];
@@ -41,7 +42,8 @@ $pos_at = strpos($user, '@');
             $country = get_field('cf_country');
             $cutomer_id = $post->ID;
             $pass_in =  md5($pass);
-        if($pass_true == $pass_in ) { 
+            $cutomer_pass = $pass;
+        if($pass_true == $pass_in ) {  
 ?>
 <p class="iconSuc"><i class="fa fa-check-circle" aria-hidden="true"></i></p>
 <p class="txtRegister">Login Successful</p>
@@ -54,6 +56,8 @@ $pos_at = strpos($user, '@');
     $_SESSION['customer']['city'] = $city;
     $_SESSION['customer']['country'] = $country;
     $_SESSION['customer']['id'] = $cutomer_id;
+    $_SESSION['customer']['pass'] = $cutomer_pass;
+    setcookie('c_pass', $cutomer_pass, time() + (86400 * 30), "/");
 ?>
 <?php } else { ?>
 <p class="iconSuc"><i class="fa fa-check-circle" aria-hidden="true"></i></p>

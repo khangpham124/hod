@@ -21,7 +21,11 @@ include(APP_PATH."libs/head.php");
 </div> !-->
     
 <div id="sliderTop">    
+<div class="pc">
 <section class="main-slider">
+    <div class="item youtube">
+        <img src="<?php echo APP_URL; ?>img/top/beertop.jpg" alt="">
+    </div>
     <?php
         $wp_query = new WP_Query();
         $param = array (
@@ -43,48 +47,67 @@ include(APP_PATH."libs/head.php");
         $id_video = get_id_youtube($url_video);
     ?>
     <div class="item youtube">
-        <iframe class="embed-player slide-media" width="980" height="520" src="https://www.youtube.com/embed/<?php echo $id_video; ?>?enablejsapi=1&controls=0&fs=0&iv_load_policy=3&rel=0&showinfo=0&loop=1&playlist=<?php echo $id_video; ?>&start=0" frameborder="0" allowfullscreen></iframe> 
+        <iframe class="embed-player slide-media <?php the_title(); ?>" width="980" height="520" src="https://www.youtube.com/embed/<?php echo $id_video; ?>?enablejsapi=1&controls=0&fs=0&iv_load_policy=3&rel=0&showinfo=0&loop=1&playlist=<?php echo $id_video; ?>&start=0" frameborder="0" allowfullscreen></iframe> 
     </div>
     <?php endwhile;endif; ?>
 </section>
-<p class="hashTag">#enterthedarkness</p>    
+</div>
+<div class="sp">
+<ul id="spSlider">
+    <?php
+        $wp_query = new WP_Query();
+        $param = array (
+        'posts_per_page' => '-1',
+        'post_type' => 'video',
+        'post_status' => 'publish',
+        'order' => 'DESC',
+        'meta_query' => array(
+        array(
+        'key' => 'slide_mobile',
+        'value' => '',
+        'compare' => '!='
+        ))
+        );
+        $wp_query->query($param);
+        if($wp_query->have_posts()): while($wp_query->have_posts()) :$wp_query->the_post();
+        $image_sp = wp_get_attachment_image_src(get_field('slide_mobile'),'full');
+    ?>
+    <li><img src="<?php echo $image_sp[0] ?>" alt=""></li>
+    <?php endwhile;endif; ?>
+</ul> 
+</div>    
+    
+<p class="hashTag">#enterthedarkness</p>
+<span id="muteBtn"><i class="fa fa-volume-off" aria-hidden="true"></i></span>    
 </div>    
 
 <div class="boxTop01">
     <div class="inner clearfix">
         <p class="imgIntro"><img src="<?php echo APP_URL; ?>img/top/beer1.png" class="" alt=""></p>
         <div class="txtInto" id="introText">
-            <div class="pc">
-                Some people say we make the best craft beer in Saigon/HCMC, Vietnam. Don’t believe them? Come and decide for yourself... Close your eyes and think to yourself right now… When was the last time you went on a real journey?<br>
-                We’re here to take you on your next true journey… a journey that will revolutionize the way you think of, taste, smell, and see beer.
-                We want to share with you that there are much more, much better choices than mass-produced beer.<br>
-                In our first 12 months alone, we have brewed over 100 different styles of craft beer.  Each and every one of those beers are brewed to the same amazing standard of quality, every single time.<br>
-                Let us take you deeper and deeper on your craft beer journey into uncharted territory<em class="specChar">…</em><br>
-                <p class="hideTxt">A hoppy twist to a porter?  Easy.  A 10% ABV, 70 IBU Pilsner?!  True story.  A 123 IBU Indian Pale Ale?  Yep.<br>
-                If some of these words are foreign to you, have no fear.  Our team, the “Dark Army” will be with you every step of the way, and can guide you to the perfect craft beer for your palate.<br>
-                <br>
-                Our mastery over balancing hops, malts, and yeasts has led to a level of quality and consistency unlike any other craft brewery in Saigon, HCMC/Ho Chi Minh City, or even all of Vietnam.  Our relentless pursuit of quality means that we only accept the finest imported ingredients from every corner of the Earth.<br>
-                <br>
-                So, what do you say?  Are you ready to take your first step and embark on a journey of exploration into the world of craft beer with us?<br>
-                <br>
-                    Take our hand, friend. Come start your journey into the world of craft beer in Saigon, Vietnam and #enterthedarkness.</p>
-            </div>
-            <div class="sp">
-            Some people say we make the best craft beer in Saigon/HCMC, Vietnam. Don’t believe them? Come and decide for yourself... Close your eyes and think to yourself right now… When was the last time you went on a real journey?<br>
-            We’re here to take you on your next true journey… a journey that will revolutionize the way you think of, taste, smell, and see beer.
-            <p class="hideTxt">
-            We want to share with you that there are much more, much better choices than mass-produced beer.<br>
-            In our first 12 months alone, we have brewed over 100 different styles of craft beer.  Each and every one of those beers are brewed to the same amazing standard of quality, every single time.<br>
-            Let us take you deeper and deeper on your craft beer journey into uncharted territory<br>
-            A hoppy twist to a porter?  Easy.  A 10% ABV, 70 IBU Pilsner?!  True story.  A 123 IBU Indian Pale Ale?  Yep.<br>
-            If some of these words are foreign to you, have no fear.  Our team, the “Dark Army” will be with you every step of the way, and can guide you to the perfect craft beer for your palate.<br>
-            <br>
-            Our mastery over balancing hops, malts, and yeasts has led to a level of quality and consistency unlike any other craft brewery in Saigon, HCMC/Ho Chi Minh City, or even all of Vietnam.  Our relentless pursuit of quality means that we only accept the finest imported ingredients from every corner of the Earth.<br>
-            <br>
-            So, what do you say?  Are you ready to take your first step and embark on a journey of exploration into the world of craft beer with us?<br>
-            <br>
-                Take our hand, friend. Come start your journey into the world of craft beer in Saigon, Vietnam and #enterthedarkness.</p>
-            </div>
+        <?php
+            $wp_query = new WP_Query();
+            $param=array(
+            'order' => 'DESC',
+            'posts_per_page' => '1',
+            'tax_query' => array(
+            array(
+            'taxonomy' => 'category',
+            'field' => 'slug',
+            'terms' => 'toppage'
+            )
+            )
+            );
+            $wp_query->query($param);
+            if($wp_query->have_posts()):while($wp_query->have_posts()) : $wp_query->the_post();
+            $txt_food = get_field('cf_food_text');
+            $txt_deliver = get_field('cf_text_deliver');
+            $txt_ww = get_field('cf_text_world_wide');
+            $txt_find = get_field('cf_find_beer');
+        ?>    
+            <div class="pc"><?php echo $post->post_content; ?></div>
+            <div class="sp"><?php the_field('mobile_content'); ?></div>
+        <?php endwhile;endif; ?>    
             <p class="btnMore btnIntro f_lapresse pc"><a href="javascript:void(0)">MORE</a></p>
         </div>
     </div>
@@ -97,16 +120,9 @@ include(APP_PATH."libs/head.php");
         <?php
             $wp_query = new WP_Query();
             $param=array(
-            'post_type'=>'beer',
-            'posts_per_page' => '-1',
-             'meta_query' => array(array('key' => '_thumbnail_id')),    
-            'tax_query' => array(
-            array(
-            'taxonomy' => 'beercat',
-            'field' => 'slug',
-            'terms' => array('seasonal','flagship-beer',)
-            )
-            )
+            'post_type' => 'flagship',
+            'posts_per_page' => '-1',  
+            'meta_query' => array(array('key' => '_thumbnail_id')),    
             );
             $wp_query->query($param);
             if($wp_query->have_posts()):while($wp_query->have_posts()) : $wp_query->the_post();
@@ -129,7 +145,47 @@ include(APP_PATH."libs/head.php");
                             <p class="nameBeer"><?php the_field('cf_abv'); ?> ABV</p>
                             <p class="subName"><?php the_field('cf_ibu'); ?> IBU</p>
                         </div>    
-                        <p class="flag"><span><?php echo $termname; ?></span></p>
+                        <p class="flag"><span><?php echo get_post_type(); ?></span></p>
+
+                </div>
+                <div class="flipCard">
+                    <?php echo $post->post_content; ?>
+                </div>
+            </div>
+        </li>
+        <?php endwhile; endif; ?>
+    </ul>
+    
+    <ul class="lstBeer clearfix">
+        <?php
+            $wp_query = new WP_Query();
+            $param=array(
+            'post_type' => 'seasonal',
+            'posts_per_page' => '-1',  
+            'meta_query' => array(array('key' => '_thumbnail_id')),    
+            );
+            $wp_query->query($param);
+            if($wp_query->have_posts()):while($wp_query->have_posts()) : $wp_query->the_post();
+            $thumb = get_post_thumbnail_id($post->ID);
+            $img_label = wp_get_attachment_image_src($thumb,'full');
+            $img_cup = wp_get_attachment_image_src(get_field('image_beer'),'full');
+            $terms = get_the_terms($post->ID, 'beercat');
+            foreach($terms as $term) { 
+            $termname = $term->name;
+            }
+        ?>
+        <li class="matchHeight">
+            <p class="thumb">
+                <img src="<?php echo $img_label[0]; ?>" class="imgBeer" alt="<?php the_title(); ?>">
+            </p>
+            <div class="wrap">
+                <div class="inner">
+                        <img src="<?php echo $img_cup[0]; ?>" class="cupB" alt="<?php the_title(); ?>">
+                        <div class="info">
+                            <p class="nameBeer"><?php the_field('cf_abv'); ?> ABV</p>
+                            <p class="subName"><?php the_field('cf_ibu'); ?> IBU</p>
+                        </div>    
+                        <p class="flag"><span><?php echo get_post_type(); ?></span></p>
 
                 </div>
                 <div class="flipCard">
@@ -147,8 +203,7 @@ include(APP_PATH."libs/head.php");
     <div class="boxMenu" id="menuPart">
         <h2 class="h2_site">MENU</h2>
         <h3 class="sub_h2_site">
-            Our resident chef has built our food menu around our favourite <span>heart of darkness beer</span>.<br>
-            Not only that, but, in many of the dishes, with <span>heart of darkness beer</span>.
+            <?php echo $txt_food; ?>
         </h3>
         <div class="inner pc">
             <ul class="lstMenu clearfix">
@@ -170,8 +225,6 @@ include(APP_PATH."libs/head.php");
                     $term_id=$category->term_id;
                     $img_cate = get_field( 'image_menu', 'foodcat_'.$term_id.'' );
                     $image_c = wp_get_attachment_image_src( $img_cate, 'full' );
-                    $i++;
-                    if($i%3==0) {$ul='</ul><ul class="lstMenu clearfix lstMenu--center">';} else {$ul='';}
                 ?>
                 <li>
                     <img src="<?php echo $image_c[0]; ?>" class="" alt="">
@@ -184,8 +237,18 @@ include(APP_PATH."libs/head.php");
                         </div>    
                     </div>
                 </li>
-                <?php echo $ul; ?>
                 <?php endforeach; ?>
+                <li>
+                    <img src="<?php echo APP_URL; ?>img/food/delici.png" class="" alt="">
+                    <p class="name">Other<br>Special<br>Menus</p>
+                    <div class="invi f_lapresse">
+                        <img src="<?php echo APP_URL; ?>img/food/delici.png" class="" alt="">
+                        <div class="invi_info">
+                            <p class="name_invi">Other<br>Special<br>Menus</p>
+                            <p class="btnMore btnWhite"><a href="<?php echo APP_URL; ?>menu-special/#menuFood">MORE</a></p>
+                        </div>    
+                    </div>
+                </li>
             </ul>
         </div>
         
@@ -215,6 +278,10 @@ include(APP_PATH."libs/head.php");
                     <p class="name"><a href="<?php echo APP_URL; ?>food/#h3_<?php echo $slug; ?>"><?php echo $category->name; ?></a></p>
                 </li>
                 <?php endforeach; ?>
+                <li>
+                    <img src="<?php echo APP_URL; ?>img/food/delici.png" class="" alt="">
+                    <p class="name"><a href="<?php echo APP_URL; ?>menu-special/#menuFood">Other<br>Special<br>Menus</a></p>
+                </li>
             </ul>
             
         </div>
@@ -222,9 +289,10 @@ include(APP_PATH."libs/head.php");
         <div class="btnMenu">
             <div class="clearfix">
                 <a href="<?php echo APP_URL; ?>food" class="btnMenu__btn1">view full menu</a>
-                <a href="javascript:void(0)" class="btnMenu__btn2 chatFb">BOOK A TABLE!</a>
+                <!--<a href="javascript:void(0)" class="btnMenu__btn2 chatFb">BOOK A TABLE!</a> !-->
+                <a href="<?php echo APP_URL; ?>booking" class="btnMenu__btn2">BOOK A TABLE!</a>
             </div>    
-            <p class="txtDeliver"><span>Delivery in Saigon only</span></p>
+            <p class="txtDeliver"><span><?php echo $txt_deliver; ?></span></p>
         </div>
     </div>
     
@@ -260,22 +328,21 @@ include(APP_PATH."libs/head.php");
                 </div>
     
                 <p class="listFeature__price">VND <?php the_field('cf_price'); ?></p>
-                <!-- <a href="" class="listFeature__btn">add to cart</a> !-->
+                <?php if ( is_user_logged_in() ) { ?>
+                <a href="javascript:void(0)" class="listFeature__btn" data-id="<?php the_ID(); ?>">add to cart</a>
+                <?php } ?>
             </li>
             <?php endwhile;endif; ?>
         </ul>
         <p class="btnMore f_lapresse"><a href="<?php echo APP_URL; ?>shop">shop now</a></p>
-        <p class="txtNote pc"><span>Wordwide Delivery</span></p>
+        <p class="txtNote pc"><span><?php echo $txt_ww; ?></span></p>
     
     </div>    
     
     <div class="greyBox">
         <div class="inner">
             <h2 class="h2_site">find our beer</h2>
-            <h3 class="sub_h2_site">
-                Data is based on distributors’ shipments to stores/restaurants/bars in the last 30 days. Before you make a trip, please<br class="pc">
-                check with the establishment to confirm availability. If you don’t find locations near you, please reach out to our<br class="pc"> distributor in your area or send us a note. For International customers, please contact our distributors in your country.
-            </h3>
+            <h3 class="sub_h2_site"><?php echo $txt_find; ?></h3>
             
             <div class="pc">
             <!--<ul class="listCountries clearfix f_lapresse">
@@ -423,6 +490,44 @@ $('.listFeature').slick({
    
   ]
 });
+ 
+$('#spSlider').slick({
+  dots: false,
+  infinite: true,
+  speed: 1000,
+  autoplay: true,
+  fade: true,
+  autoplaySpeed: 2000,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        infinite: true,
+        dots: false
+      }
+    },
+    {
+      breakpoint: 767,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    }
+  ]
+});
+
+    
 });
 </script>
 
@@ -431,8 +536,8 @@ $('.listFeature').slick({
         $(function() {
             $('.lstBeer li').click(function() {
             $(this).find('.wrap').toggleClass('flipped');
+            });
         });
-    });
     </script>
     
 </body>

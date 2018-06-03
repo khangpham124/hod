@@ -58,12 +58,13 @@ include(APP_PATH."libs/head.php");
                 $i++;
         ?>
         <p class="btnMenu_sp sp" id="menu<?php echo $i; ?>"><?php echo $category->name; ?></p>
-        <div class="tabBox taC" id="tab1">
-            <?php echo desc_cate = get_field( 'desc_career', 'careercat_'.$term_id.'' ); ?>
+        <div class="tabBox taC" id="tab<?php echo $i; ?>">
+            <div class="wrapTbl">
+                <?php echo $desc_cate = get_field( 'desc_career', 'careercat_'.$term_id.'' ); ?>
+            </div>    
         </div>
         <?php endforeach; ?>
     </div>
-    
     
 <!--Footer-->
 <?php include(APP_PATH."libs/footer.php"); ?>

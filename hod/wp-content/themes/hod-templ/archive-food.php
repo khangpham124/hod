@@ -46,15 +46,30 @@ include(APP_PATH."libs/head.php");
 
 <div class="introFood">
     <div class="inner">
-       At <span>Heart Of Darkness</span> we’re all about the Beer. We Love Beer!!! We REALLY LOVE BEER !!! <br>
-        We want to lead you on a journey through the flavour spectrum and into the <span>Heart Of Darkness.</span><br>
-        We also love food. More to the point, we love sharing food! Our menu is built around the idea that good friends sharing good beers and good times should be able to share the food they eat. Our resident chef started out in brewing before he went on to cooking. So he knows about beer and food. Our food menu is built around our favourite <span>Heart Of Darkness</span> beer. Not only that but – in many of the dishes – WITH <span>Heart Of Darkness</span> Beer. Vegetarian? Not a problem. More than half of our menu is available as a vegetarian option...So come on in and try our delicious menu... from a bowl of nuts to our delicious and original flatbreads there’s something for everyone..
+    <?php
+            $wp_query = new WP_Query();
+            $param=array(
+            'order' => 'DESC',
+            'posts_per_page' => '1',
+            'tax_query' => array(
+            array(
+            'taxonomy' => 'category',
+            'field' => 'slug',
+            'terms' => 'foodpage'
+            )
+            )
+            );
+            $wp_query->query($param);
+            if($wp_query->have_posts()):while($wp_query->have_posts()) : $wp_query->the_post();
+    ?>
+    <?php echo $post->post_content; ?>                  
+    <?php endwhile;endif; ?>
     </div>
 </div>
     
 <div id="wrapper">
     
-<h2 class="h2_site">OUR MENU</h2>
+<h2 class="h2_site" id="menuFood">OUR MENU</h2>
     
       <div class="greyBox">
         <div class="inner">
@@ -125,10 +140,12 @@ include(APP_PATH."libs/head.php");
                 ?>    
                     <li>
                         <p class="listFeature__thumb"><img src="<?php echo $image_thumb[0]; ?>" class="" alt=""></p>
-                        <p class="listFeature__name"><a href=""><?php the_title(); ?></a></p>
+                        <p class="listFeature__name matchHeight"><a href=""><?php the_title(); ?></a></p>
                         <div class="listFeature__desc matchHeight"><?php echo $post->post_content; ?></div>
                         <p class="listFeature__price"><span <?php if(get_field('vegetarian')=='no') { ?>class="noBg"<?php } ?>>VND <?php the_field('cf_price'); ?></span></p>
-                        <!-- <a href="" class="listFeature__btn">add to cart</a> !-->
+                <?php if ( is_user_logged_in() ) { ?>
+                <a href="javascript:void(0)" class="listFeature__btn" data-id="<?php the_ID(); ?>">add to cart</a>
+                <?php } ?>
                     </li>
                 <?php endwhile;endif; ?>
                 </ul>
@@ -165,10 +182,12 @@ include(APP_PATH."libs/head.php");
                     ?>
                     <li>
                         <p class="listFeature__thumb"><img src="<?php echo $image_thumb[0]; ?>" class="" alt=""></p>
-                        <p class="listFeature__name"><a href=""><?php the_title(); ?></a></p>
+                        <p class="listFeature__name matchHeight"><a href=""><?php the_title(); ?></a></p>
                         <div class="listFeature__desc matchHeight"><?php echo $post->post_content; ?></div>
                         <p class="listFeature__price"><span <?php if(get_field('vegetarian')=='no') { ?>class="noBg"<?php } ?>>VND <?php the_field('cf_price'); ?></span></p>
-                        <!-- <a href="" class="listFeature__btn">add to cart</a> !-->
+                <?php if ( is_user_logged_in() ) { ?>
+                <a href="javascript:void(0)" class="listFeature__btn" data-id="<?php the_ID(); ?>">add to cart</a>
+                <?php } ?>
                     </li>
                 <?php endwhile;endif; ?>      
                 </ul>
@@ -205,10 +224,12 @@ include(APP_PATH."libs/head.php");
                     ?>
                     <li>
                         <p class="listFeature__thumb"><img src="<?php echo $image_thumb[0]; ?>" class="" alt=""></p>
-                        <p class="listFeature__name"><a href=""><?php the_title(); ?></a></p>
+                        <p class="listFeature__name matchHeight"><a href=""><?php the_title(); ?></a></p>
                         <div class="listFeature__desc matchHeight"><?php echo $post->post_content; ?></div>
                         <p class="listFeature__price"><span <?php if(get_field('vegetarian')=='no') { ?>class="noBg"<?php } ?>>VND <?php the_field('cf_price'); ?></span></p>
-                        <!-- <a href="" class="listFeature__btn">add to cart</a> !-->
+                <?php if ( is_user_logged_in() ) { ?>
+                <a href="javascript:void(0)" class="listFeature__btn" data-id="<?php the_ID(); ?>">add to cart</a>
+                <?php } ?>
                     </li>
                 <?php endwhile;endif; ?>      
                 </ul>
@@ -225,12 +246,13 @@ include(APP_PATH."libs/head.php");
 </div>
 <!--/wrapper-->
 <!--===================================================-->
+
 <script>
     $(document).ready(function(){
         $('#tab1').addClass('active');
         $('#call1').parent('li').addClass('active');
         $('#menu1').addClass('active');
-		$('.listCountries li').click(function(){
+        $('.listCountries li').click(function(){
             $(".loadingFood").fadeIn(200).delay(300).fadeOut(200);
             var elm = $(this).find('a');
 			var id_elm = elm.attr('id');
@@ -248,8 +270,6 @@ include(APP_PATH."libs/head.php");
             $('.btnMenu_sp').removeClass('active');
             elm.addClass('active');
             var scr = $(this).offset().top;
-            
-            //$('html,body').animate({scrollTop:scr + 45 }, 300);
 		});
     });    
 </script>
@@ -347,7 +367,6 @@ $('#typeDaily').slick(options);
 $('#typeSpecial').slick(options);
 });
 </script>
-<!-- https://desandro.github.io/3dtransforms/examples/card-01.html !-->
-    
+
 </body>
 </html>	

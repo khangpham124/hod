@@ -82,11 +82,10 @@
 
     <!-- Nút đăng nhập -->
     <!--\\<fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button> !-->
-    <?php if(!$_COOKIE['fb_acc']) { ?>
+    
     <input id="btb" type="button" value="Login with Facebook" onclick="checkLoginState()" >
-    <?php } else { ?>
     <p id="lbl">BẠN ĐÃ ĐĂNG NHẬP FB rồi</p>
-    <?php } ?>
+    
     <script type="text/javascript" src="http://heartofdarknessbrewery.com/common/js/cookies.js"></script>
 </body>
 </html>

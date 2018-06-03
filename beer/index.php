@@ -135,7 +135,7 @@ include(APP_PATH."libs/head.php");
 <div class="boxBeerPage">
     <div class="inner clearfix">
         <div class="rightBeer">
-            <h2 id="bottles" class="h2_site">bottles<span>Coming soon</span></h2>
+            <h2 id="bottles" class="h2_site">bottles</h2>
             <ul class="listFeature clearfix listSearch" id="bottlesSlide">
                 <?php
                 $wp_query = new WP_Query();
@@ -172,7 +172,7 @@ include(APP_PATH."libs/head.php");
                     </div>
                     </div>
                     <?php if(get_field('price')) { ?>
-                    <p class="listFeature__price">VND <?php the_field('price'); ?></p>
+                    <p class="listFeature__price">VND <?php echo number_format(get_field('price')); ?></p>
                     <?php } ?>
                     <?php if ( is_user_logged_in() ) { ?>
                     <a href="javascript:void(0)" class="listFeature__btn" data-id="<?php the_ID(); ?>">add to cart</a>

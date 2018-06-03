@@ -80,13 +80,15 @@ switch ($pagename) {
 	break;    
 	 
     default:
+        $top = get_post(717);
+        $thumb_top = get_post_thumbnail_id(717);
+        $img_top = wp_get_attachment_image_src($thumb_top,'full');
+        $img_og = $img_top[0];
 		if((!$titlepage)||(!$titlepage=='')) {
-            $titlepage = "Heart of Darkness Craft Brewery | The Best Craft Beer in Saigon, Vietnam";
+            $titlepage = $top->post_title;
         }
         if((!$desPage)||(!$desPage=='')) {
-		$desPage = "Some people say we make the best craft beer in Saigon/HCMC, Vietnam. Don’t believe them? Come and decide for yourself... Close your eyes and think to yourself right now… When was the last time you went on a real journey?
-We’re here to take you on your next true journey… a journey that will revolutionize the way you think of, taste, smell, and see beer. We want to share with you that there are much more, much better choices than mass-produced beer.
-In our first 12 months alone, we have brewed over 100 different styles of craft beer. Each and every one of those beers are brewed to the same amazing standard of quality, every single time.";
+		$desPage = get_post_meta( 717, 'description', true );
         }
 		$txtH1 = "Heart of Darkness Craft Brewery in Saigon Vietnam";
 }

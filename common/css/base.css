@@ -487,7 +487,6 @@ body {
     color: #333;
     min-width: 320px;
     font-family: 'Oswald', sans-serif;
-    
 }
 
 #food {
@@ -499,7 +498,7 @@ body {
 }
 
 .sp {
-    display: none ;
+    display: none;
 }
 
 .maxW {
@@ -787,7 +786,11 @@ Header
 }
 
 #logo {
-    float: left;
+    text-align: center;
+    margin-bottom: 25px;
+}
+.langSp {
+    display: none;
 }
 
 .lstLang {
@@ -808,8 +811,6 @@ Header
 }
 
 .rightHead {
-    float: right;
-    width: calc( 100% - 115px);
 }
 
 
@@ -818,8 +819,7 @@ Global Navi
 -------------------------------------------------------------*/
 
 .gNavi {
-    float: right;
-    width: 82%;
+    width: 100%;
     margin-top: 7px;
     display: flex;
     justify-content: space-between;
@@ -884,6 +884,7 @@ Global Navi
 }
 
 .infoUser {
+    display: none;
     width: 16%;
     float: right;
     font-size: 12px;
@@ -1260,6 +1261,38 @@ Media
     margin-top: 30px;
 }
 
+.footerCir {
+    max-width: 750px;
+    margin: 0 auto;
+    font-size: 12px;
+}
+
+.footerCir span {
+    font-family: 'Conv_LaPresse';
+    color: #98252c;
+}
+
+.leftCriFoot {
+    overflow: hidden;
+}
+
+.logo_footer {
+    float: left;
+    margin-right: 35px;
+}
+
+.menuFoot {
+    max-width: 1040px;
+    margin: 0 auto 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.menuFoot a {
+    font-size: 14px;
+    color: #98252c;
+}
+
 
 /* Tablet */
 
@@ -1296,6 +1329,46 @@ Media
     }
     .btnChat_sp {
         padding-top: 16px !important;
+    }
+    .menuFoot {
+        display: block;
+    }
+    .menuFoot li {
+        width: 100%;
+        padding: 12px 17px;
+        border-bottom: 1px solid #98252c;
+    }
+    .menuFoot li a {
+        position: relative;
+        display: block;
+    }
+    .menuFoot li a:before {
+        content: "";
+        position: absolute;
+        right: 15px;
+        top: 42%;
+        width: 6px;
+        height: 6px;
+        border-left: 2px solid #98252c;
+        border-top: 2px solid #98252c;
+        -moztransform: rotate(135deg);
+        -webkit-transform: rotate(135deg);
+        -ms-transform: rotate(135deg);
+        transform: rotate(135deg);
+    }
+    .iconSocial_foot {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .iconSocial_foot li {
+        display: inline-block;
+        margin: 0 4px;
+    }
+    .logo_footer {
+        display: none;
+    }
+    .leftCriFoot {
+        padding: 0 15px;
     }
 }
 

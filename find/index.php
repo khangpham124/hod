@@ -83,8 +83,7 @@ include(APP_PATH."libs/head.php");
             <div id="gmap-mixed<?php echo $n; ?>"></div>
             </div>
                     
-                    <p class="btnMore btnIntro f_lapresse" id="stf" style="margin-bottom:30px"><a href="https://maps.google.com/?q=10.767035,106.692222" target="_blank">send to phone</a></p>
-                
+                    <p class="btnMore btnIntro f_lapresse"><a id="stf" href="" target="_blank">GET DIRECTIONS</a></p>
                     <ul class="lstCity pc">
                     <?php
                             $args1 = array(
@@ -205,10 +204,7 @@ include(APP_PATH."libs/head.php");
         showGroup<?php echo $i; ?>(index);
     });
     
-    $('.ullist li').click(function() {
-        alert('tes');
-    });    
-
+    
     function showGroup<?php echo $i; ?>(index) {
         var el = $('#g'+index);
         $('#tabs<?php echo $i; ?> li').removeClass('active');
@@ -227,6 +223,20 @@ include(APP_PATH."libs/head.php");
 </script>
 <?php } ?>
 
+<script>    
+    $('.leftStore').click(function() {
+        $('#stf').attr('href','');
+        var cur_loc = $('.ullist li.active').find('span').text();
+        $.ajax({
+            data: {},
+            url: 'http://heartofdarknessbrewery.com/find/data/all_loc.php?s='+cur_loc,
+            type: 'GET',
+            success: function(data){
+            $('#stf').attr('href',data);
+            }
+        })
+    });
+</script>
 
 <script>
      $(function(){

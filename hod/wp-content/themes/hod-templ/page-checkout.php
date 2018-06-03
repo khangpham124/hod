@@ -1,9 +1,10 @@
 <?php /* Template Name: Checkout */ ?>
 <?php
 include_once($_SERVER['DOCUMENT_ROOT'] . '/app_config.php');
-/* if(!$_SESSION['cart'])  {
+if(!$_COOKIE['totalcart']) {    
 header('Location:http://heartofdarknessbrewery.com/');
-} */
+die();
+}
 include(APP_PATH."libs/head.php"); 
 ?>
 </head>
@@ -52,6 +53,7 @@ include(APP_PATH."libs/head.php");
     <tbody>
         <?php
         $tt_order = array();
+        $i=-1;
         $wp_query = new WP_Query();
         $param=array(
         'post_type' => array( 'shop', 'food','bottles'),
@@ -113,7 +115,7 @@ include(APP_PATH."libs/head.php");
             </tr>
             <tr>
                 <td class="currentCost"><?php echo $_COOKIE['totalCost']; ?></td>
-                <td>10</td>
+                <td>10%</td>
                 <td class="last grandCost"></td>
             </tr>
         </table>
@@ -138,7 +140,7 @@ include(APP_PATH."libs/head.php");
             </div>
             <div class="inputForm">
                 <label>Address *</label>
-                <input name="address" type="text" <?php echo $_SESSION['customer']['address'] ?> required>
+                <input name="address" type="text" <?php echo $_SESSION['customer']['address']; ?> required>
             </div>
             <div class="inputForm">
                 <label>City *</label>
@@ -440,8 +442,11 @@ include(APP_PATH."libs/head.php");
             <div class="clearfix">
             <div class="leffShiping">
                 <p class="titleForm">PAYMENT METHOD</p>
-                <input type="radio" name="payment" value="cod"><label>COD</label>
-                <input type="radio" name="payment" value="credit"><label>Credit Card</label>
+                <?php if($_POST['country']=='Vietnam') { ?>
+                <p class="inputRadio"><input type="radio" name="payment" value="cod"><label>COD</label></p>
+                <?php } ?>
+                <p class="inputRadio"><input type="radio" name="payment" value="credit"><label>Credit Card</label></p>
+
             </div>
             <div class="shipCost">
             <div class="boxSummary">
@@ -454,7 +459,7 @@ include(APP_PATH."libs/head.php");
                     </tr>
                     <tr>
                         <td class="currentCost"><?php echo $_COOKIE['totalCost']; ?></td>
-                        <td>10</td>
+                        <td>10%</td>
                         <td class="last grandCost"></td>
                     </tr>
                 </table>
@@ -471,7 +476,7 @@ include(APP_PATH."libs/head.php");
                 $_SESSION['phone'] = $_POST['phone'];                       
             ?>
             <p class="taC boxBtn">
-                <a href="<?php echo APP_URL; ?>checkout" class="contBtn">BACK</a>
+                <a href="<?php echo APP_URL; ?>checkout?step=2" class="contBtn">BACK</a>
                 <input type="submit" class="submitBtn" value="COMPLETE">
             </p>
         </form>
@@ -487,7 +492,7 @@ include(APP_PATH."libs/head.php");
 <script>
 var currentCost = parseInt($('.currentCost').text());
 var grandCost = ((currentCost * 10) / 100) + currentCost;
-$('.grandCost').text(grandCost);
+$('.grandCost').text(grandCost.toLocaleString());
 </script>
     
 </body>

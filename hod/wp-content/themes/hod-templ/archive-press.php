@@ -66,11 +66,12 @@ $(document).ready(function () {
 		$(window).scroll(function() {
 			var sT = $(window).scrollTop();
             var a = $('.scrollmore').offset().top;
-            var toS = a - 200;
+            var toS = a - 400;
             if (sT > toS) {
                 x = (x+8 <= size_li) ? x+8 : size_li;
                 $('.lstPress li:lt('+x+')').show(300);
                 $('.lstPress li:lt('+x+')').addClass('showItem');
+                
 			}
             size_li_show = $(".lstPress .showItem").size();
             if(size_li_show == <?php echo $total ?> ) {
@@ -79,6 +80,6 @@ $(document).ready(function () {
 		});	
 	}
 });
-</script>  
+</script>    
 </body>
 </html>	

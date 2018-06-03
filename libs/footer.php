@@ -1,4 +1,17 @@
-<p id="pageTop"><span>back to top</span></p>
+<!-- <p id="pageTop"><span>back to top</span></p>
+<ul class="menuFoot f_lapresse clearfix">
+                    <li><a href="<?php echo APP_URL; ?>">HOME</a></li>
+                    <li><a href="<?php echo APP_URL; ?>beer">BEER</a></li>
+                    <li><a href="<?php echo APP_URL; ?>food">FOOD</a></li>
+                    <li><a href="<?php echo APP_URL; ?>location">LOCATION</a></li>
+                    <li><a href="javascript:void(0)" class="whaton">WHAT'S ON</a></li>
+                    <li><a href="<?php echo APP_URL; ?>booking">BOOK NOW</a></li>
+                    <li><a href="<?php echo APP_URL; ?>find">FIND OUR BEER</a></li>
+                    <li><a href="<?php echo APP_URL; ?>press">PRESS</a></li>
+                    <li><a href="<?php echo APP_URL; ?>career">CAREER</a></li>
+                    <li><a href="<?php echo APP_URL; ?>about">ABOUT</a></li>
+                    <li><a href="<?php echo APP_URL; ?>shop">SHOP</a></li>
+                </ul> -->
 <footer id="footer">
    <div class="footerInner">
         
@@ -28,20 +41,29 @@
 </footer>
 
 <div class="footBar clearfix">
-    <ul class="lstFoot clearfix f_lapresse">
+    <!--<ul class="lstFoot clearfix f_lapresse">
         <li><a href="<?php echo APP_URL; ?>">HOME</a></li>
         <li><a href="<?php echo APP_URL; ?>location">LOCATION</a></li>
-        <li><a href="<?php echo APP_URL; ?>find">find our beer</a>
-            <ul class="clearfix sp">
+        <li><a href="<?php echo APP_URL; ?>find">find our beer</a> !-->
+            <ul class="clearfix sp iconSocial_foot">
                 <li><a href="https://www.facebook.com/heartofdarknessbrewery/"><img src="<?php echo APP_URL; ?>common/img/footer/icon_fb.svg" alt=""></a></li>
                 <li><a href="https://www.instagram.com/heart_of_darkness_brewery/"><img src="<?php echo APP_URL; ?>common/img/footer/icon_ins.svg" alt=""></a></li>
                 <li><a href="https://goo.gl/U3kvyG"><img src="<?php echo APP_URL; ?>common/img/footer/icon_trip.svg" alt=""></a></li>
                 <li><a href=""><img src="<?php echo APP_URL; ?>common/img/footer/icon_gg.svg" alt=""></a></li>
             </ul>
-        </li>
-    </ul>
-    <p class="addHod pc">31D Ly Tu Trong, District 1, HCMC, Vietnam</p>
-    <p class="copyright pc">Copyright <span class="f_lapresse">HEART OF DARKNESS VIETNAM</span> Co., Ltd. All Rights Reserved.</p>
+       <!-- </li>
+    </ul> !-->
+    <div class="footerCir clearfix">
+        <a href="<?php echo APP_URL; ?>"><img src="<?php echo APP_URL; ?>common/img/header/logo.svg" class="logo_footer" alt="<?php echo $txtH1; ?>"></a>
+        <div class="leftCriFoot">
+        <p>Giấy chứng nhận Đăng ký Kinh doanh số 3702486509 do Sở Kế hoạch và Đầu tư Thành phố Hồ Chí Minh cấp ngày 01/08/2016</p>
+        <p>Địa chỉ giao dịch: <span>HEART OF DARKNESS BAR & RESTAURANT</span> - 31D Lý Tự Trọng, phường Bến Nghé, quận 1, TPHCM</p>
+        <p>Địa chỉ đăng ký kinh doanh: Số 30 đường số 4 – KCN Việt Nam Singapore, P. Bình Hòa, Thị xã Thuận An – tình Bình Dương, Việt Nam</p>
+        <p>Copyright HEART OF DARKNESS VIET NAM Co., Ltd. All Rights Reserved.</p>
+        </div>
+    </div>
+    <!--<p class="addHod pc">31D Ly Tu Trong, District 1, HCMC, Vietnam</p>
+    <p class="copyright pc">Copyright <span class="f_lapresse">HEART OF DARKNESS VIETNAM</span> Co., Ltd. All Rights Reserved.</p> !-->
 </div>
 
 <p class="copyright sp">Copyright <span class="f_lapresse">HEART OF DARKNESS VIETNAM</span> Co., Ltd.<br> All Rights Reserved.</p>
@@ -135,7 +157,7 @@
 <script type="text/javascript">
     $(function(){
         $('.biggerlink li').biggerlink();
-        $('#pageTop').click(function(){$('body,html').animate({scrollTop:0},800);});
+        $('#pageTop').click(function(){$('body,html').animate({scrollTop:0},500);});
         $('.matchHeight').matchHeight();
     });
 </script>

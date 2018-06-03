@@ -1,4 +1,5 @@
 <?php
+session_start();
 error_reporting(0);
 //login logo
 function custom_login_logo() {
@@ -30,30 +31,10 @@ function thumbCrop($img='', $w=false, $h=false, $zc=1){
 //$image_cache = THEME_DIR . "/php/cache/";
 //chmod($image_cache, 0777);
 
-// 管理画面サイドバーメニュー非表示
-function remove_menus () {
-    if (!current_user_can('level_9')) { //level9以下のユーザーの場合メニューをunsetする
-    global $menu;
-    var_dump($menu);
-    unset($menu[2]);//ダッシュボード
-    unset($menu[4]);//メニューの線1
-    unset($menu[5]);//投稿
-    unset($menu[15]);//リンク
-    unset($menu[20]);//ページ
-    unset($menu[25]);//コメント
-    unset($menu[59]);//メニューの線2
-    unset($menu[60]);//テーマ
-    unset($menu[65]);//プラグイン
-    unset($menu[70]);//プロフィール
-    unset($menu[75]);//ツール
-    unset($menu[80]);//設定
-    unset($menu[90]);//メニューの線3
-    }
-}
-add_action('admin_menu', 'remove_menus');
+
 
 function custom_admin_footer() {
-    echo ' Cao Phat Co.,Ltd Website';
+    echo 'Heart of Darkness Craft Brewery ';
 }
 add_filter('admin_footer_text', 'custom_admin_footer');
 
@@ -131,18 +112,18 @@ function my_modify_posts_per_page() {
 
 // Custom post
 
-//sample
-add_action('init', 'my_custom_beer');
-function my_custom_beer()
+
+add_action('init', 'my_custom_flagship');
+function my_custom_flagship()
 {
   $labels = array(
-    'name' => _x('Beer', 'post type general name'),
-    'singular_name' => _x('Beer', 'post type singular name'),
-    'add_new' => _x('Add Beer', 'news'),
-    'add_new_item' => __('Beer'),
-    'edit_item' => __('Edit Beer'),
-    'new_item' => __('Beer'),
-    'view_item' => __('Beer'),
+    'name' => _x('Flagship', 'post type general name'),
+    'singular_name' => _x('Flagship', 'post type singular name'),
+    'add_new' => _x('Add Flagship', 'news'),
+    'add_new_item' => __('Flagship'),
+    'edit_item' => __('Edit Flagship'),
+    'new_item' => __('Flagship'),
+    'view_item' => __('Flagship'),
     'search_staff' => __(''),
     'not_found' =>  __('not found'),
     'not_found_in_trash' => __('not found'),
@@ -161,33 +142,73 @@ function my_custom_beer()
     'supports' => array('title','editor','thumbnail'),
     'has_archive' => true,
   );
-  register_post_type('beer',$args);
+  register_post_type('flagship',$args);
 }
 
-// make taxonomy
-add_action ('init','create_beercat_taxonomy','0');
-function create_beercat_taxonomy () {
-	$taxonomylabels = array(
-	'name' => _x('beercat','post type general name'),
-	'singular_name' => _x('beercat','post type singular name'),
-	'search_items' => __('beercat'),
-	'all_items' => __('beercat'),
-	'parent_item' => __( 'Parent Cat' ),
-	'parent_item_colon' => __( 'Parent Cat:' ),
-	'edit_item' => __('beercat'),
-	'add_new_item' => __('beercat'),
-	'menu_name' => __( 'categories' ),
-	);
-	$args = array(
-	'labels' => $taxonomylabels,
-	'hierarchical' => true,
-	'has_archive' => true,
-	'show_ui' => true,
-	 'query_var' => true,
-	 'rewrite' => array( 'slug' => 'beercat' )
-	);
-	register_taxonomy('beercat','beer',$args);
+add_action('init', 'my_custom_seasonal');
+function my_custom_seasonal()
+{
+  $labels = array(
+    'name' => _x('Seasonal', 'post type general name'),
+    'singular_name' => _x('Seasonal', 'post type singular name'),
+    'add_new' => _x('Add Seasonal', 'news'),
+    'add_new_item' => __('Seasonal'),
+    'edit_item' => __('Edit Seasonal'),
+    'new_item' => __('Seasonal'),
+    'view_item' => __('Seasonal'),
+    'search_staff' => __(''),
+    'not_found' =>  __('not found'),
+    'not_found_in_trash' => __('not found'),
+    'parent_item_colon' => ''
+  );
+  $args = array(
+    'labels' => $labels,
+    'public' => true,
+    'publicly_queryable' => true,
+    'show_ui' => true,
+    'query_var' => true,
+    'rewrite' => true,
+    'capability_type' => 'post',
+    'hierarchical' => false,
+    'menu_position' => 5,
+    'supports' => array('title','editor','thumbnail'),
+    'has_archive' => true,
+  );
+  register_post_type('seasonal',$args);
 }
+
+add_action('init', 'my_custom_bottles');
+function my_custom_bottles()
+{
+  $labels = array(
+    'name' => _x('Bottles', 'post type general name'),
+    'singular_name' => _x('Bottles', 'post type singular name'),
+    'add_new' => _x('Add Bottles', 'news'),
+    'add_new_item' => __('Bottles'),
+    'edit_item' => __('Edit Seasonal'),
+    'new_item' => __('Seasonal'),
+    'view_item' => __('Seasonal'),
+    'search_staff' => __(''),
+    'not_found' =>  __('not found'),
+    'not_found_in_trash' => __('not found'),
+    'parent_item_colon' => ''
+  );
+  $args = array(
+    'labels' => $labels,
+    'public' => true,
+    'publicly_queryable' => true,
+    'show_ui' => true,
+    'query_var' => true,
+    'rewrite' => true,
+    'capability_type' => 'post',
+    'hierarchical' => false,
+    'menu_position' => 5,
+    'supports' => array('title','editor','thumbnail'),
+    'has_archive' => true,
+  );
+  register_post_type('bottles',$args);
+}
+
 
 add_action('init', 'my_custom_food');
 function my_custom_food()
@@ -217,6 +238,7 @@ function my_custom_food()
     'menu_position' => 5,
     'supports' => array('title','editor','thumbnail'),
     'has_archive' => true,
+    'menu_icon' => 'dashicons-carrot',
   );
   register_post_type('food',$args);
 }
@@ -273,6 +295,7 @@ function my_custom_shop()
     'menu_position' => 5,
     'supports' => array('title','editor','thumbnail'),
     'has_archive' => true,
+    'menu_icon' => 'dashicons-cart',
   );
   register_post_type('shop',$args);
 }
@@ -330,6 +353,7 @@ function my_custom_find()
     'menu_position' => 5,
     'supports' => array('title'),
     'has_archive' => true,
+    'menu_icon' => 'dashicons-location',
   );
   register_post_type('find',$args);
 }
@@ -386,6 +410,7 @@ function my_custom_press()
     'menu_position' => 5,
     'supports' => array('title','editor','thumbnail'),
     'has_archive' => true,
+    'menu_icon' => 'dashicons-megaphone',
   );
   register_post_type('Press',$args);
 }
@@ -419,6 +444,7 @@ function my_custom_career()
     'menu_position' => 5,
     'supports' => array('title','editor','thumbnail'),
     'has_archive' => true,
+    'menu_icon' => 'dashicons-nametag',
   );
   register_post_type('career',$args);
 }
@@ -476,6 +502,7 @@ function my_custom_video()
     'menu_position' => 5,
     'supports' => array('title'),
     'has_archive' => true,
+    'menu_icon' => 'dashicons-video-alt3',
   );
   register_post_type('video',$args);
 }
@@ -508,9 +535,149 @@ function my_custom_customer()
     'menu_position' => 5,
     'supports' => array('title'),
     'has_archive' => true,
+    'menu_icon' => 'dashicons-businessman',
   );
   register_post_type('customer',$args);
 }
+
+add_action('init', 'my_custom_order');
+function my_custom_order() {
+	$labels = array(
+		'name' => _x('Order', 'post type general name'),
+		'singular_name' => _x('Order', 'post type singular name'),
+		'add_new' => _x('Thêm', 'product'),
+		'add_new_item' => __('Add'),
+		'edit_item' => __('Edit'),
+		'new_item' => __('Add'),
+		'view_item' => __('Xem'),
+		'search_item' => __('Search'),
+		'not_found' =>  __('Not found'),
+		'not_found_in_trash' => __('Not found in trash'),
+		'parent_item_colon' => ''
+	);
+	$args = array(
+		'labels' => $labels,
+		'public' => true,
+		'publicly_queryable' => true,
+		'show_ui' => true,
+		'query_var' => true,
+		'capability_type' => 'post',
+		'hierarchical' => false,
+		'menu_position' => 5,
+		'supports' => array('title','editor'),
+		'has_archive' => true,
+		'menu_icon' => 'dashicons-media-spreadsheet',
+	);
+	register_post_type('customer_order',$args);
+}
+
+add_action('init', 'my_custom_seo');
+function my_custom_seo() {
+	$labels = array(
+		'name' => _x('SEO', 'post type general name'),
+		'singular_name' => _x('SEO', 'post type singular name'),
+		'add_new' => _x('Thêm', 'SEO'),
+		'add_new_item' => __('Add'),
+		'edit_item' => __('Edit'),
+		'new_item' => __('Add'),
+		'view_item' => __('Xem'),
+		'search_item' => __('Search'),
+		'not_found' =>  __('Not found'),
+		'not_found_in_trash' => __('Not found in trash'),
+		'parent_item_colon' => ''
+	);
+	$args = array(
+		'labels' => $labels,
+		'public' => true,
+		'publicly_queryable' => true,
+		'show_ui' => true,
+		'query_var' => true,
+		'capability_type' => 'post',
+		'hierarchical' => false,
+		'menu_position' => 5,
+		'supports' => array('title','thumbnail'),
+		'has_archive' => true,
+		'menu_icon' => 'dashicons-admin-site',
+	);
+	register_post_type('seo',$args);
+}
+
+
+add_action('init', 'my_custom_menu');
+function my_custom_menu()
+{
+  $labels = array(
+    'name' => _x('Menu Tab', 'post type general name'),
+    'singular_name' => _x('Menu Tab', 'post type singular name'),
+    'add_new' => _x('Add Menu Tab', 'news'),
+    'add_new_item' => __('Menu Tab'),
+    'edit_item' => __('Edit Menu Tab'),
+    'new_item' => __('Menu Tab'),
+    'view_item' => __('Menu Tab'),
+    'search_staff' => __(''),
+    'not_found' =>  __('not found'),
+    'not_found_in_trash' => __('not found'),
+    'parent_item_colon' => ''
+  );
+  $args = array(
+    'labels' => $labels,
+    'public' => true,
+    'publicly_queryable' => true,
+    'show_ui' => true,
+    'query_var' => true,
+    'rewrite' => true,
+    'capability_type' => 'post',
+    'hierarchical' => false,
+    'menu_position' => 5,
+    'supports' => array('title'),
+    'has_archive' => true,
+    'menu_icon' => 'dashicons-megaphone',
+  );
+  register_post_type('Menu Tab',$args);
+}
+
+
+
+/* SPECIFIC FUNCTION */
+
+add_action( 'admin_menu', 'remove_menus' );
+  
+  function remove_menus() {
+    global $menu;
+    global $submenu;
+    // Hide some menus
+    if ( wp_get_current_user()->ID == 3 ) {
+        remove_menu_page( 'edit.php?post_type=find' );
+        remove_menu_page( 'edit.php?post_type=press' );
+        remove_menu_page( 'edit.php?post_type=career' );
+        remove_menu_page( 'edit.php?post_type=video' );
+        remove_menu_page( 'edit.php?post_type=customer' );
+        remove_menu_page( 'edit.php?post_type=customer_order' );
+        remove_menu_page( 'edit-comments.php' );
+        remove_menu_page( 'admin.php?page=wpcf7');   //Pages
+        remove_menu_page( 'upload.php' );          //Comments
+        remove_menu_page( 'themes.php' );
+        remove_menu_page( 'edit.php?post_type=page' );
+    }
+      
+    if ( wp_get_current_user()->ID == 4 ) {
+        remove_menu_page( 'edit.php');
+        remove_menu_page( 'edit.php?post_type=find' );
+        remove_menu_page( 'edit.php?post_type=beer' );
+        remove_menu_page( 'edit.php?post_type=shop' );
+        remove_menu_page( 'edit.php?post_type=food' );
+        remove_menu_page( 'edit.php?post_type=press' );
+        remove_menu_page( 'edit.php?post_type=career' );
+        remove_menu_page( 'edit.php?post_type=video' );
+        remove_menu_page( 'edit.php?post_type=customer' );
+        remove_menu_page( 'edit-comments.php' );
+        remove_menu_page( 'admin.php?page=wpcf7');   //Pages
+        remove_menu_page( 'upload.php' );          //Comments
+        remove_menu_page( 'themes.php' );
+        remove_menu_page( 'edit.php?post_type=page');
+    }
+  }
+
 
 function total_cat_post_count( $slug ){
   $q = new WP_Query( array(
@@ -527,6 +694,7 @@ function total_cat_post_count( $slug ){
   ) );
   return $q->post_count;
 }
+
 
 
 function get_id_youtube($link) {

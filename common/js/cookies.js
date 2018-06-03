@@ -7,6 +7,15 @@ function createCookie(name, value, hours) {
     document.cookie = escape(name) + "=" + escape(value) + expires + "; path=/";
 }
 
+function createCookie_fb(name, value, hours) {
+    if (hours) {
+        var date = new Date();
+        date.setTime(date.getTime() + (hours * 60 * 60 * 1000));
+        var expires = "; expires=" + date.toGMTString();
+    } else var expires = "";
+    document.cookie = escape(name) + "=" + value + expires + "; path=/";
+}
+
 
 function readCookie(name) {
     var nameEQ = escape(name) + "=";
