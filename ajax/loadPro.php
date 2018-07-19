@@ -4,7 +4,6 @@ include(APP_PATH . '/hod/wp-load.php');
 $addtocart = $_GET['addtocart'];	
 ?>
 <div class="innerPopcart">
-    <h3 class="f_lapresse">OPTIONS</h3>
 <?php
         $wp_query = new WP_Query();
         $param = array (
@@ -23,19 +22,61 @@ $addtocart = $_GET['addtocart'];
 		$slug = $term->slug;
 		}
         $pt = get_post_type();
+        $add_option = get_field('cf_add_options');
+        $chose_option = get_field('list_chose_options');
 ?>
     <div class="clearfix">
+        <?php if($pt!='food') { ?>
         <div class="thumbPop"><img src="<?php echo $image_shop[0]; ?>" id="thumbImg" alt="<?php the_title(); ?>"></div>
+        <?php } ?>
         <div class="overflow">
             <p class="titlePop"><?php the_title(); ?></p>
             <?php if($slug=='t-shirt') { ?>    
-            <p><?php the_field('t_shirt_type'); ?></p>
+                <p><?php the_field('t_shirt_type'); ?></p>
             <?php } ?>
             <?php if(($slug=='framed-poster')||($slug=='poster')) { ?> 
             <?php } ?> 
             <div class="descPop">
-            <?php echo $post->post_content; ?>
+                <?php echo $post->post_content; ?>
             </div>
+            <?php
+                if(($pt=='food')&&(($add_option!='')||($add_option!=''))) {
+            ?>
+                <h3 class="f_lapresse">OPTIONS</h3>
+                 <div class="optionsBox flexBox">
+                     <div class="left">
+                        <?php
+                            if(get_field('cf_add_options')):
+                        ?>
+                        <p class="optionsBox__title">Choose:</p>
+                        <?php        
+                            while(has_sub_field('cf_add_options')):
+                        ?>
+                            <p class="itemChose"><input type="radio" value="<?php echo get_sub_field('options'); ?>" class="radioFood"><label class="labelFood"><?php echo get_sub_field('options'); ?></label></p>
+                        <?php endwhile;endif; ?>
+
+                        <?php
+                            if(get_field('list_chose_options')):
+                        ?>
+                        <p class="optionsBox__title">Choose up to sauces:</p>
+                        <table>
+                            <?php            
+                                while(has_sub_field('list_chose_options')):
+                            ?>
+                                <tr>
+                                    <td><input type="radio" value="<?php echo get_sub_field('options'); ?>" class="radioFood"></td>
+                                    <td><label class="labelFood"><?php echo get_sub_field('options'); ?></label></td>
+                                </tr>
+                            <?php endwhile; ?>
+                        </table>
+                        <?php endif; ?>
+                     </div>
+                     <div class="right">
+                        <p class="optionsBox__title">Additional Information</p>
+                         <textarea></textarea>
+                     </div>
+                 </div>       
+            <?php } ?>
             <div class="flex">
                 <table>
                     <thead>

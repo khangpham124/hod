@@ -1,17 +1,3 @@
-<!-- <p id="pageTop"><span>back to top</span></p>
-<ul class="menuFoot f_lapresse clearfix">
-                    <li><a href="<?php echo APP_URL; ?>">HOME</a></li>
-                    <li><a href="<?php echo APP_URL; ?>beer">BEER</a></li>
-                    <li><a href="<?php echo APP_URL; ?>food">FOOD</a></li>
-                    <li><a href="<?php echo APP_URL; ?>location">LOCATION</a></li>
-                    <li><a href="javascript:void(0)" class="whaton">WHAT'S ON</a></li>
-                    <li><a href="<?php echo APP_URL; ?>booking">BOOK NOW</a></li>
-                    <li><a href="<?php echo APP_URL; ?>find">FIND OUR BEER</a></li>
-                    <li><a href="<?php echo APP_URL; ?>press">PRESS</a></li>
-                    <li><a href="<?php echo APP_URL; ?>career">CAREER</a></li>
-                    <li><a href="<?php echo APP_URL; ?>about">ABOUT</a></li>
-                    <li><a href="<?php echo APP_URL; ?>shop">SHOP</a></li>
-                </ul> -->
 <footer id="footer">
    <div class="footerInner">
         
@@ -74,10 +60,10 @@
     connect<br>with us
     </p>
     <ul class="clearfix lstSs">
-        <li><a href="https://www.facebook.com/heartofdarknessbrewery/"><img src="<?php echo APP_URL; ?>common/img/footer/icon_fb.svg" alt=""></a></li>
-        <li><a href="https://www.instagram.com/heart_of_darkness_brewery/"><img src="<?php echo APP_URL; ?>common/img/footer/icon_ins.svg" alt=""></a></li>
-        <li><a href="https://goo.gl/U3kvyG"><img src="<?php echo APP_URL; ?>common/img/footer/icon_trip.svg" alt=""></a></li>
-        <li><a href="https://plus.google.com/107623965653103231573"><img src="<?php echo APP_URL; ?>common/img/footer/icon_gg.svg" alt=""></a></li>
+        <li><a href="https://www.facebook.com/heartofdarknessbrewery/" target="_blank"><img src="<?php echo APP_URL; ?>common/img/footer/icon_fb.svg" alt=""></a></li>
+        <li><a href="https://www.instagram.com/heartofdarknessbrewery/" target="_blank"><img src="<?php echo APP_URL; ?>common/img/footer/icon_ins.svg" alt=""></a></li>
+        <li><a href="https://goo.gl/U3kvyG" target="_blank"><img src="<?php echo APP_URL; ?>common/img/footer/icon_trip.svg" alt=""></a></li>
+        <li><a href="https://plus.google.com/107623965653103231573" target="_blank"><img src="<?php echo APP_URL; ?>common/img/footer/icon_gg.svg" alt=""></a></li>
     </ul>
 </div>
 

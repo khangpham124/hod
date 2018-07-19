@@ -1,6 +1,6 @@
 <?php
 //email list
-$aMailto = array("khangpham421@gmail.com", "annheartofdarkness@gmail.com","ryo@heartofdarknessbrewery.com");
+$aMailto = array("khangpham421@gmail.com", "bookinghodb@gmail.com","ben@heartofdarknessbrewery.com");
 //$aMailto = array("khangpham421@gmail.com");
 $from = "ann@heartofdarknessbrewery.com";
 
