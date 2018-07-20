@@ -52,7 +52,9 @@ $addtocart = $_GET['addtocart'];
                         <?php        
                             while(has_sub_field('cf_add_options')):
                         ?>
-                            <p class="itemChose"><input type="radio" value="<?php echo get_sub_field('options'); ?>" class="radioFood"><label class="labelFood"><?php echo get_sub_field('options'); ?></label></p>
+                            <p class="itemChose">
+                                <input name="addOpt" type="radio" value="<?php echo get_sub_field('options'); ?>" class="radioFood" id="addOpt_<?php echo $f; ?>"><label for="addOpt_<?php echo $f; ?>" class="labelFood"><?php echo get_sub_field('options'); ?></label></p>
+                                <input type="hidden" name="hide_addOpt" id="hide_addOpt" value="">
                         <?php endwhile;endif; ?>
 
                         <?php
@@ -60,12 +62,16 @@ $addtocart = $_GET['addtocart'];
                         ?>
                         <p class="optionsBox__title">Choose up to sauces:</p>
                         <table>
-                            <?php            
+                            <?php
+                                $f=0;            
                                 while(has_sub_field('list_chose_options')):
+                                $f++;
                             ?>
                                 <tr>
-                                    <td><input type="radio" value="<?php echo get_sub_field('options'); ?>" class="radioFood"></td>
-                                    <td><label class="labelFood"><?php echo get_sub_field('options'); ?></label></td>
+                                    <td><input type="radio" name="listOpt" value="<?php echo get_sub_field('options'); ?>" class="radioFood" id="listOpt_<?php echo $f; ?>">
+                                    <input type="hidden" name="hide_listOpt" id="hide_listOpt" value="">
+                                    </td>
+                                    <td><label class="labelFood" for="listOpt_<?php echo $f; ?>"><?php echo get_sub_field('options'); ?></label></td>
                                 </tr>
                             <?php endwhile; ?>
                         </table>
@@ -73,7 +79,7 @@ $addtocart = $_GET['addtocart'];
                      </div>
                      <div class="right">
                         <p class="optionsBox__title">Additional Information</p>
-                         <textarea></textarea>
+                         <textarea id="note_order" name="note_order"></textarea>
                      </div>
                  </div>       
             <?php } ?>
