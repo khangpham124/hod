@@ -55,8 +55,7 @@ include(APP_PATH."libs/head.php");
 <div id="wrapper">
     
 <h2 class="h2_site" id="menuFood">OUR MENU</h2>
-    
-      <div class="greyBox">
+    <div class="greyBox">
         <div class="inner">
             
             <ul class="listCountries clearfix f_lapresse pc">
@@ -102,8 +101,8 @@ include(APP_PATH."libs/head.php");
                     $slug = $category->slug;
                     $i++;
                 ?>
-                <h3 class="h3_food f_lapresse" id="h3_<?php echo $slug ?>"><span>-<?php echo $category->name; ?>-</span></h3>
-                <ul class="clearfix listFeature foodList" id="typeFood<?php echo $i; ?>">
+                <h3 class="h3_food f_lapresse" id="h3_<?php echo $slug ?>"><span><?php echo $category->name; ?></span></h3>
+                <ul class="listFeature foodList" id="typeFood<?php echo $i; ?>">
                 <?php    
                     $wp_query = new WP_Query();
                     $param=array(
@@ -124,12 +123,18 @@ include(APP_PATH."libs/head.php");
                     $image_thumb = wp_get_attachment_image_src($thumb,'full');
                 ?>    
                     <li>
-                        <p class="listFeature__thumb"><img src="<?php echo $image_thumb[0]; ?>" class="" alt=""></p>
-                        <p class="listFeature__name matchHeight"><a href=""><?php the_title(); ?></a></p>
-                        <div class="listFeature__desc matchHeight"><?php echo $post->post_content; ?></div>
-                        <p class="listFeature__price"><span <?php if(get_field('vegetarian')=='no') { ?>class="noBg"<?php } ?>>VND <?php the_field('cf_price'); ?></span></p>
+                        <div class="foodInfo">    
+                        <div class="foodInfo__desc">
+                            <p class="listFeature__name matchHeight">
+                                <a href="javascript:void(0)" class="listFeature__btn" data-id="<?php the_ID(); ?>"><?php the_title(); ?></a>
+                            </p>
+                            <p class="foodInfo__detail"><?php echo $post->post_content; ?></p>
+                        </div>
+                        <p class="foodInfo__price"><span <?php if(get_field('vegetarian')=='no') { ?>class="noBg"<?php } ?>><?php echo number_format(get_field('cf_price')); ?></span></p>
+                        </div>
+                        
                 <?php if ( is_user_logged_in() ) { ?>
-                <a href="javascript:void(0)" class="listFeature__btn" data-id="<?php the_ID(); ?>">add to cart</a>
+                <!-- <a href="javascript:void(0)" class="listFeature__btn" data-id="<?php the_ID(); ?>">add to cart</a> -->
                 <?php } ?>
                     </li>
                 <?php endwhile;endif; ?>
@@ -145,7 +150,7 @@ include(APP_PATH."libs/head.php");
                 <img src="<?php echo APP_URL; ?>common/img/other/load.gif" alt="">
                 </div>
                     <div class="descCat"><?php echo term_description(11,'foodcat') ?></div>    
-                <ul class="clearfix listFeature foodList" id="typeDaily">
+                <ul class="listFeature foodList" id="typeDaily">
                 <?php    
                     $wp_query = new WP_Query();
                     $param=array(
@@ -156,7 +161,7 @@ include(APP_PATH."libs/head.php");
                     array(
                     'taxonomy' => 'foodcat',
                     'field' => 'slug',
-                    'terms' => 'kurtz-weekly-specials'
+                    'terms' => 'beer'
                     )
                     )
                     );
@@ -166,12 +171,13 @@ include(APP_PATH."libs/head.php");
                     $image_thumb = wp_get_attachment_image_src($thumb,'full');
                     ?>
                     <li>
-                        <p class="listFeature__thumb"><img src="<?php echo $image_thumb[0]; ?>" class="" alt=""></p>
-                        <p class="listFeature__name matchHeight"><a href=""><?php the_title(); ?></a></p>
+                        <p class="listFeature__name matchHeight">
+                            <a href="javascript:void(0)" class="listFeature__btn" data-id="<?php the_ID(); ?>"><?php the_title(); ?></a>
+                        </p>
                         <div class="listFeature__desc matchHeight"><?php echo $post->post_content; ?></div>
-                        <p class="listFeature__price"><span <?php if(get_field('vegetarian')=='no') { ?>class="noBg"<?php } ?>>VND <?php the_field('cf_price'); ?></span></p>
+                        <p class="listFeature__price"><span <?php if(get_field('vegetarian')=='no') { ?>class="noBg"<?php } ?>>VND <?php echo number_format(get_field('cf_price')); ?></span></p>
                 <?php if ( is_user_logged_in() ) { ?>
-                <a href="javascript:void(0)" class="listFeature__btn" data-id="<?php the_ID(); ?>">add to cart</a>
+                <!-- <a href="javascript:void(0)" class="listFeature__btn" data-id="<?php the_ID(); ?>">add to cart</a> -->
                 <?php } ?>
                     </li>
                 <?php endwhile;endif; ?>      
@@ -185,9 +191,8 @@ include(APP_PATH."libs/head.php");
                 <div class="loadingFood">
                     <img src="<?php echo APP_URL; ?>common/img/other/load.gif" alt="">
                 </div>
-                <!--<h3 class="h3_food f_lapresse" id="h3_breakfast-burrito"><span>-special festival promotion-</span></h3>!-->
                 <div class="descCat"><?php echo term_description(12,'foodcat') ?></div>        
-                <ul class="clearfix listFeature foodList" id="typeSpecial">
+                <ul class="listFeature foodList" id="typeSpecial">
                 <?php    
                     $wp_query = new WP_Query();
                     $param=array(
@@ -208,12 +213,13 @@ include(APP_PATH."libs/head.php");
                     $image_thumb = wp_get_attachment_image_src($thumb,'full');
                     ?>
                     <li>
-                        <p class="listFeature__thumb"><img src="<?php echo $image_thumb[0]; ?>" class="" alt=""></p>
-                        <p class="listFeature__name matchHeight"><a href=""><?php the_title(); ?></a></p>
+                        <p class="listFeature__name matchHeight">
+                            <a href="javascript:void(0)" class="listFeature__btn" data-id="<?php the_ID(); ?>"><?php the_title(); ?></a>
+                        </p>
                         <div class="listFeature__desc matchHeight"><?php echo $post->post_content; ?></div>
-                        <p class="listFeature__price"><span <?php if(get_field('vegetarian')=='no') { ?>class="noBg"<?php } ?>>VND <?php the_field('cf_price'); ?></span></p>
+                        <p class="listFeature__price"><span <?php if(get_field('vegetarian')=='no') { ?>class="noBg"<?php } ?>>VND <?php echo number_format(get_field('cf_price')); ?></span></p>
                 <?php if ( is_user_logged_in() ) { ?>
-                <a href="javascript:void(0)" class="listFeature__btn" data-id="<?php the_ID(); ?>">add to cart</a>
+                <!-- <a href="javascript:void(0)" class="listFeature__btn" data-id="<?php the_ID(); ?>">add to cart</a> -->
                 <?php } ?>
                     </li>
                 <?php endwhile;endif; ?>      
@@ -305,51 +311,6 @@ $(function() {
 
       ]
     });
-
-    
-var options = {
-    dots: false,
-  infinite: true,
-  speed: 400,
-  autoplay: true,
-  arrows:true,
-  autoplaySpeed: 2500,
-  slidesToShow: 4,
-  slidesToScroll: 1,
-  responsive: [
-    {
-      breakpoint: 1024,
-      settings: {
-        slidesToShow: 4,
-        slidesToScroll: 1,
-        infinite: true,
-        dots: false
-      }
-    },
-    {
-      breakpoint: 767,
-      settings: {
-        slidesToShow: 2,
-        slidesToScroll: 1
-      }
-    },
-    {
-      breakpoint: 480,
-      settings: {
-        slidesToShow: 2,
-        slidesToScroll: 1
-      }
-    }
-   
-  ]
-};
-$('#typeFood1').slick(options);
-$('#typeFood2').slick(options);
-$('#typeFood3').slick(options);    
-$('#typeFood4').slick(options);
-$('#typeFood5').slick(options);
-$('#typeDaily').slick(options);
-$('#typeSpecial').slick(options);
 });
 </script>
 

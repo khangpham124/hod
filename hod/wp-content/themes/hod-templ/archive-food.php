@@ -118,7 +118,7 @@ include(APP_PATH."libs/head.php");
                     $i++;
                 ?>
                 <h3 class="h3_food f_lapresse" id="h3_<?php echo $slug ?>"><span>-<?php echo $category->name; ?>-</span></h3>
-                <ul class="clearfix listFeature foodList" id="typeFood<?php echo $i; ?>">
+                <ul class="listFeature foodList" id="typeFood<?php echo $i; ?>">
                 <?php    
                     $wp_query = new WP_Query();
                     $param=array(
@@ -160,7 +160,7 @@ include(APP_PATH."libs/head.php");
                 <img src="<?php echo APP_URL; ?>common/img/other/load.gif" alt="">
                 </div>
                     <div class="descCat"><?php echo term_description(11,'foodcat') ?></div>    
-                <ul class="clearfix listFeature foodList" id="typeDaily">
+                <ul class="listFeature foodList" id="typeDaily">
                 <?php    
                     $wp_query = new WP_Query();
                     $param=array(
@@ -200,9 +200,8 @@ include(APP_PATH."libs/head.php");
                 <div class="loadingFood">
                     <img src="<?php echo APP_URL; ?>common/img/other/load.gif" alt="">
                 </div>
-                <!--<h3 class="h3_food f_lapresse" id="h3_breakfast-burrito"><span>-special festival promotion-</span></h3>!-->
                 <div class="descCat"><?php echo term_description(12,'foodcat') ?></div>        
-                <ul class="clearfix listFeature foodList" id="typeSpecial">
+                <ul class="listFeature foodList" id="typeSpecial">
                 <?php    
                     $wp_query = new WP_Query();
                     $param=array(

@@ -100,7 +100,7 @@ include(APP_PATH."libs/head.php");
 <div id="wrapper">
     
 <h2 class="h2_site">OUR BEER</h2>
-    <ul class="lstBeer clearfix">
+    <ul class="lstBeer flexBox">
         <?php
             $wp_query = new WP_Query();
             $param=array(
@@ -118,7 +118,7 @@ include(APP_PATH."libs/head.php");
             $termname = $term->name;
             }
         ?>
-        <li class="matchHeight">
+        <li>
             <p class="thumb">
                 <img src="<?php echo $img_label[0]; ?>" class="imgBeer" alt="<?php the_title(); ?>">
             </p>
@@ -140,7 +140,7 @@ include(APP_PATH."libs/head.php");
         <?php endwhile; endif; ?>
     </ul>
     
-    <ul class="lstBeer clearfix">
+    <ul class="lstBeer flexBox">
         <?php
             $wp_query = new WP_Query();
             $param=array(
@@ -158,7 +158,7 @@ include(APP_PATH."libs/head.php");
             $termname = $term->name;
             }
         ?>
-        <li class="matchHeight">
+        <li>
             <p class="thumb">
                 <img src="<?php echo $img_label[0]; ?>" class="imgBeer" alt="<?php the_title(); ?>">
             </p>
