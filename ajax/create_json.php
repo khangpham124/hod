@@ -19,9 +19,11 @@ if(!isset($_COOKIE['order_hod'])) {
     $data =array (
         array(
         "id"=>$_GET['proid'],
+        "name"=>$_GET['name_pro'],
         "quantity"=>$_GET['qual'],
         "cost"=>$_GET['cost'],
-        "options"=>$_GET['options'],
+        "option_add"=>$_GET['option_add'],
+        "option_list"=>$_GET['option_list'],
         "note"=>urldecode($_GET['note'])
         )
     );
@@ -39,7 +41,7 @@ if(!isset($_COOKIE['order_hod'])) {
     if($_GET['options']=='') {
         $_GET['options']= 'null';
     }
-    $formattedData =',{"id":"'.$_GET['proid'].'","quantity":"'.$_GET['qual'].'","cost":"'.$_GET['cost'].'","options":'.$_GET['options'].',"note":"'.urldecode($_GET['note']).'"}]';
+    $formattedData =',{"id":"'.$_GET['proid'].'","name":"'.$_GET['name_pro'].'","quantity":"'.$_GET['qual'].'","cost":"'.$_GET['cost'].'","option_add":"'.$_GET['option_add'].'","option_list":"'.$_GET['option_list'].'","note":"'.urldecode($_GET['note']).'"}]';
     $f_isset = './tmp/'.$_COOKIE['order_hod'].'.json';
     $formattedData_curr = file_get_contents($f_isset);
     $count_char = strlen($formattedData_curr);

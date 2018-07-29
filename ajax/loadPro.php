@@ -144,7 +144,7 @@ $addtocart = $_GET['addtocart'];
     </p>!-->
     <p class="taR_popup">
     <a href="javascript:void(0)" class="contBtn">continue shopping</a>
-    <a href="javascript:void(0)" class="addToCard" data-id="<?php echo $pt ?>_<?php the_ID(); ?>" data-price="<?php the_field('cf_price'); ?>">add to cart</a>    
+    <a href="javascript:void(0)" class="addToCard" data-id="<?php echo $pt ?>_<?php the_ID(); ?>" data-price="<?php the_field('cf_price'); ?>" data-title="<?php the_title(); ?>">add to cart</a>    
     </p>
 <?php endwhile;endif; ?>
 </div>
