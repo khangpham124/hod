@@ -49,14 +49,15 @@ $addtocart = $_GET['addtocart'];
                             if(get_field('cf_add_options')):
                         ?>
                         <p class="optionsBox__title">Choose:</p>
-                        <?php        
+                        <?php     
+                            $f=0;   
                             while(has_sub_field('cf_add_options')):
+                            $f++;
                         ?>
                             <p class="itemChose">
-                                <input name="addOpt" type="radio" value="<?php echo get_sub_field('options'); ?>" class="radioFood" id="addOpt_<?php echo $f; ?>"><label for="addOpt_<?php echo $f; ?>" class="labelFood"><?php echo get_sub_field('options'); ?></label></p>
+                                <input name="addOpt" type="radio" value="<?php echo get_sub_field('options'); ?>" class="radioFood addOptRad" id="addOpt_<?php echo $f; ?>"><label for="addOpt_<?php echo $f; ?>" class="labelFood"><?php echo get_sub_field('options'); ?></label></p>
                                 <input type="hidden" name="hide_addOpt" id="hide_addOpt" value="">
                         <?php endwhile;endif; ?>
-
                         <?php
                             if(get_field('list_chose_options')):
                         ?>
@@ -68,7 +69,7 @@ $addtocart = $_GET['addtocart'];
                                 $f++;
                             ?>
                                 <tr>
-                                    <td><input type="radio" name="listOpt" value="<?php echo get_sub_field('options'); ?>" class="radioFood" id="listOpt_<?php echo $f; ?>">
+                                    <td><input type="radio" name="listOpt" value="<?php echo get_sub_field('options'); ?>" class="radioFood listOptRad" id="listOpt_<?php echo $f; ?>">
                                     <input type="hidden" name="hide_listOpt" id="hide_listOpt" value="">
                                     </td>
                                     <td><label class="labelFood" for="listOpt_<?php echo $f; ?>"><?php echo get_sub_field('options'); ?></label></td>
@@ -169,4 +170,19 @@ $(".button").click(function(){
     var numb_calc = parseInt(calc);
     $(this).parent().parent().parent().next().find('.qtyPro .totalNumb').val(numb_calc);
 });
+
+$(".addOptRad").click(function(){
+    $('#hide_addOpt').val('');
+    var addOpt = $(this).val();
+    $('#hide_addOpt').val(addOpt);
+});
+
+$(".listOptRad").click(function(){
+    $('#hide_listOpt').val('');
+    var addOpt = $(this).val();
+    $('#hide_listOpt').val(addOpt);
+});
+
+
+
 </script>

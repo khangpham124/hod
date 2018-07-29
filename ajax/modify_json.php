@@ -10,7 +10,7 @@ $rand = '';
 foreach (array_rand($seed, 5) as $k) 
 $rand .= $seed[$k];
 
-// $id_prod = str_replace('','',$_GET['proid']);
+$id_prod = str_replace('','',$_GET['proid']);
 
 //set the filename
 $filename = './tmp/hod_order_'.$rand.'_'.time().'.json';
