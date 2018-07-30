@@ -7,7 +7,7 @@ setcookie('order_cookies','', time() + 86400, "/");
 setcookie('order_hod','', time() + 86400, "/");
 include(APP_PATH."libs/head.php");
 ?>
-<!-- <meta http-equiv="refresh" content="5;url=<?php echo APP_URL; ?>" /> -->
+<meta http-equiv="refresh" content="5;url=<?php echo APP_URL; ?>" />
 </head>
 
 <body id="checkout">
@@ -46,6 +46,7 @@ include(APP_PATH."libs/head.php");
         add_post_meta($pid, 'cf_country', $country);
         add_post_meta($pid, 'cf_fullname', $fullname);
         add_post_meta($pid, 'cf_phone', $phone);
+        add_post_meta($pid, 'cf_order_status', 'in progress');
 
         //LIST PORDUCT
         $f_isset = $_SERVER['DOCUMENT_ROOT'].'/ajax/tmp/'.$_COOKIE['order_hod'].'.json';
@@ -73,28 +74,36 @@ include(APP_PATH."libs/head.php");
 
         $subject = "BOOKING SUMMARY FROM HEART OF DARKNESS";
         $msgBody = "
-        Fullname : $fullname
-        Phone : $phone
-        Address : $address - $city
-        <table>
-            <tr style='font-weight:bold'>
+        <p>Fullname : $fullname</p>
+        <p>Phone : $phone</p>
+        <p>Address : $address - $city</p>
+        <p>Order Code : $order_code</p>
+        <br>
+        <table style='border:1px solid #000;border-collapse: collapse;border-spacing: 0;'>
+            <tr style='font-weight:bold; padding:5px'>
                 <td>PRODUCTS</td>
                 <td>PRICE</td>
                 <td>QTY</td>
-                <td>SUBTOTAL</td>
+                <td>NOTE</td>
+                <td>TOTAL</td>
             </tr>
        ";
        for($i=0;$i<=$count_product;$i++) {
+        $tt = $order_detail[$i]['cost'] * $order_detail[$i]['quantity'];
         $msgBody .= "   
             <tr>
-                <td>".$order_detail[$i]['name']."</td>
-                <td>".$order_detail[$i]['name']."</td>
-                <td>".$order_detail[$i]['name']."</td>
-                <td>".$order_detail[$i]['name']."</td>
+                <td style='border:1px solid #000;padding:5px'>".$order_detail[$i]['name']."</td>
+                <td style='border:1px solid #000;padding:5px'>".number_format($order_detail[$i]['cost'])."</td>
+                <td style='border:1px solid #000;padding:5px'>".$order_detail[$i]['quantity']."</td>
+                <td style='border:1px solid #000;padding:5px'>Choose up to sauces:<strong>".$order_detail[$i]['option_list']."</strong><br>".$order_detail[$i]['note']."</td>
+                <td style='border:1px solid #000;padding:5px'>".number_format($tt)."</td>
             </tr>
         ";
         }   
         $msgBody .= " 
+            <tr>
+                <td style='border:1px solid #000;padding:5px' colspan='5'>".$grandTotal."</td>
+            </tr>    
         </table>
         ";
 
