@@ -24,6 +24,7 @@ $addtocart = $_GET['addtocart'];
         $pt = get_post_type();
         $add_option = get_field('cf_add_options');
         $chose_option = get_field('list_chose_options');
+        $price = get_field('cf_price');
 ?>
     <div class="clearfix">
         <?php if($pt!='food') { ?>
@@ -40,7 +41,7 @@ $addtocart = $_GET['addtocart'];
                 <?php echo $post->post_content; ?>
             </div>
             <?php
-                if(($pt=='food')&&(($add_option!='')||($add_option!=''))) {
+                if(($pt=='food')&&(($add_option!='')||($chose_option!=''))) {
             ?>
                 <h3 class="f_lapresse">OPTIONS</h3>
                  <div class="optionsBox flexBox">
@@ -55,7 +56,7 @@ $addtocart = $_GET['addtocart'];
                             $f++;
                         ?>
                             <p class="itemChose">
-                                <input name="addOpt" type="radio" value="<?php echo get_sub_field('options'); ?>" class="radioFood addOptRad" id="addOpt_<?php echo $f; ?>"><label for="addOpt_<?php echo $f; ?>" class="labelFood"><?php echo get_sub_field('options'); ?></label></p>
+                                <input name="addOpt" type="radio" value="<?php echo get_sub_field('options'); ?>" data-attribute="<?php echo get_sub_field('cost'); ?>" class="radioFood addOptRad" id="addOpt_<?php echo $f; ?>"><label for="addOpt_<?php echo $f; ?>" class="labelFood"><?php echo get_sub_field('options'); ?></label></p>
                                 <input type="hidden" name="hide_addOpt" id="hide_addOpt" value="">
                         <?php endwhile;endif; ?>
                         <?php
@@ -79,13 +80,16 @@ $addtocart = $_GET['addtocart'];
                         <?php endif; ?>
                      </div>
                      <div class="right">
+                        <?php if($image_shop[0]!='') { ?> 
+                        <div class="thumbPop"><img src="<?php echo $image_shop[0]; ?>" id="thumbImg" alt="<?php the_title(); ?>"></div>
+                        <?php } ?>
                         <p class="optionsBox__title">Additional Information</p>
                          <textarea id="note_order" name="note_order"></textarea>
                      </div>
                  </div>       
             <?php } ?>
             <div class="flex">
-                <table>
+                <table class="tblLoad">
                     <thead>
                         <?php if($slug=='t-shirt') { ?>
                         <td>SIZE</td>
@@ -101,7 +105,7 @@ $addtocart = $_GET['addtocart'];
                                 <input type="text" id="quantity" class="input_cal" readonly  value="1"> 
                              </div>
                         </td>
-                        <td><?php the_field('cf_price'); ?></td>
+                        <td><input type="text" class="priceNumb" readonly value="<?php echo $price; ?>" name="currCost" id="currentCost"></td>
                     </tbody>
                 </table>
             </div>
@@ -174,7 +178,12 @@ $(".button").click(function(){
 $(".addOptRad").click(function(){
     $('#hide_addOpt').val('');
     var addOpt = $(this).val();
+    var costAdd = parseInt($(this).attr('data-attribute'));
+    var currCost = parseInt($('.addToCard').attr('data-price'));
+    var newCost = currCost + costAdd;
     $('#hide_addOpt').val(addOpt);
+    $('#currentCost').val(newCost);
+    $('.addToCard').attr('data-price',newCost);
 });
 
 $(".listOptRad").click(function(){
