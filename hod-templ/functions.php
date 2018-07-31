@@ -701,3 +701,28 @@ function get_id_youtube($link) {
 	parse_str( parse_url( $link, PHP_URL_QUERY ), $vars );
 	return $vars['v'];
 }
+
+
+add_action( 'admin_menu', 'add_orders_menu_bubble' );
+function add_orders_menu_bubble() {
+  global $menu;
+  $orderStatus = get_posts(array(
+    'post_type' => 'customer_order',
+    'posts_per_page' => -1,
+    'meta_query' => array(
+      array(
+        'key' => 'cf_order_status',
+        'value' => 'in progress',
+        'compare' => '=',
+      )
+    ),
+  ));
+  if ( count($orderStatus) ) {
+    foreach ( $menu as $key => $value ) {
+      if ( $menu[$key][2] == 'edit.php?post_type=customer_order' ) {
+        $menu[$key][0] .= ' <span class="update-plugins count-1"><span class="plugin-count">' . count($orderStatus) . '</span></span>';
+        return;
+      }
+    }
+  }
+}
