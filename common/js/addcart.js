@@ -1,9 +1,11 @@
 /* check and insert number of item */
-var start = readCookie('totalcart');
+var start = readCookie('incart');
 if (start) {
     $('#numbCart').html(start);
+    $('#itemCarts').html(start);
 } else {
     $('#numbCart').html(0);
+    $('#itemCarts').html(0);
 }
 
 
@@ -11,33 +13,28 @@ if (start) {
 $(".addToCard").live('click', function() {
     var isThis = $(this);
     var id_pro = isThis.attr('data-id');
+    var name_pro = isThis.attr('data-title');
     var price_pro = parseInt(isThis.attr('data-price'));
     var quantity = parseInt($("#quantity").val());
-    var curr = parseInt($('#numbCart').text());
-    var total = curr + quantity;
+    var note_order = $("#note_order").val();
     var tcost = quantity * price_pro;
+    var option_add = $('input[name=addOpt]:checked').val();
+    var option_list = $('input[name=listOpt]:checked').val();
 
-    /* var data = {
-        'addtocart' : id_pro,
-        'soluong' : quantity,
-    };*/
-
-    if (readCookie('totalCost')) {
-        var curCost = parseInt(readCookie('totalCost'));
-        var upCost = tcost + curCost;
-    } else {
-        upCost = tcost;
-    }
+    //TOTAL CART
     isThis.html('<i class="fa fa-spinner fa-spin"></i> Loading...');
     setTimeout(function() {
         isThis.html('<i class="fa fa-shopping-cart"></i> Added');
         isThis.addClass('disable');
     }, 500);
-
-    $("#numbCart").html(total);
-    createCookie('cart_' + id_pro, quantity, 2);
-    createCookie('totalcart', total, 2);
-    createCookie('totalCost', upCost, 2);
+    $.ajax({
+        data: {},
+        url: '/ajax/create_json.php?proid=' + id_pro + '&qual=' + quantity + '&price=' + price_pro + '&cost=' + tcost + '&option_add=' + option_add + '&option_list=' + option_list + '&name_pro=' + name_pro + '&note=' + note_order,
+        type: 'GET',
+        success: function(data) {
+            $('#currentCart').html(data);
+        }
+    })
 });
 
 
@@ -64,42 +61,29 @@ $(".button").click(function() {
 
 /* Update cart */
 $('.updateBtn').live('click', function() {
-    var totalcart = 0;
-    $('.tblCart tbody tr').each(function() {
-        elm = $(this).find('.qtyNumb');
-        var id_cookie = elm.attr('id');
-        var cookie_val = elm.val();
-        eraseCookie(id_cookie);
-        createCookie(id_cookie, cookie_val, 2);
-
-        eraseCookie('totalcart');
-        totalcart += Number(elm.val());
-        createCookie('totalcart', totalcart, 2);
-        $('#numbCart').html(totalcart);
-        $('.updateBtn').addClass('disable');
-    });
-    var totalcost = 0;
-    $('.tblCart tbody tr').each(function() {
-        elm2 = $(this).find('.subTotal').find('.totalNumb');
-        eraseCookie('totalCost');
-        totalcost += Number(elm2.val());
-        createCookie('totalCost', totalcost, 2);
-    });
+    var itemDel = $(this).attr('data-id');
+    var itemCost = $(this).parent().parent().parent().next().next().find('.qtyNumb').val();
+    $.ajax({
+        data: {},
+        url: '/ajax/modify_json.php?proid=' + itemDel + '&qual=' + itemCost,
+        type: 'GET',
+        success: function(data) {
+            alert('update already');
+        }
+    })
 });
 
 /* remove Item from cart */
 $('.removeItem').live('click', function() {
     var itemDel = $(this).attr('data-id');
-    var itemCost = $(this).parent().parent().parent().next().next().next().find('.totalNumb').val();
-    var qtyDel = readCookie(itemDel);
-    var curr_qty = readCookie('totalcart');
-    var update_qty = curr_qty - qtyDel;
-    var totalcost = readCookie('totalCost');
-    var new_totalcost = totalcost - itemCost;
-    eraseCookie(itemDel);
-    eraseCookie('totalCost');
-    createCookie('totalcart', update_qty, 2);
-    createCookie('totalCost', new_totalcost, 2);
-    $('#numbCart').html(update_qty);
+    var itemCost = $(this).parent().parent().parent().next().next().find('.qtyNumb').val();
     $(this).parent().parent().parent().parent().remove();
+    $.ajax({
+        data: {},
+        url: '/ajax/edit_json.php?proid=' + itemDel + '&qual=' + itemCost,
+        type: 'GET',
+        success: function(data) {
+
+        }
+    })
 });

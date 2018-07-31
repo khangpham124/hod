@@ -68,8 +68,9 @@ include(APP_PATH."libs/head.php");
         // AFTER SUBMIT
         unlink($f_isset);
 
-        $aMailto = array("khangpham421@gmail.com", "orderhodb@gmail.com");
-        $from = "teddycoder421@gmail.com";
+        //$aMailto = array("khangpham421@gmail.com", "orderhodb@gmail.com");
+        $aMailto = array("khangpham421@gmail.com");
+        $from = "orderhodb@gmail.com";
         
         mb_internal_encoding("UTF-8");
 
@@ -82,28 +83,37 @@ include(APP_PATH."libs/head.php");
         <br>
         <table style='border:1px solid #000;border-collapse: collapse;border-spacing: 0;'>
             <tr style='font-weight:bold; padding:5px'>
-                <td>PRODUCTS</td>
-                <td>PRICE</td>
-                <td>QTY</td>
-                <td>NOTE</td>
-                <td>TOTAL</td>
+                <td style='border:1px solid #000;padding:5px;text-align:center'>PRODUCTS</td>
+                <td style='border:1px solid #000;padding:5px;text-align:center'>PRICE</td>
+                <td style='border:1px solid #000;padding:5px;text-align:center'>QTY</td>
+                <td style='border:1px solid #000;padding:5px;text-align:center'>OPTIONS</td>
+                <td style='border:1px solid #000;padding:5px;text-align:center'>NOTE</td>
+                <td style='border:1px solid #000;padding:5px;text-align:center'>TOTAL</td>
             </tr>
        ";
-       for($i=0;$i<=$count_product;$i++) {
-        $tt = $order_detail[$i]['cost'] * $order_detail[$i]['quantity'];
+       for($i=0;$i<=($count_product-1);$i++) {
+        $tt = $order_detail[$i]['price'] * $order_detail[$i]['quantity'];
         $msgBody .= "   
             <tr>
                 <td style='border:1px solid #000;padding:5px'>".$order_detail[$i]['name']."</td>
-                <td style='border:1px solid #000;padding:5px'>".number_format($order_detail[$i]['cost'])."</td>
+                <td style='border:1px solid #000;padding:5px'>".number_format($order_detail[$i]['price'])."</td>
                 <td style='border:1px solid #000;padding:5px'>".$order_detail[$i]['quantity']."</td>
-                <td style='border:1px solid #000;padding:5px'>Choose up to sauces:<strong>".$order_detail[$i]['option_list']."</strong><br>".$order_detail[$i]['note']."</td>
+                <td style='border:1px solid #000;padding:5px'>
+        ";
+
+        if($order_detail[$i]['option_list']!='undefined') {
+            $msgBody .= "<strong>".$order_detail[$i]['option_list']."</strong>";
+        }
+        $msgBody .= "
+                </td>    
+                <td style='border:1px solid #000;padding:5px'>".$order_detail[$i]['note']."</td>
                 <td style='border:1px solid #000;padding:5px'>".number_format($tt)."</td>
             </tr>
         ";
-        }   
+        }
         $msgBody .= " 
             <tr>
-                <td style='border:1px solid #000;padding:5px' colspan='5'>".$grandTotal."</td>
+                <td style='border:1px solid #000;padding:5px;colspan=5;text-align:right'>".number_format($grandTotal)."</td>
             </tr>    
         </table>
         ";
@@ -118,28 +128,37 @@ include(APP_PATH."libs/head.php");
         <br>
         <table style='border:1px solid #000;border-collapse: collapse;border-spacing: 0;'>
             <tr style='font-weight:bold; padding:5px'>
-                <td>PRODUCTS</td>
-                <td>PRICE</td>
-                <td>QTY</td>
-                <td>NOTE</td>
-                <td>TOTAL</td>
+                <td style='border:1px solid #000;padding:5px;text-align:center'>PRODUCTS</td>
+                <td style='border:1px solid #000;padding:5px;text-align:center'>PRICE</td>
+                <td style='border:1px solid #000;padding:5px;text-align:center'>QTY</td>
+                <td style='border:1px solid #000;padding:5px;text-align:center'>OPTIONS</td>
+                <td style='border:1px solid #000;padding:5px;text-align:center'>NOTE</td>
+                <td style='border:1px solid #000;padding:5px;text-align:center'>TOTAL</td>
             </tr>
        ";
-       for($i=0;$i<=$count_product;$i++) {
-        $tt = $order_detail[$i]['cost'] * $order_detail[$i]['quantity'];
+       for($i=0;$i<=($count_product-1);$i++) {
+        $tt = $order_detail[$i]['price'] * $order_detail[$i]['quantity'];
         $msgBody_customer .= "   
             <tr>
                 <td style='border:1px solid #000;padding:5px'>".$order_detail[$i]['name']."</td>
-                <td style='border:1px solid #000;padding:5px'>".number_format($order_detail[$i]['cost'])."</td>
+                <td style='border:1px solid #000;padding:5px'>".number_format($order_detail[$i]['price'])."</td>
                 <td style='border:1px solid #000;padding:5px'>".$order_detail[$i]['quantity']."</td>
-                <td style='border:1px solid #000;padding:5px'>Choose up to sauces:<strong>".$order_detail[$i]['option_list']."</strong><br>".$order_detail[$i]['note']."</td>
-                <td style='border:1px solid #000;padding:5px'>".number_format($tt)."</td>
+                <td style='border:1px solid #000;padding:5px'>
+        ";
+
+        if($order_detail[$i]['option_list']!='undefined') {
+            $msgBody_customer .= "<strong>".$order_detail[$i]['option_list']."</strong>";
+        }
+        $msgBody_customer .= "
+            </td>
+            <td style='border:1px solid #000;padding:5px'>".$order_detail[$i]['note']."</td>
+            <td style='border:1px solid #000;padding:5px'>".number_format($tt)."</td>
             </tr>
         ";
-        }   
+        }
         $msgBody_customer .= " 
             <tr>
-                <td style='border:1px solid #000;padding:5px' colspan='5'>".$grandTotal."</td>
+                <td style='border:1px solid #000;padding:5px;colspan=5;text-align:right'>".number_format($grandTotal)."</td>
             </tr>    
         </table>
 
