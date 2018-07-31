@@ -1,11 +1,11 @@
+<?php /* Template Name: Top page */ ?>
 <?php
 include_once($_SERVER['DOCUMENT_ROOT'] . '/app_config.php');
 include(APP_PATH."libs/head.php"); 
 ?>
 <link rel="stylesheet" href="<?php echo APP_URL; ?>common/css/slick.css">
 </head>
-
-<body id="top">
+<body id="top test">
 <!--===================================================-->
 
 <!--===================================================-->
@@ -13,23 +13,14 @@ include(APP_PATH."libs/head.php");
 <?php include(APP_PATH."libs/header.php"); ?>
 <!--/Header-->
 
-<!--<div id="slider">
-    <div class="videoWrapper" data-youtube-id="BL8h9G1BCsE" data-numberSlide="3">
-        <div id="video-placeholder"></div>
-    </div>
-    <p class="hashTag">#enterthedarkness</p>
-</div> !-->
     
 <div id="sliderTop">    
 <div class="pc">
 <section class="main-slider">
-    <div class="item youtube">
-        <img src="<?php echo APP_URL; ?>img/top/beertop.jpg" alt="">
-    </div>
     <?php
         $wp_query = new WP_Query();
         $param = array (
-        'posts_per_page' => '5',
+        'posts_per_page' => '-1',
         'post_type' => 'video',
         'post_status' => 'publish',
         'order' => 'DESC',
@@ -46,9 +37,16 @@ include(APP_PATH."libs/head.php");
         $url_video = get_field('cf_youtube_link');
         $id_video = get_id_youtube($url_video);
     ?>
-    <div class="item youtube">
-        <iframe class="embed-player slide-media <?php the_title(); ?>" width="980" height="520" src="https://www.youtube.com/embed/<?php echo $id_video; ?>?enablejsapi=1&controls=0&fs=0&iv_load_policy=3&rel=0&showinfo=0&loop=1&playlist=<?php echo $id_video; ?>&start=0" frameborder="0" allowfullscreen></iframe> 
-    </div>
+    <?php if(get_field('type_slide')=='video') { ?>
+        <div class="item youtube <?php echo get_field('type_slide'); ?>">
+            <iframe class="embed-player slide-media <?php the_title(); ?>" width="980" height="520" src="https://www.youtube.com/embed/<?php echo $id_video; ?>?enablejsapi=1&controls=0&fs=0&iv_load_policy=3&rel=0&showinfo=0&loop=1&playlist=<?php echo $id_video; ?>&start=0" frameborder="0" allowfullscreen></iframe> 
+        </div>
+    <?php } elseif(get_field('type_slide')=='image') { ?>
+        <div class="item youtube">
+            <?php $image_large = wp_get_attachment_image_src(get_field('large_image'),'full'); ?>
+            <img src="<?php echo thumbCrop($image_large[0],1400,720); ?>" class="imgMax" alt="">
+        </div>
+    <?php } ?>
     <?php endwhile;endif; ?>
 </section>
 </div>
@@ -75,7 +73,8 @@ include(APP_PATH."libs/head.php");
     <li><img src="<?php echo $image_sp[0] ?>" alt=""></li>
     <?php endwhile;endif; ?>
 </ul> 
-</div>    
+</div>
+<?php wp_reset_query(); ?>
     
 <p class="hashTag">#enterthedarkness</p>
 <span id="muteBtn"><i class="fa fa-volume-off" aria-hidden="true"></i></span>    
@@ -86,20 +85,6 @@ include(APP_PATH."libs/head.php");
         <p class="imgIntro"><img src="<?php echo APP_URL; ?>img/top/beer1.png" class="" alt=""></p>
         <div class="txtInto" id="introText">
         <?php
-            $wp_query = new WP_Query();
-            $param=array(
-            'order' => 'DESC',
-            'posts_per_page' => '1',
-            'tax_query' => array(
-            array(
-            'taxonomy' => 'category',
-            'field' => 'slug',
-            'terms' => 'toppage'
-            )
-            )
-            );
-            $wp_query->query($param);
-            if($wp_query->have_posts()):while($wp_query->have_posts()) : $wp_query->the_post();
             $txt_food = get_field('cf_food_text');
             $txt_deliver = get_field('cf_text_deliver');
             $txt_ww = get_field('cf_text_world_wide');
@@ -107,7 +92,6 @@ include(APP_PATH."libs/head.php");
         ?>    
             <div class="pc"><?php echo $post->post_content; ?></div>
             <div class="sp"><?php the_field('mobile_content'); ?></div>
-        <?php endwhile;endif; ?>    
             <p class="btnMore btnIntro f_lapresse pc"><a href="javascript:void(0)">MORE</a></p>
         </div>
     </div>
@@ -116,7 +100,7 @@ include(APP_PATH."libs/head.php");
 <div id="wrapper">
     
 <h2 class="h2_site">OUR BEER</h2>
-    <ul class="lstBeer clearfix">
+    <ul class="lstBeer flexBox">
         <?php
             $wp_query = new WP_Query();
             $param=array(
@@ -134,7 +118,7 @@ include(APP_PATH."libs/head.php");
             $termname = $term->name;
             }
         ?>
-        <li class="matchHeight">
+        <li>
             <p class="thumb">
                 <img src="<?php echo $img_label[0]; ?>" class="imgBeer" alt="<?php the_title(); ?>">
             </p>
@@ -156,7 +140,7 @@ include(APP_PATH."libs/head.php");
         <?php endwhile; endif; ?>
     </ul>
     
-    <ul class="lstBeer clearfix">
+    <ul class="lstBeer flexBox">
         <?php
             $wp_query = new WP_Query();
             $param=array(
@@ -174,7 +158,7 @@ include(APP_PATH."libs/head.php");
             $termname = $term->name;
             }
         ?>
-        <li class="matchHeight">
+        <li>
             <p class="thumb">
                 <img src="<?php echo $img_label[0]; ?>" class="imgBeer" alt="<?php the_title(); ?>">
             </p>
@@ -448,7 +432,23 @@ include(APP_PATH."libs/head.php");
 			$('#tab' + id_show).fadeIn(300);
 			$('.listCountries li').removeClass('active');
 			$(this).addClass('active');
-		});	
+        });
+        
+        $(window).scroll(function() {
+            var sT = $(window).scrollTop();
+            var vWrap = $('#wrapper').offset().top;
+            var vFoot = $('#pageTop').offset().top;
+            var h_btot = $('#pageTop').height();
+            var h_foot = $('#footer').height();
+            var outFix = h_btot + h_foot + 100;
+            var vInfix = vFoot - 450;
+            if ((sT >= vWrap) && (sT < vInfix)) {
+                $(".followBox").addClass("fixedFollow");
+            } else if (sT < vWrap) {
+                $(".followBox").removeClass("fixedFollow");
+            }
+        });
+
     });    
 </script>
 <script src="<?php echo APP_URL; ?>common/js/slick.min.js"></script>
@@ -532,13 +532,13 @@ $('#spSlider').slick({
 </script>
 
 <script src="<?php echo APP_URL; ?>common/js/index.js"></script>
-    <script>
-        $(function() {
-            $('.lstBeer li').click(function() {
-            $(this).find('.wrap').toggleClass('flipped');
-            });
+<script>
+    $(function() {
+        $('.lstBeer li').click(function() {
+        $(this).find('.wrap').toggleClass('flipped');
         });
-    </script>
+    });
+</script>
     
 </body>
 </html>	

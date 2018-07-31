@@ -6,7 +6,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . '/app_config.php');
 }*/
 include(APP_PATH."libs/head.php");
 ?>
-<meta http-equiv="refresh" content="5; url=<?php echo APP_URL; ?>">
+<!--<meta http-equiv="refresh" content="5; url=<?php echo APP_URL; ?>">!-->
 </head>
 
 <body id="checkout">

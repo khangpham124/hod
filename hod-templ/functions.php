@@ -564,7 +564,7 @@ function my_custom_order() {
 		'capability_type' => 'post',
 		'hierarchical' => false,
 		'menu_position' => 5,
-		'supports' => array('title'),
+		'supports' => array('title','editor'),
 		'has_archive' => true,
 		'menu_icon' => 'dashicons-media-spreadsheet',
 	);
@@ -603,6 +603,40 @@ function my_custom_seo() {
 }
 
 
+add_action('init', 'my_custom_menu');
+function my_custom_menu()
+{
+  $labels = array(
+    'name' => _x('Menu Tab', 'post type general name'),
+    'singular_name' => _x('Menu Tab', 'post type singular name'),
+    'add_new' => _x('Add Menu Tab', 'news'),
+    'add_new_item' => __('Menu Tab'),
+    'edit_item' => __('Edit Menu Tab'),
+    'new_item' => __('Menu Tab'),
+    'view_item' => __('Menu Tab'),
+    'search_staff' => __(''),
+    'not_found' =>  __('not found'),
+    'not_found_in_trash' => __('not found'),
+    'parent_item_colon' => ''
+  );
+  $args = array(
+    'labels' => $labels,
+    'public' => true,
+    'publicly_queryable' => true,
+    'show_ui' => true,
+    'query_var' => true,
+    'rewrite' => true,
+    'capability_type' => 'post',
+    'hierarchical' => false,
+    'menu_position' => 5,
+    'supports' => array('title'),
+    'has_archive' => true,
+    'menu_icon' => 'dashicons-megaphone',
+  );
+  register_post_type('Menu Tab',$args);
+}
+
+
 
 /* SPECIFIC FUNCTION */
 
@@ -613,7 +647,6 @@ add_action( 'admin_menu', 'remove_menus' );
     global $submenu;
     // Hide some menus
     if ( wp_get_current_user()->ID == 3 ) {
-        remove_menu_page( 'edit.php' );
         remove_menu_page( 'edit.php?post_type=find' );
         remove_menu_page( 'edit.php?post_type=press' );
         remove_menu_page( 'edit.php?post_type=career' );

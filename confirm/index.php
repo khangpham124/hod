@@ -2,7 +2,7 @@
 <?php
 require("./jphpmailer.php");
 include_once($_SERVER['DOCUMENT_ROOT'] . '/app_config.php');
-setcookie('incart', '', time()-300);
+setcookie('incart', '', time() + 86400, "/");
 setcookie('order_cookies','', time() + 86400, "/");
 setcookie('order_hod','', time() + 86400, "/");
 include(APP_PATH."libs/head.php");
@@ -22,7 +22,7 @@ include(APP_PATH."libs/head.php");
     <?php
         $_SESSION['payment'] = $_POST['payment'];
         $order_code = $_SESSION['order_code'];
-        $customer_mail = $_SESSION['customer']['email'];
+        $email_book = $_SESSION['email'];
         $address = $_SESSION['address'];
         $city = $_SESSION['city'];
         $country = $_SESSION['country'];
@@ -38,7 +38,7 @@ include(APP_PATH."libs/head.php");
                 'post_type' => 'customer_order'
         );
         $pid = wp_insert_post($order_post); 
-        add_post_meta($pid, 'cf_customer', $customer_mail);
+        add_post_meta($pid, 'cf_email', $email_book);
         add_post_meta($pid, 'cf_grand_total', $grandTotal);
         add_post_meta($pid, 'cf_payment_method', $payment);
         add_post_meta($pid, 'cf_address', $address);
@@ -54,21 +54,22 @@ include(APP_PATH."libs/head.php");
         $count_product = count($order_detail);
         add_post_meta($pid, 'cf_order_products_list', $count_product, true);
         for($i=0;$i<=$count_product;$i++) {
-            $order_options = 'Chose:'.$order_detail[$i]['option_add'].'(Choose up to sauces:'.$order_detail[$i]['option_list'].') Note:'.$order_detail[$i]['note'];
+            $order_options = 'Chose:'.$order_detail[$i]['option_add'].'(Choose up to sauces:'.$order_detail[$i]['option_list'].')';
             $sub_field_name1 = 'cf_order_products_list'.'_'.$i.'_'.'cf_product_name';
             $sub_field_name2 = 'cf_order_products_list'.'_'.$i.'_'.'cf_quantity';
             $sub_field_name3 = 'cf_order_products_list'.'_'.$i.'_'.'cf_options';
+            $sub_field_name4 = 'cf_order_products_list'.'_'.$i.'_'.'cf_note';
             add_post_meta($pid, $sub_field_name1, $order_detail[$i]['name'], false);
             add_post_meta($pid, $sub_field_name2, $order_detail[$i]['quantity'], false);
             add_post_meta($pid, $sub_field_name3, $order_options, false);
+            add_post_meta($pid, $sub_field_name4, $order_detail[$i]['note'], false);
         }
 
         // AFTER SUBMIT
         unlink($f_isset);
 
-        $aMailto = array("khangpham421@gmail.com");
-        $email_book = 'teddycoder421@gmail.com';
-        $from = "ann@heartofdarknessbrewery.com";
+        $aMailto = array("khangpham421@gmail.com", "orderhodb@gmail.com");
+        $from = "teddycoder421@gmail.com";
         
         mb_internal_encoding("UTF-8");
 
@@ -110,13 +111,45 @@ include(APP_PATH."libs/head.php");
         
         $subject1 = "CONFIRM BOOKING SUMMARY FROM HEART OF DARKNESS";
         $msgBody_customer = "
-        Fullname : $fullname
+        <p>Fullname : $fullname</p>
+        <p>Phone : $phone</p>
+        <p>Address : $address - $city</p>
+        <p>Order Code : $order_code</p>
+        <br>
+        <table style='border:1px solid #000;border-collapse: collapse;border-spacing: 0;'>
+            <tr style='font-weight:bold; padding:5px'>
+                <td>PRODUCTS</td>
+                <td>PRICE</td>
+                <td>QTY</td>
+                <td>NOTE</td>
+                <td>TOTAL</td>
+            </tr>
+       ";
+       for($i=0;$i<=$count_product;$i++) {
+        $tt = $order_detail[$i]['cost'] * $order_detail[$i]['quantity'];
+        $msgBody_customer .= "   
+            <tr>
+                <td style='border:1px solid #000;padding:5px'>".$order_detail[$i]['name']."</td>
+                <td style='border:1px solid #000;padding:5px'>".number_format($order_detail[$i]['cost'])."</td>
+                <td style='border:1px solid #000;padding:5px'>".$order_detail[$i]['quantity']."</td>
+                <td style='border:1px solid #000;padding:5px'>Choose up to sauces:<strong>".$order_detail[$i]['option_list']."</strong><br>".$order_detail[$i]['note']."</td>
+                <td style='border:1px solid #000;padding:5px'>".number_format($tt)."</td>
+            </tr>
+        ";
+        }   
+        $msgBody_customer .= " 
+            <tr>
+                <td style='border:1px solid #000;padding:5px' colspan='5'>".$grandTotal."</td>
+            </tr>    
+        </table>
 
-        ---------------------------------------------------------------
-        HEART OF DARKNESS VIETNAM Co., Ltd
-        31D Ly Tu Trong, District 1, HCMC, Vietnam
-        Contact us : 0903 017 596
-        ---------------------------------------------------------------
+        <p>---------------------------------------------------------------</p>
+        <p>
+        http://heartofdarknessbrewery.com/common/img/header/logo.svg<br>
+        HEART OF DARKNESS VIETNAM Co., Ltd<br>
+        31D Ly Tu Trong, District 1, HCMC, Vietnam<br>
+        Contact us : 0903 017 596</p>
+        <p>---------------------------------------------------------------</p>
         ";
 
         $fromname = "HEART OF DARKNESS BOOKING SYSTEM";

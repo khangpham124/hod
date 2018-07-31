@@ -27,7 +27,7 @@ include(APP_PATH."libs/head.php");
 <div id="map"></div>
 
 <div class="wrapSp">
-<p class="btnMore btnIntro f_lapresse"><a href="<?php the_field('send_to_phone'); ?>" target="_blank">send to phone</a></p>
+<p class="btnMore btnIntro f_lapresse"><a href="<?php the_field('send_to_phone'); ?>" target="_blank">GET DIRECTIONS</a></p>
 </div>
 <div class="txtLocation pc">
     <p class="nameLocation f_lapresse"><span>Heart of Darkness</span> Bar <em>&</em> Restaurant</p>

@@ -1,3 +1,4 @@
+<?php /* Template Name: Food */ ?>
 <?php
 include_once($_SERVER['DOCUMENT_ROOT'] . '/app_config.php');
 include(APP_PATH."libs/head.php"); 
@@ -12,6 +13,7 @@ include(APP_PATH."libs/head.php");
 <!--Header-->
 <?php include(APP_PATH."libs/header.php"); ?>
 <!--/Header-->
+
 
 <div id="slider_Food">
     <ul class="listMenu__food">
@@ -118,7 +120,7 @@ include(APP_PATH."libs/head.php");
                     $i++;
                 ?>
                 <h3 class="h3_food f_lapresse" id="h3_<?php echo $slug ?>"><span>-<?php echo $category->name; ?>-</span></h3>
-                <ul class="listFeature foodList" id="typeFood<?php echo $i; ?>">
+                <ul class="clearfix listFeature foodList" id="typeFood<?php echo $i; ?>">
                 <?php    
                     $wp_query = new WP_Query();
                     $param=array(
@@ -160,7 +162,7 @@ include(APP_PATH."libs/head.php");
                 <img src="<?php echo APP_URL; ?>common/img/other/load.gif" alt="">
                 </div>
                     <div class="descCat"><?php echo term_description(11,'foodcat') ?></div>    
-                <ul class="listFeature foodList" id="typeDaily">
+                <ul class="clearfix listFeature foodList" id="typeDaily">
                 <?php    
                     $wp_query = new WP_Query();
                     $param=array(
@@ -200,8 +202,9 @@ include(APP_PATH."libs/head.php");
                 <div class="loadingFood">
                     <img src="<?php echo APP_URL; ?>common/img/other/load.gif" alt="">
                 </div>
+                <!--<h3 class="h3_food f_lapresse" id="h3_breakfast-burrito"><span>-special festival promotion-</span></h3>!-->
                 <div class="descCat"><?php echo term_description(12,'foodcat') ?></div>        
-                <ul class="listFeature foodList" id="typeSpecial">
+                <ul class="clearfix listFeature foodList" id="typeSpecial">
                 <?php    
                     $wp_query = new WP_Query();
                     $param=array(
