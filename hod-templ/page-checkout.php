@@ -1,12 +1,13 @@
 <?php /* Template Name: Checkout */ ?>
 <?php
 include_once($_SERVER['DOCUMENT_ROOT'] . '/app_config.php');
-// if(!$_COOKIE['totalcart']) {    
-// header('Location:http://heartofdarknessbrewery.com/');
-// die();
-// }
+if(!$_COOKIE['order_cookies']) {    
+header('Location:http://heartofdarknessbrewery.com/');
+die();
+}
 include(APP_PATH."libs/head.php"); 
 ?>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBV7fW4OF5FqFFlLakpTOvf1Kuq_qHXcqY&libraries=places"></script>    
 </head>
 
 <body id="checkout">
@@ -43,33 +44,36 @@ include(APP_PATH."libs/head.php");
     </thead>    
     <tbody>
         <?php
-        $arr_ids = array();
-        $arr_price = array();
         foreach($curr_cart as $mydata)
         {
             $full_id = explode('_',$mydata->id);
-            
-            $arr_ids[] = $full_id[1];
-            $count_price = ($mydata->quantity * $mydata->price);
-            $arr_price[] = $count_price;
-        }
+            $arr_ids = array();
+            if(!in_array($full_id[1],$arr_ids)) {
+                $arr_ids[] = $full_id[1];
+            }
+            $wp_query = new WP_Query();
+            $param=array(
+            'post_type' => array( 'shop', 'food'),
+            'posts_per_page' => '-1',
+            'post__in'=> $arr_ids
+            );
         
-        $wp_query = new WP_Query();
-        $param=array(
-        'post_type' => array( 'shop', 'food','bottles'),
-        'posts_per_page' => '-1',
-        'post__in'=> $arr_ids
-        );
-        $wp_query->query($param);
-        if($wp_query->have_posts()):while($wp_query->have_posts()) : $wp_query->the_post();
-            $i++;
-            $thumb = get_post_thumbnail_id($post->ID);
-            $img_label = wp_get_attachment_image_src($thumb,'full');
-            $img_cup = wp_get_attachment_image_src(get_field('image_beer'),'full');
-            $post_t = get_post_type();
-            $cost = get_field('cf_price');
-            $curr_wty = $mydata->quantity;
-            $total_curr = $mydata->price * $curr_wty;
+            $wp_query = new WP_Query();
+            $param=array(
+            'post_type' => array( 'shop', 'food','bottles'),
+            'posts_per_page' => '-1',
+            'post__in'=> $arr_ids
+            );
+            $wp_query->query($param);
+            if($wp_query->have_posts()):while($wp_query->have_posts()) : $wp_query->the_post();
+                $i++;
+                $thumb = get_post_thumbnail_id($post->ID);
+                $img_label = wp_get_attachment_image_src($thumb,'full');
+                $img_cup = wp_get_attachment_image_src(get_field('image_beer'),'full');
+                $post_t = get_post_type();
+                $cost = get_field('cf_price');
+                $curr_wty = $mydata->quantity;
+                $total_curr = $mydata->price * $curr_wty;
         ?>
         <tr>
         <td class="detailPro">
@@ -100,6 +104,7 @@ include(APP_PATH."libs/head.php");
             $tt_order[$i] = array('sku'=>$cf_sku,'qty'=> $curr_wty);
         ?>
         <?php endwhile;endif;?>
+        <?php } ?>
     </tbody>
     </table>
     <!-- <p class="taR_popup">
@@ -115,6 +120,15 @@ include(APP_PATH."libs/head.php");
                 <td class="last">GRAND TOTAL</td>
             </tr>
             <tr>
+                
+                <?php
+                $arr_price = array();
+                foreach($curr_cart as $mydata)
+                    {
+                        $count_price = ($mydata->quantity * $mydata->price);
+                        $arr_price[] = $count_price;
+                    }
+                ?>
                 <td class="currentCost"><?php echo array_sum($arr_price); ?></td>
                 <td>10%</td>
                 <td class="last grandCost"></td>
@@ -133,25 +147,23 @@ include(APP_PATH."libs/head.php");
             <div class="leffShiping">
             <p class="titleForm">Shipping Information</p>
             <div class="inputForm">
+                <label>Address <span>*</span></label>
+                <input name="address" type="text" value="<?php echo $_SESSION['address']; ?>" id="autocomplete" placeholder="Enter your address" onFocus="geolocate()" required>
+            </div>
+
+            <div class="inputForm">
                 <label>Full Name <span>*</span></label>
-                <input name="fullname" value="<?php echo $_SESSION['fullname'] ?>" type="text" required>
+                <input name="fullname" class="orderInput" value="<?php echo $_SESSION['fullname'] ?>" type="text" required>
             </div>
             <div class="inputForm">
                 <label>Email <span>*</span></label>
-                <input name="email" value="<?php echo $_SESSION['email'] ?>" type="text" required>
+                <input name="email" class="orderInput" value="<?php echo $_SESSION['email'] ?>" type="text" required>
             </div>
             <div class="inputForm">
                 <label>Phone <span>*</span></label>
-                <input name="phone" type="number" value="<?php echo $_SESSION['phone'] ?>" required>
+                <input name="phone" class="orderInput" type="number" value="<?php echo $_SESSION['phone'] ?>" required>
             </div>
-            <div class="inputForm">
-                <label>Address <span>*</span></label>
-                <input name="address" type="text" <?php echo $_SESSION['address']; ?> required>
-            </div>
-            <div class="inputForm">
-                <label>City <span>*</span></label>
-                <input name="city" type="text" <?php echo $_SESSION['city'] ?> required>
-            </div>
+            
             <!-- <div class="inputForm">
             <?php //include(APP_PATH."libs/list-country.php"); ?>
             </div> -->
@@ -180,6 +192,14 @@ include(APP_PATH."libs/head.php");
                     </tr>
                 </table>
             </div>
+            <div class="inputForm distanceBox">
+                <label>Distance</label>
+                <input name="distance" type="text" id="add_field" readonly>
+                <label>Shipping Fee</label>
+                <input name="shipcost" type="text" id="shipcost" readonly>
+            </div>
+
+            <div id="ggmap"></div>
         </div>
         </div>    
         <p class="taC boxBtn">
@@ -187,7 +207,7 @@ include(APP_PATH."libs/head.php");
             <input type="submit" class="submitBtn" value="SUBTMIT ORDER">
         </p>
         <?php
-            $totalCost =  (($_SESSION["totalCost"] * 10) /100) + $_SESSION["totalCost"] ;
+            $totalCost =  (($_SESSION["totalCost"] * 10) /100) + $_SESSION["totalCost"] + $_COOKIE["shipcost"] ;
         ?>    
         <input type="hidden" value="<?php echo $_COOKIE['order_hod']; ?>" name="order_code" >
         <input type="hidden" value="<?php echo $totalCost; ?>" name="grand_total" >    
@@ -199,7 +219,7 @@ include(APP_PATH."libs/head.php");
                 <p class="titleForm">PAYMENT METHOD</p>
                 
                 <p class="inputRadio"><input type="radio" name="payment" value="COD"><label>COD</label></p>
-                
+                <p class="inputRadio"><input type="radio" name="payment" value="ATM"><label>ATM</label></p>
                 <p class="inputRadio"><input type="radio" name="payment" value="Credit card"><label>Credit Card</label></p>
 
             </div>
@@ -221,6 +241,7 @@ include(APP_PATH."libs/head.php");
             </div>
             </div>
             </div>
+            <input type="hidden" value="<?php echo $totalCost; ?>" name="grand_total" >
             <?php 
                 $_SESSION['order_code'] = $_POST['order_code'];
                 $_SESSION['grand_total'] = $_POST['grand_total']; 
@@ -229,7 +250,8 @@ include(APP_PATH."libs/head.php");
                 $_SESSION['country'] = $_POST['country'];
                 $_SESSION['fullname'] = $_POST['fullname'];
                 $_SESSION['email'] = $_POST['email'];
-                $_SESSION['phone'] = $_POST['phone'];                       
+                $_SESSION['phone'] = $_POST['phone'];
+                $_SESSION['shipcost'] = $_COOKIE["shipcost"]; 
             ?>
             <p class="taC boxBtn">
                 <a href="<?php echo APP_URL; ?>checkout?step=2" class="contBtn">BACK</a>
@@ -245,11 +267,7 @@ include(APP_PATH."libs/head.php");
 </div>
 <!--/wrapper-->
 <!--===================================================-->
-<script>
-var currentCost = parseInt($('.currentCost').text());
-var grandCost = ((currentCost * 10) / 100) + currentCost;
-$('.grandCost').text(grandCost.toLocaleString());
-</script>
-    
+<script type="text/javascript" src="<?php echo APP_URL; ?>common/js/direction.js"></script>
+
 </body>
 </html>	

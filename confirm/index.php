@@ -30,6 +30,7 @@ include(APP_PATH."libs/head.php");
         $phone = $_SESSION['phone'];
         $grandTotal = $_SESSION['grand_total'];
         $payment = $_SESSION['payment'];
+        $shipcost = $_SESSION['shipcost'];
 
 
         $order_post = array(
@@ -46,7 +47,9 @@ include(APP_PATH."libs/head.php");
         add_post_meta($pid, 'cf_country', $country);
         add_post_meta($pid, 'cf_fullname', $fullname);
         add_post_meta($pid, 'cf_phone', $phone);
+        add_post_meta($pid, 'cf_shipping_cost',$shipcost );
         add_post_meta($pid, 'cf_order_status', 'in progress');
+        
 
         //LIST PORDUCT
         $f_isset = $_SERVER['DOCUMENT_ROOT'].'/ajax/tmp/'.$_COOKIE['order_hod'].'.json';
@@ -107,18 +110,17 @@ include(APP_PATH."libs/head.php");
         $msgBody .= "
                 </td>    
                 <td style='border:1px solid #000;padding:5px'>".$order_detail[$i]['note']."</td>
-                <td style='border:1px solid #000;padding:5px'>".number_format($tt)."</td>
+                <td style='border:1px solid #000;padding:5px'>".number_format($tt)."VND</td>
             </tr>
         ";
         }
         $msgBody .= " 
             <tr>
-                <td style='border:1px solid #000;padding:5px;colspan=5;text-align:right'>".number_format($grandTotal)."</td>
+                <td style='border:1px solid #000;padding:5px;text-align:right' colspan='6'>".number_format($grandTotal)." VND</td>
             </tr>    
         </table>
         ";
 
-        
         $subject1 = "CONFIRM BOOKING SUMMARY FROM HEART OF DARKNESS";
         $msgBody_customer = "
         <p>Fullname : $fullname</p>
@@ -158,13 +160,13 @@ include(APP_PATH."libs/head.php");
         }
         $msgBody_customer .= " 
             <tr>
-                <td style='border:1px solid #000;padding:5px;colspan=5;text-align:right'>".number_format($grandTotal)."</td>
+                <td style='border:1px solid #000;padding:5px;text-align:right' colspan='6'>".number_format($grandTotal)." VND</td>
             </tr>    
         </table>
 
         <p>---------------------------------------------------------------</p>
         <p>
-        http://heartofdarknessbrewery.com/common/img/header/logo.svg<br>
+        <img src='http://heartofdarknessbrewery.com/common/img/header/logo.jpg'><br>
         HEART OF DARKNESS VIETNAM Co., Ltd<br>
         31D Ly Tu Trong, District 1, HCMC, Vietnam<br>
         Contact us : 0903 017 596</p>

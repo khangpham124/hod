@@ -28,7 +28,7 @@ function fillInAddress() {
     // Get the place details from the autocomplete object.
     var place = autocomplete.getPlace();
     var coordinate = new google.maps.LatLng(place.geometry.location.lat(), place.geometry.location.lng());
-    console.log(place, coordinate);
+    //console.log(place, coordinate);
 
     // for (var component in componentForm) {
     //     document.getElementById(component).value = '';
@@ -88,7 +88,7 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, destinat
         if (status === 'OK') {
             directionsDisplay.setDirections(response);
         } else {
-            window.alert('Directions request failed due to ' + status);
+
         }
     });
 }
@@ -103,23 +103,40 @@ function getDistance(destination = '') {
         avoidTolls: false
     }, function(response, status) {
         if (status !== 'OK') {
-            alert('Error was: ' + status);
+
         } else {
             var originList = response.originAddresses;
             var destinationList = response.destinationAddresses;
-            console.log(response);
             $('#add_field').val(response.rows[0].elements[0].distance.text);
+            var dis = response.rows[0].elements[0].distance.text;
+            var km = parseInt(dis.replace(' km', ''));
+            var costship = 25000;
+            if (km > 1) {
+                var km_large = km - 1;
+                costship = 25000 + (km_large * 5000);
+            } else {
+                var costship = 25000;
+            }
+            $('#shipcost').val(costship);
+            createCookie('shipcost', costship, 24);
+            var currentCost = parseInt($('.currentCost').text());
+            var shipCost_now = parseInt(readCookie('shipcost'));
+            if (shipCost_now) {
+                var grandCost = ((currentCost * 10) / 100) + currentCost + shipCost_now;
+            } else {
+                var grandCost = ((currentCost * 10) / 100) + currentCost;
+            }
+            $('.grandCost').text(grandCost.toLocaleString());
         }
     });
 }
 
-function shipingCost(dis) {
-    var km = parseInt(dis.replace(' km', ''));
-    console.log(km);
-    if (km > 1) {
-        var costship = 30;
-    } else {
-        var costship = 25;
-    }
-    $('#shipcost').val(costship);
+var currentCost = parseInt($('.currentCost').text());
+var shipCost_now = parseInt(readCookie('shipcost'));
+if (shipCost_now) {
+    var grandCost = ((currentCost * 10) / 100) + currentCost + shipCost_now;
+} else {
+    var grandCost = ((currentCost * 10) / 100) + currentCost;
 }
+$('.grandCost').text(grandCost.toLocaleString());
+$('.button').hide();
