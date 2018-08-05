@@ -87,7 +87,7 @@ include(APP_PATH."libs/head.php");
             </div>
             
         </td>
-        <td><p class="pricePro"><input type="text" readonly class="priceNumb" value="<?php echo $mydata->price; ?>"></p></td>
+        <td><p class="pricePro"><input type="text" readonly class="priceNumb" value="<?php echo number_format($mydata->price); ?>"></p></td>
         <td>
             <div class="qtyPro">
             <div class="numbers-row clearfix">
@@ -97,7 +97,7 @@ include(APP_PATH."libs/head.php");
             </div>
             </div>
         </td>
-        <td><p class="subTotal qtyPro"><input type="number" readonly class="totalNumb totalCost" value="<?php echo strval($total_curr); ?>" alt=""></p></td>
+        <td><p class="subTotal qtyPro"><input type="number" readonly class="totalNumb totalCost" value="<?php echo $total_curr; ?>" alt=""></p></td>
         </tr>
         <?php
             $cf_sku = get_field('cf_sku');
@@ -107,9 +107,6 @@ include(APP_PATH."libs/head.php");
         <?php } ?>
     </tbody>
     </table>
-    <!-- <p class="taR_popup">
-        <a href="javascript:void(0)" class="updateBtn disable">Update Cart</a>
-    </p> -->
     </div>
        
     <div class="rightCart">
@@ -135,7 +132,9 @@ include(APP_PATH."libs/head.php");
             </tr>
         </table>
         <a href="<?php echo APP_URL; ?>checkout?step=2" class="proceedBtn">proceed to checkout</a>
-        <?php $_SESSION["totalCost"] = array_sum($arr_price);; ?>
+        <?php 
+        $_SESSION["totalCost_novat"] = array_sum($arr_price);
+        $_SESSION["totalCost"] = array_sum($arr_price); ?>
     </div>    
     <?php } else { ?>
     <p class="txtNotice">Your cart is empty</p>
@@ -148,7 +147,7 @@ include(APP_PATH."libs/head.php");
             <p class="titleForm">Shipping Information</p>
             <div class="inputForm">
                 <label>Address <span>*</span></label>
-                <input name="address" type="text" value="<?php echo $_SESSION['address']; ?>" id="autocomplete" placeholder="Enter your address" onFocus="geolocate()" required>
+                <input name="address" type="text" value="<?php if($_SESSION['address']) { echo $_SESSION['address']; } ?>" id="autocomplete" placeholder="Enter your address" onFocus="geolocate()" required>
             </div>
 
             <div class="inputForm">
@@ -170,60 +169,6 @@ include(APP_PATH."libs/head.php");
         </div>
         
         <div class="shipCost">
-            <!-- <?php if($_SESSION['customer']['email']=='') { ?>
-            <div class="boxEstimate">
-                <p class="titleForm">CHECKOUT METHOD</p>
-                <p class="inputRadio"><input name="acc" type="radio" value="have" id="chose1" required><label for="chose1">No need login</label></p>
-                <p class="inputRadio"><input name="acc" type="radio" value="nohave" id="chose2" required><label for="chose2">Have login ?</label></p>
-            </div>
-            <?php } ?> -->
-            <div class="boxSummary">
-                <p class="titleForm titleForm--red">ORDER SUMMARY</p>
-                <table class="tblTotal">
-                    <tr>
-                        <td>SUBTOTAL</td>
-                        <td>VAT</td>
-                        <td class="last">GRAND TOTAL</td>
-                    </tr>
-                    <tr>
-                        <td class="currentCost"><?php echo $_SESSION["totalCost"]; ?></td>
-                        <td>10</td>
-                        <td class="last grandCost"></td>
-                    </tr>
-                </table>
-            </div>
-            <div class="inputForm distanceBox">
-                <label>Distance</label>
-                <input name="distance" type="text" id="add_field" readonly>
-                <label>Shipping Fee</label>
-                <input name="shipcost" type="text" id="shipcost" readonly>
-            </div>
-
-            <div id="ggmap"></div>
-        </div>
-        </div>    
-        <p class="taC boxBtn">
-            <a href="<?php echo APP_URL; ?>checkout" class="contBtn">BACK</a>
-            <input type="submit" class="submitBtn" value="SUBTMIT ORDER">
-        </p>
-        <?php
-            $totalCost =  (($_SESSION["totalCost"] * 10) /100) + $_SESSION["totalCost"] + $_COOKIE["shipcost"] ;
-        ?>    
-        <input type="hidden" value="<?php echo $_COOKIE['order_hod']; ?>" name="order_code" >
-        <input type="hidden" value="<?php echo $totalCost; ?>" name="grand_total" >    
-        </form>    
-    <?php } else if($_GET['step']==3) { ?>
-        <form class="formShipping" action="<?php echo APP_URL; ?>confirm" method="POST">
-            <div class="clearfix">
-            <div class="leffShiping">
-                <p class="titleForm">PAYMENT METHOD</p>
-                
-                <p class="inputRadio"><input type="radio" name="payment" value="COD"><label>COD</label></p>
-                <p class="inputRadio"><input type="radio" name="payment" value="ATM"><label>ATM</label></p>
-                <p class="inputRadio"><input type="radio" name="payment" value="Credit card"><label>Credit Card</label></p>
-
-            </div>
-            <div class="shipCost">
             <div class="boxSummary">
                 <p class="titleForm titleForm--red">ORDER SUMMARY</p>
                 <table class="tblTotal">
@@ -239,12 +184,70 @@ include(APP_PATH."libs/head.php");
                     </tr>
                 </table>
             </div>
+            <div class="inputForm distanceBox">
+                <label>Distance</label>
+                <input name="distance" type="text" id="add_field" class="disa" readonly>
+                <label>Shipping Fee</label>
+                <input name="shipcost" type="text" id="shipcost" class="disa" readonly>
+            </div>
+
+            <div id="ggmap"></div>
+        </div>
+        </div>    
+        <p class="taC boxBtn">
+            <a href="<?php echo APP_URL; ?>checkout" class="contBtn">BACK</a>
+            <input type="submit" class="submitBtn" value="SUBTMIT ORDER">
+        </p>
+        <?php
+            $totalCost =  (($_SESSION["totalCost"] * 10) /100) + $_SESSION["totalCost"] ;
+        ?>    
+        <input type="hidden" value="<?php echo $_COOKIE['order_hod']; ?>" name="order_code" >
+        <input type="hidden" value="<?php echo $totalCost; ?>" name="grand_total" >    
+        </form>    
+    <?php } else if($_GET['step']==3) { ?>
+        <?php 
+            $_SESSION["distance"] = $_POST['distance'];
+            $_SESSION["shipcost"] = $_POST['shipcost'];
+            $grand_total_ship = $_POST['grand_total'] + $_COOKIE['shipcost'];
+        ?>
+        <form class="formShipping" action="<?php echo APP_URL; ?>confirm" method="POST">
+            <div class="clearfix">
+            <div class="leffShiping">
+                <p class="titleForm">PAYMENT METHOD</p>
+                
+                <p class="inputRadio"><input type="radio" name="payment" value="COD"><label>COD</label></p>
+                <p class="inputRadio"><input type="radio" name="payment" value="ATM"><label>ATM</label></p>
+                <div class="btnPay">
+                    <a href="javascript:void(0)" id="payAtm" class="methodPay" data-pay="atm">Pay with ATM</a>
+                </div>
+                <p class="inputRadio"><input type="radio" name="payment" value="Credit card"><label>Credit Card</label></p>
+                <div class="btnPay">
+                    <button id="payAtm" class="methodPay">Pay with Credit Card</button>
+                </div>
+
+            </div>
+            <div class="shipCost">
+            <div class="boxSummary">
+                <p class="titleForm titleForm--red">ORDER SUMMARY</p>
+                <table class="tblTotal">
+                    <tr>
+                        <td>SUBTOTAL</td>
+                        <td>VAT</td>
+                        <td class="last">GRAND TOTAL</td>
+                    </tr>
+                    <tr>
+                        <td class="current_Cost"><?php echo $_SESSION["totalCost_novat"]; ?></td>
+                        <td>10%</td>
+                        <td class="last grand_Cost"><?php echo $grand_total_ship; ?></td>
+                    </tr>
+                </table>
             </div>
             </div>
-            <input type="hidden" value="<?php echo $totalCost; ?>" name="grand_total" >
+            </div>
+            <input type="hidden" value="<?php echo $grand_total_ship; ?>" name="grand_total" >
             <?php 
                 $_SESSION['order_code'] = $_POST['order_code'];
-                $_SESSION['grand_total'] = $_POST['grand_total']; 
+                $_SESSION['grand_total'] = $grand_total_ship; 
                 $_SESSION['address'] = $_POST['address'];
                 $_SESSION['city'] = $_POST['city'];
                 $_SESSION['country'] = $_POST['country'];

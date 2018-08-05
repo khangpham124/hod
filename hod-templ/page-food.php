@@ -35,6 +35,7 @@ include(APP_PATH."libs/head.php");
                     $img_cate = get_field( 'slide_food', 'foodcat_'.$term_id.'' );
                     $image_c = wp_get_attachment_image_src( $img_cate, 'full' );
            ?>
+           <?php if($image_c[0]!='') { ?>
             <li><img src="<?php echo $image_c[0]; ?>" alt="">
                 <p class="nameFood"><?php echo $category->name ?></p>
                 <div class="orderBnt">
@@ -42,6 +43,7 @@ include(APP_PATH."libs/head.php");
                     <!-- <p><span>DELIVERY IN SAIGON ONLY</span></p> !-->
                 </div>
             </li>
+            <?php } ?>
             <?php endforeach; ?>
     </ul>
 </div>    
@@ -102,7 +104,7 @@ include(APP_PATH."libs/head.php");
                     $i++;
                 ?>
                 <h3 class="h3_food f_lapresse" id="h3_<?php echo $slug ?>"><span><?php echo $category->name; ?></span></h3>
-                <ul class="listFeature foodList" id="typeFood<?php echo $i; ?>">
+                <ul class="listFeature foodList biggerlink" id="typeFood<?php echo $i; ?>">
                 <?php    
                     $wp_query = new WP_Query();
                     $param=array(
@@ -122,7 +124,7 @@ include(APP_PATH."libs/head.php");
                     $thumb = get_post_thumbnail_id($post->ID);
                     $image_thumb = wp_get_attachment_image_src($thumb,'full');
                 ?>    
-                    <li>
+                    <li class="">
                         <div class="foodInfo">    
                         <div class="foodInfo__desc">
                             <p class="listFeature__name matchHeight">
