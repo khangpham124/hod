@@ -2,9 +2,14 @@
 <?php
 require("./jphpmailer.php");
 include_once($_SERVER['DOCUMENT_ROOT'] . '/app_config.php');
+if(!$_COOKIE['order_cookies']) {    
+    header('Location:http://heartofdarknessbrewery.com/');
+    die();
+}
 setcookie('incart', '', time() + 86400, "/");
 setcookie('order_cookies','', time() + 86400, "/");
 setcookie('order_hod','', time() + 86400, "/");
+setcookie('shipcost','', time() + 86400, "/");
 include(APP_PATH."libs/head.php");
 ?>
 <meta http-equiv="refresh" content="5;url=<?php echo APP_URL; ?>" />
@@ -29,6 +34,7 @@ include(APP_PATH."libs/head.php");
         $fullname = $_SESSION['fullname'];
         $phone = $_SESSION['phone'];
         $grandTotal = $_SESSION['grand_total'];
+        $grandTotal_novat = $_SESSION['totalCost_novat'];
         $payment = $_SESSION['payment'];
         $shipcost = $_SESSION['shipcost'];
 
@@ -71,8 +77,8 @@ include(APP_PATH."libs/head.php");
         // AFTER SUBMIT
         unlink($f_isset);
 
-        //$aMailto = array("khangpham421@gmail.com", "orderhodb@gmail.com");
-        $aMailto = array("khangpham421@gmail.com");
+        $aMailto = array("khangpham421@gmail.com", "orderhodb@gmail.com");
+        // $aMailto = array("khangpham421@gmail.com");
         $from = "orderhodb@gmail.com";
         
         mb_internal_encoding("UTF-8");
@@ -116,8 +122,14 @@ include(APP_PATH."libs/head.php");
         }
         $msgBody .= " 
             <tr>
+                <td style='border:1px solid #000;padding:5px;text-align:right' colspan='6'>VAT(10%):".number_format(($grandTotal_novat * 10) / 100)." VND</td>
+            </tr>
+            <tr>
+                <td style='border:1px solid #000;padding:5px;text-align:right' colspan='6'>Shipping Fee(10%):".number_format($shipcost)." VND</td>
+            </tr>
+            <tr>
                 <td style='border:1px solid #000;padding:5px;text-align:right' colspan='6'>".number_format($grandTotal)." VND</td>
-            </tr>    
+            </tr>
         </table>
         ";
 
@@ -160,6 +172,12 @@ include(APP_PATH."libs/head.php");
         }
         $msgBody_customer .= " 
             <tr>
+            <td style='border:1px solid #000;padding:5px;text-align:right' colspan='6'>VAT(10%):".number_format(($grandTotal_novat * 10) / 100)." VND</td>
+            </tr>
+            <tr>
+                <td style='border:1px solid #000;padding:5px;text-align:right' colspan='6'>Shipping Fee(10%):".number_format($shipcost)." VND</td>
+            </tr>
+            <tr>
                 <td style='border:1px solid #000;padding:5px;text-align:right' colspan='6'>".number_format($grandTotal)." VND</td>
             </tr>    
         </table>
@@ -183,7 +201,12 @@ include(APP_PATH."libs/head.php");
         $email1->setBody($msgBody_customer);
         $email1->CharSet = 'UTF-8';
         if($email1->Send()) {
-            
+            $_SESSION['address'] = '';
+            $_SESSION['grand_total'] = '';
+            $_SESSION['totalCost_novat'] = '';
+            $_SESSION['payment'] = '';
+            $_SESSION['shipcost'] = '';
+            $_SESSION['order_code'] = '';
         };
 
         

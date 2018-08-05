@@ -132,11 +132,6 @@ function getDistance(destination = '') {
 }
 
 var currentCost = parseInt($('.currentCost').text());
-var shipCost_now = parseInt(readCookie('shipcost'));
-if (shipCost_now) {
-    var grandCost = ((currentCost * 10) / 100) + currentCost + shipCost_now;
-} else {
-    var grandCost = ((currentCost * 10) / 100) + currentCost;
-}
+var grandCost = ((currentCost * 10) / 100) + currentCost;
 $('.grandCost').text(grandCost.toLocaleString());
 $('.button').hide();

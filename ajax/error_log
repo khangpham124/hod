@@ -1,7 +1,11 @@
-[29-Jul-2018 11:53:16 UTC] PHP Notice:  Undefined index: options in /home/accroot/public_html/ajax/create_json.php on line 24
-[29-Jul-2018 11:54:58 UTC] PHP Notice:  Undefined index: option_add in /home/accroot/public_html/ajax/create_json.php on line 24
-[29-Jul-2018 11:56:07 UTC] PHP Notice:  Undefined index: option_add in /home/accroot/public_html/ajax/create_json.php on line 24
-[29-Jul-2018 11:58:09 UTC] PHP Notice:  Undefined index: options_list in /home/accroot/public_html/ajax/create_json.php on line 25
-[29-Jul-2018 12:01:22 UTC] PHP Notice:  Undefined index: options in /home/accroot/public_html/ajax/create_json.php on line 40
-[29-Jul-2018 12:06:56 UTC] PHP Notice:  Undefined index: options in /home/accroot/public_html/ajax/create_json.php on line 40
-[29-Jul-2018 12:29:23 UTC] PHP Notice:  Undefined index: options in /home/accroot/public_html/ajax/create_json.php on line 41
+[05-Aug-2018 01:38:56 UTC] PHP Warning:  Unexpected character in input:  '' (ASCII=8) state=0 in /home/accroot/public_html/ajax/edit_json.php on line 7
+[05-Aug-2018 01:38:56 UTC] PHP Warning:  Illegal string offset 'id' in /home/accroot/public_html/ajax/edit_json.php on line 10
+[05-Aug-2018 01:38:56 UTC] PHP Warning:  Illegal string offset 'id' in /home/accroot/public_html/ajax/edit_json.php on line 11
+[05-Aug-2018 01:38:56 UTC] PHP Warning:  Illegal string offset 'id' in /home/accroot/public_html/ajax/edit_json.php on line 10
+[05-Aug-2018 01:38:56 UTC] PHP Warning:  Illegal string offset 'id' in /home/accroot/public_html/ajax/edit_json.php on line 11
+[05-Aug-2018 01:38:57 UTC] PHP Warning:  Unexpected character in input:  '' (ASCII=8) state=0 in /home/accroot/public_html/ajax/edit_json.php on line 7
+[05-Aug-2018 01:38:57 UTC] PHP Warning:  Illegal string offset 'id' in /home/accroot/public_html/ajax/edit_json.php on line 10
+[05-Aug-2018 01:38:57 UTC] PHP Warning:  Illegal string offset 'id' in /home/accroot/public_html/ajax/edit_json.php on line 11
+[05-Aug-2018 01:38:57 UTC] PHP Warning:  Illegal string offset 'id' in /home/accroot/public_html/ajax/edit_json.php on line 10
+[05-Aug-2018 01:38:57 UTC] PHP Warning:  Illegal string offset 'id' in /home/accroot/public_html/ajax/edit_json.php on line 11
+[05-Aug-2018 01:41:24 UTC] PHP Notice:  Undefined index: options in /home/accroot/public_html/ajax/create_json.php on line 42

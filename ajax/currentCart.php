@@ -48,7 +48,7 @@ $curr_cart  = json_decode(file_get_contents($f_isset));
             $post_t = get_post_type();
             $cost = get_field('cf_price');
             $curr_wty = $mydata->quantity;
-            $total_curr = $cost * $curr_wty;
+            $total_curr = $mydata->price * $curr_wty;
         ?>
         <tr>
         <td class="detailPro">
@@ -62,7 +62,7 @@ $curr_cart  = json_decode(file_get_contents($f_isset));
             </div>
             
         </td>
-        <td><p class="pricePro"><input type="text" readonly class="priceNumb" value="<?php echo number_format($cost); ?>"></p></td>
+        <td><p class="pricePro"><input type="text" readonly class="priceNumb" value="<?php echo $mydata->price; ?>"></p></td>
         <td class="qtyField">
             <div class="qtyPro">
             <div class="numbers-row clearfix">
@@ -81,11 +81,12 @@ $curr_cart  = json_decode(file_get_contents($f_isset));
 
 <p class="taR_popup">
     <a href="javascript:void(0)" class="contBtn">continue shopping</a>
-    <a href="javascript:void(0)" class="updateBtn disable">Update Cart</a>
+    <!-- <a href="javascript:void(0)" class="updateBtn disable">Update Cart</a> -->
     <a href="<?php echo APP_URL; ?>checkout" class="checkOut" >Checkout</a>
 </p>
 
 <script>
+$(".button").hide();
 $(".button").click(function(){
     var $button = $(this);
     var oldValue = $button.parent().find("input").val();
