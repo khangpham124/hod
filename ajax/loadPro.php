@@ -95,7 +95,7 @@ $addtocart = $_GET['addtocart'];
                     </thead>
                     <tbody>
                         <td>
-                            <div class="numbers-row clearfix">
+                            <div class="numbers-row">
                                 <div class='inc button cal' rel='+' ><i class="fa fa-plus" aria-hidden="true"></i></div>
                                 <div class='dec button cal cant' id='dec' rel="-"><i class="fa fa-minus" aria-hidden="true"></i></div>
                                 <input type="text" id="quantity" class="input_cal" readonly  value="1"> 

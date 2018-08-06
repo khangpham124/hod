@@ -23,7 +23,7 @@ $curr_cart  = json_decode(file_get_contents($f_isset));
         <td class="detailPro">PRODUCTS</td>
         <td>PRICE</td>
         <td>QTY</td>
-        <td>SUBTOTAL</td>
+        <td class="subTotal_col">SUBTOTAL</td>
     </thead>    
     <tbody>
         <?php
@@ -57,7 +57,7 @@ $curr_cart  = json_decode(file_get_contents($f_isset));
                 <div class="descPro_tab">
                     <p class="title"><?php the_title(); ?></p>
                     <p class="sku"><?php the_field('cf_sku'); ?></p>
-                    <span class="removeItem" data-id="<?php echo $post_t; ?>_<?php echo $post->ID; ?>">Remove</span>
+                    <span class="removeItem" data-id="<?php echo $post_t; ?>_<?php echo $post->ID; ?>"><i class="fa fa-trash" aria-hidden="true"></i></span>
                 </div>
             </div>
             
@@ -65,10 +65,10 @@ $curr_cart  = json_decode(file_get_contents($f_isset));
         <td><p class="pricePro"><input type="text" readonly class="priceNumb" value="<?php echo $mydata->price; ?>"></p></td>
         <td class="qtyField">
             <div class="qtyPro">
-            <div class="numbers-row clearfix">
+            <div class="numbers-row">
                 <div class='inc button cal' rel='+' ><i class="fa fa-caret-up" aria-hidden="true"></i></div>
                 <div class='dec button cal' id='dec'><i class="fa fa-caret-down" aria-hidden="true"></i></div>
-                <input type="number" id="<?php echo $post_t.'_'.$post->ID; ?>"  class="input_cal qtyNumb" readonly  value="<?php echo $curr_wty; ?>"> 
+                <input type="text" id="<?php echo $post_t.'_'.$post->ID; ?>"  class="input_cal qtyNumb" readonly  value="<?php echo $curr_wty; ?>"> 
             </div>
             </div>
         </td>
