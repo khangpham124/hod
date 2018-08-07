@@ -320,8 +320,8 @@ include(APP_PATH."libs/head.php");
                         <div class="bookGuys">    
                             <label class="guyBook">GUEST(S)</label>
                             <div class="numbers-row clearfix">
-                                <div class='inc button cal' rel='+' ><i class="fa fa-caret-up" aria-hidden="true"></i></div>
-                                <div class='dec button cal' id='dec'><i class="fa fa-caret-down" aria-hidden="true"></i></div>
+                                <div class='inc button cal' rel='+' ><i class="fa fa-plus" aria-hidden="true"></i></div>
+                                <div class='dec button cal cant decBtn' rel='-'><i class="fa fa-minus" aria-hidden="true"></i></div>
                                 <input type="text" class="qtyBook" name="guests" readonly  value="1">
                             </div> 
                         </div>
@@ -329,8 +329,8 @@ include(APP_PATH."libs/head.php");
                         <div class="bookGuys">
                             <label class="guyBook">KID(S)</label>
                             <div class="numbers-row clearfix">
-                                <div class='inc button cal' rel='+' ><i class="fa fa-caret-up" aria-hidden="true"></i></div>
-                                <div class='dec button cal' id='dec'><i class="fa fa-caret-down" aria-hidden="true"></i></div>
+                                <div class='inc button cal' rel='+' ><i class="fa fa-plus" aria-hidden="true"></i></div>
+                                <div class='dec button cal cant decBtn' rel='-'><i class="fa fa-minus" aria-hidden="true"></i></div>
                                 <input type="text" class="qtyBook" name="kids" readonly  value="0"> 
                             </div>
                         </div>
@@ -427,7 +427,32 @@ include(APP_PATH."libs/head.php");
             $('.labelBook').removeClass('selected');    
             $(this).addClass('selected');
         });
-    });    
+    });
+    
+    $(".button").click(function(){
+    var curr_quant = $(this).parent().find('.qtyBook').attr('value');
+    var button = $(this);
+    var rel = button.attr("rel");
+    if (rel == '+') {
+        var newVal = parseFloat(curr_quant) + 1;
+        $(this).parent().find('.decBtn').removeClass('cant');
+    } 
+    if (rel == '-') {
+        if (curr_quant > 0) {
+            var newVal = parseFloat(curr_quant) - 1;
+            if( newVal == 1) {
+                $(this).parent().find('.decBtn').addClass('cant');
+            }
+        }
+        
+    }
+    button.parent().find("input").val(newVal);
+    var dg = $(this).parent().parent().parent().prev().find('.priceNumb').val();
+    var calc = parseInt(dg) * parseInt(newVal);
+    var numb_calc = numeral(parseInt(calc)).format('0,0');
+    $(this).parent().parent().parent().next().find('.qtyPro .totalNumb').val(numb_calc);
+    });
+
   });
 </script>
 

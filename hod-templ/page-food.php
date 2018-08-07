@@ -1,7 +1,17 @@
 <?php /* Template Name: Menu */ ?>
 <?php
 include_once($_SERVER['DOCUMENT_ROOT'] . '/app_config.php');
-include(APP_PATH."libs/head.php"); 
+include(APP_PATH."libs/head.php");
+date_default_timezone_set("Asia/Bangkok");
+$now = date("H:i:s");
+$from = "11:00:00";
+$to = "22:00:00";
+if((strtotime($now)<=strtotime($from))||(strtotime($now)>=strtotime($to))) {
+    $stt = 'closed';
+?>
+<link rel="stylesheet" href="<?php echo APP_URL; ?>common/css/closed.css">
+<?php 
+}
 ?>
 <link rel="stylesheet" href="<?php echo APP_URL; ?>common/css/slick.css">
 </head>
@@ -134,10 +144,6 @@ include(APP_PATH."libs/head.php");
                         </div>
                         <p class="foodInfo__price"><span <?php if(get_field('vegetarian')=='no') { ?>class="noBg"<?php } ?>><?php echo number_format(get_field('cf_price')); ?></span></p>
                         </div>
-                        
-                <?php if ( is_user_logged_in() ) { ?>
-                <!-- <a href="javascript:void(0)" class="listFeature__btn" data-id="<?php the_ID(); ?>">add to cart</a> -->
-                <?php } ?>
                     </li>
                 <?php endwhile;endif; ?>
                 </ul>
@@ -152,7 +158,7 @@ include(APP_PATH."libs/head.php");
                 <img src="<?php echo APP_URL; ?>common/img/other/load.gif" alt="">
                 </div>
                     <div class="descCat"><?php echo term_description(11,'foodcat') ?></div>    
-                <ul class="listFeature foodList" id="typeDaily">
+                <ul class="listFeature foodList biggerlink" id="typeDaily">
                 <?php    
                     $wp_query = new WP_Query();
                     $param=array(
@@ -172,15 +178,16 @@ include(APP_PATH."libs/head.php");
                     $thumb = get_post_thumbnail_id($post->ID);
                     $image_thumb = wp_get_attachment_image_src($thumb,'full');
                     ?>
-                    <li>
-                        <p class="listFeature__name matchHeight">
-                            <a href="javascript:void(0)" class="listFeature__btn" data-id="<?php the_ID(); ?>"><?php the_title(); ?></a>
-                        </p>
-                        <div class="listFeature__desc matchHeight"><?php echo $post->post_content; ?></div>
-                        <p class="listFeature__price"><span <?php if(get_field('vegetarian')=='no') { ?>class="noBg"<?php } ?>>VND <?php echo number_format(get_field('cf_price')); ?></span></p>
-                <?php if ( is_user_logged_in() ) { ?>
-                <!-- <a href="javascript:void(0)" class="listFeature__btn" data-id="<?php the_ID(); ?>">add to cart</a> -->
-                <?php } ?>
+                    <li class="">
+                        <div class="foodInfo">    
+                        <div class="foodInfo__desc">
+                            <p class="listFeature__name matchHeight">
+                                <a href="javascript:void(0)" class="listFeature__btn" data-id="<?php the_ID(); ?>"><?php the_title(); ?></a>
+                            </p>
+                            <p class="foodInfo__detail"><?php echo $post->post_content; ?></p>
+                        </div>
+                        <p class="foodInfo__price"><span <?php if(get_field('vegetarian')=='no') { ?>class="noBg"<?php } ?>><?php echo number_format(get_field('cf_price')); ?></span></p>
+                        </div>
                     </li>
                 <?php endwhile;endif; ?>      
                 </ul>
@@ -239,6 +246,18 @@ include(APP_PATH."libs/head.php");
 </div>
 <!--/wrapper-->
 <!--===================================================-->
+
+<?php
+if($stt=='closed') {
+?>
+    <div class="closedAttend" style="display:block;">
+    <span class="closeBtn"><i class="fa fa-times" aria-hidden="true"></i></span>
+    <p class="icon"><i class="fa fa-clock-o" aria-hidden="true"></i><p>
+    Ooops! Our kitchen only receives order from 11am to 10pm.<br>
+    Please try again during our business hours”
+    </div>
+    <div class="overlay_attend" <?php if($stt=='closed') { ?>style="display:block;"<?php } ?>></div>
+<?php } ?>
 
 <script>
     $(document).ready(function(){

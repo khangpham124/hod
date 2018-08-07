@@ -40,7 +40,7 @@ include(APP_PATH."libs/head.php");
         <td class="detailPro">PRODUCTS</td>
         <td>PRICE</td>
         <td>QTY</td>
-        <td>SUBTOTAL</td>
+        <td class="subTotal_col">SUBTOTAL</td>
     </thead>    
     <tbody>
         <?php
@@ -78,26 +78,32 @@ include(APP_PATH."libs/head.php");
         <tr>
         <td class="detailPro">
             <div class="clearfix">
+                <?php if($img_label[0]!='') { ?>
                 <p class="thumbPro_tab"><img src="<?php echo thumbCrop($img_label[0],70,70) ?>" alt=""></p>
+                <?php } ?>
                 <div class="descPro_tab">
                     <p class="title"><?php the_title(); ?></p>
                     <p class="sku"><?php the_field('cf_sku'); ?></p>
-                    <span class="removeItem" data-id="<?php echo $post_t; ?>_<?php echo $post->ID; ?>">Remove</span>
+                    <span class="removeItem" data-id="<?php echo $post_t; ?>_<?php echo $post->ID; ?>"><i class="fa fa-trash" aria-hidden="true"></i></span>
                 </div>
             </div>
             
         </td>
-        <td><p class="pricePro"><input type="text" readonly class="priceNumb" value="<?php echo number_format($mydata->price); ?>"></p></td>
+        <td class="pricePro"><input type="text" style="display:none;" readonly class="priceNumb" value="<?php echo number_format($mydata->price); ?>">
+        <span><?php echo number_format($mydata->price); ?></span> VND
+        </td>
         <td>
             <div class="qtyPro">
             <div class="numbers-row clearfix">
                 <div class='inc button cal' rel='+' ><i class="fa fa-caret-up" aria-hidden="true"></i></div>
                 <div class='dec button cal' id='dec'><i class="fa fa-caret-down" aria-hidden="true"></i></div>
-                <input type="number" id="<?php echo $post_t.'_'.$post->ID; ?>"  class="input_cal qtyNumb" readonly  value="<?php echo $curr_wty; ?>"> 
+                <input type="text" id="<?php echo $post_t.'_'.$post->ID; ?>"  class="input_cal qtyNumb" readonly  value="<?php echo $curr_wty; ?>"> 
             </div>
             </div>
         </td>
-        <td><p class="subTotal qtyPro"><input type="number" readonly class="totalNumb totalCost" value="<?php echo $total_curr; ?>" alt=""></p></td>
+        <td><p class="subTotal qtyPro"><input style="display:none;"  type="number" readonly class="totalNumb totalCost" value="<?php echo $total_curr; ?>" alt="">
+            <span><?php echo number_format($total_curr); ?></span> VND
+        </p></td>
         </tr>
         <?php
             $cf_sku = get_field('cf_sku');
@@ -126,9 +132,9 @@ include(APP_PATH."libs/head.php");
                         $arr_price[] = $count_price;
                     }
                 ?>
-                <td class="currentCost"><?php echo array_sum($arr_price); ?></td>
+                <td><span class="currentCost" style="display:none;"><?php echo array_sum($arr_price); ?></span><?php echo number_format(array_sum($arr_price)); ?> <em>VND</em></td>
                 <td>10%</td>
-                <td class="last grandCost"></td>
+                <td class="last"><span class="grandCost"></span> <em>VND</em></td>
             </tr>
         </table>
         <a href="<?php echo APP_URL; ?>checkout?step=2" class="proceedBtn">proceed to checkout</a>
@@ -152,15 +158,15 @@ include(APP_PATH."libs/head.php");
 
             <div class="inputForm">
                 <label>Full Name <span>*</span></label>
-                <input name="fullname" class="orderInput" value="<?php echo $_SESSION['fullname'] ?>" type="text" required>
+                <input name="fullname" class="orderInput" placeholder="Your fullname" value="<?php echo $_SESSION['fullname'] ?>" type="text" required>
             </div>
             <div class="inputForm">
                 <label>Email <span>*</span></label>
-                <input name="email" class="orderInput" value="<?php echo $_SESSION['email'] ?>" type="text" required>
+                <input name="email" class="orderInput" placeholder="Your Email" value="<?php echo $_SESSION['email'] ?>" type="text" required>
             </div>
             <div class="inputForm">
                 <label>Phone <span>*</span></label>
-                <input name="phone" class="orderInput" type="number" value="<?php echo $_SESSION['phone'] ?>" required>
+                <input name="phone" class="orderInput" type="number" placeholder="Your Phone" value="<?php echo $_SESSION['phone'] ?>" required>
             </div>
             
             <!-- <div class="inputForm">
@@ -178,9 +184,9 @@ include(APP_PATH."libs/head.php");
                         <td class="last">GRAND TOTAL</td>
                     </tr>
                     <tr>
-                        <td class="currentCost"><?php echo $_SESSION["totalCost"]; ?></td>
+                        <td><span class="currentCost" style="display:none;"><?php echo $_SESSION["totalCost"]; ?></span><?php echo number_format($_SESSION["totalCost"]); ?> <em>VND</em></td>
                         <td>10%</td>
-                        <td class="last grandCost"></td>
+                        <td class="last"><span class="grandCost"></span> <em>VND</em></td>
                     </tr>
                 </table>
             </div>
@@ -188,9 +194,9 @@ include(APP_PATH."libs/head.php");
                 <label>Distance</label>
                 <input name="distance" type="text" id="add_field" class="disa" readonly>
                 <label>Shipping Fee</label>
-                <input name="shipcost" type="text" id="shipcost" class="disa" readonly>
+                <input type="text" id="shipcost_fake" class="disa" readonly>
+                <input name="shipcost" style="display:none" type="text" id="shipcost" class="disa" readonly>
             </div>
-
             <div id="ggmap"></div>
         </div>
         </div>    
@@ -203,7 +209,7 @@ include(APP_PATH."libs/head.php");
         ?>    
         <input type="hidden" value="<?php echo $_COOKIE['order_hod']; ?>" name="order_code" >
         <input type="hidden" value="<?php echo $totalCost; ?>" name="grand_total" >    
-        </form>    
+        </form>
     <?php } else if($_GET['step']==3) { ?>
         <?php 
             $_SESSION["distance"] = $_POST['distance'];
@@ -222,7 +228,7 @@ include(APP_PATH."libs/head.php");
                 </div>
                 <p class="inputRadio"><input type="radio" name="payment" value="Credit card"><label>Credit Card</label></p>
                 <div class="btnPay">
-                    <button id="payAtm" class="methodPay">Pay with Credit Card</button>
+                    <a href="javascript:void(0)" id="payVisa" class="methodPay" data-pay="visa">Pay with Credit Card</a>    
                 </div>
 
             </div>
@@ -236,9 +242,12 @@ include(APP_PATH."libs/head.php");
                         <td class="last">GRAND TOTAL</td>
                     </tr>
                     <tr>
-                        <td class="current_Cost"><?php echo $_SESSION["totalCost_novat"]; ?></td>
+                        <!-- <td class="current_Cost"><?php echo $_SESSION["totalCost_novat"]; ?></td>
                         <td>10%</td>
-                        <td class="last grand_Cost"><?php echo $grand_total_ship; ?></td>
+                        <td class="last grand_Cost"><?php echo $grand_total_ship; ?></td> -->
+                        <td><span class="currentCost" style="display:none;"><?php echo $_SESSION["totalCost"]; ?></span><?php echo number_format($_SESSION["totalCost"]); ?> <em>VND</em></td>
+                        <td>10%</td>
+                        <td class="last"><span class="grandCost"></span> <em>VND</em></td>
                     </tr>
                 </table>
             </div>

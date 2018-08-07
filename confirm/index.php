@@ -37,7 +37,11 @@ include(APP_PATH."libs/head.php");
         $grandTotal_novat = $_SESSION['totalCost_novat'];
         $payment = $_SESSION['payment'];
         $shipcost = $_SESSION['shipcost'];
-
+        if($_SESSION['paymemnt_status']) {
+            $paidstt = $_SESSION['paymemnt_status'];
+        } else {
+            $paidstt = '';
+        }
 
         $order_post = array(
                 'post_title'    => $order_code,
@@ -54,6 +58,7 @@ include(APP_PATH."libs/head.php");
         add_post_meta($pid, 'cf_fullname', $fullname);
         add_post_meta($pid, 'cf_phone', $phone);
         add_post_meta($pid, 'cf_shipping_cost',$shipcost );
+        add_post_meta($pid, 'paymemnt_status',$paidstt );
         add_post_meta($pid, 'cf_order_status', 'in progress');
         
 
@@ -125,7 +130,7 @@ include(APP_PATH."libs/head.php");
                 <td style='border:1px solid #000;padding:5px;text-align:right' colspan='6'>VAT(10%):".number_format(($grandTotal_novat * 10) / 100)." VND</td>
             </tr>
             <tr>
-                <td style='border:1px solid #000;padding:5px;text-align:right' colspan='6'>Shipping Fee(10%):".number_format($shipcost)." VND</td>
+                <td style='border:1px solid #000;padding:5px;text-align:right' colspan='6'>Shipping Fee:".number_format($shipcost)." VND</td>
             </tr>
             <tr>
                 <td style='border:1px solid #000;padding:5px;text-align:right' colspan='6'>".number_format($grandTotal)." VND</td>
@@ -175,7 +180,7 @@ include(APP_PATH."libs/head.php");
             <td style='border:1px solid #000;padding:5px;text-align:right' colspan='6'>VAT(10%):".number_format(($grandTotal_novat * 10) / 100)." VND</td>
             </tr>
             <tr>
-                <td style='border:1px solid #000;padding:5px;text-align:right' colspan='6'>Shipping Fee(10%):".number_format($shipcost)." VND</td>
+                <td style='border:1px solid #000;padding:5px;text-align:right' colspan='6'>Shipping Fee:".number_format($shipcost)." VND</td>
             </tr>
             <tr>
                 <td style='border:1px solid #000;padding:5px;text-align:right' colspan='6'>".number_format($grandTotal)." VND</td>
