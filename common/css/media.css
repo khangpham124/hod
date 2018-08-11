@@ -60,9 +60,7 @@
     .gNavi li a {
         font-size: 13px;
     }
-    .gNavi {
-        
-    }
+    .gNavi {}
     .infoUser {
         width: 22%;
     }
@@ -73,10 +71,7 @@
         line-height: 1;
         font-size: 14px;
     }
-    .rightHead {
-
-
-    }
+    .rightHead {}
     #beer .lstBeer .wrap .cupB {
         width: 80px;
     }
@@ -90,7 +85,6 @@
     #logo img {
         width: 80px;
     }
-    
     .gNavi li a {
         font-size: 13px;
     }
@@ -182,20 +176,16 @@
     .iconCart {
         width: 52%;
     }
-    .rightHead {
-        
-    }
+    .rightHead {}
     #logo {
         margin-bottom: 0;
     }
-
     #header .headerInner {
         position: fixed;
-        top:0;
+        top: 0;
         left: 0;
-        width:100%;
+        width: 100%;
     }
-
     .menuCircle {
         float: right;
         width: 50px;
@@ -1157,6 +1147,67 @@
         width: 100%;
         display: block;
         margin-top: 30px;
+    }
+    #food .listFeature li {
+        width: 100%;
+    }
+    #popupCart {
+        width: 90%;
+        max-height: 90%;
+    }
+    .optionsBox .left,
+    .optionsBox .right {
+        width: 100%;
+    }
+    .taR_popup .addToCard,
+    .taR_popup .contBtn {
+        display: block;
+        text-align: center;
+        margin: 5px 0;
+    }
+    #checkout .leffShiping {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+    #checkout .shipCost {
+        width: 100%;
+    }
+    #checkout .formShipping {
+        padding-top: 0;
+        padding-bottom: 30px;
+    }
+    #checkout .boxBtn {
+        flex-wrap: wrap;
+        margin-bottom: 0;
+    }
+    #checkout .boxBtn .submitBtn,
+    #checkout .boxBtn .contBtn {
+        width: 100%;
+        margin: 5px 0;
+    }
+    .checkOut {
+        width: 100% !important;
+        margin-top: 5px;
+    }
+    .infoProduct,
+    .optionProduct {
+        width: 100%;
+    }
+    .flexBox--nosp {
+        display: block;
+    }
+    .infoProduct {
+        margin-bottom: 20px;
+    }
+    .innerPopcart .titlePop .title {
+        font-size: 25px;
+    }
+    .infoProduct .thumbPop_food img {
+        width: 100%;
+    }
+    .showsp {
+        display: block;
+        text-align: center;
     }
 }
 

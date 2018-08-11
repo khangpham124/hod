@@ -9,10 +9,11 @@ $to = "22:00:00";
 if((strtotime($now)<=strtotime($from))||(strtotime($now)>=strtotime($to))) {
     $stt = 'closed';
 ?>
-<link rel="stylesheet" href="<?php echo APP_URL; ?>common/css/closed.css">
+
 <?php 
 }
 ?>
+<link rel="stylesheet" href="<?php echo APP_URL; ?>common/css/closed.css">
 <link rel="stylesheet" href="<?php echo APP_URL; ?>common/css/slick.css">
 </head>
 

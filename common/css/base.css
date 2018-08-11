@@ -281,7 +281,6 @@ legend {
 input[type="text"],
 input[type="password"],
 textarea {
-    padding: 3px 4px 0 3px;
     border: 1px solid #999;
     border-right: 1px solid #CCC;
     border-bottom: 1px solid #CCC;
@@ -592,7 +591,8 @@ Header
     opacity: .6;
 }
 
-.overlay_regis {
+.overlay_regis,
+.overlay_attend {
     position: fixed;
     top: 0;
     left: 0;
@@ -789,6 +789,7 @@ Header
     text-align: center;
     margin-bottom: 25px;
 }
+
 .langSp {
     display: none;
 }
@@ -810,8 +811,7 @@ Header
     color: #98252c;
 }
 
-.rightHead {
-}
+.rightHead {}
 
 
 /*-----------------------------------------------------------
@@ -877,6 +877,11 @@ Global Navi
 .gNavi li a {
     font-size: 14px;
     line-height: 1;
+}
+
+.gNavi li i {
+    font-size: 18px;
+    margin-right: 5px;
 }
 
 .gNavi li a:hover {
@@ -977,10 +982,13 @@ PageTop
     right: 0px;
 }
 
-#popupCart {
+#popupCart,
+.closedAttend {
     display: none;
     background: #fff;
     width: 60%;
+    max-height: 86%;
+    overflow-y: auto;
     position: fixed;
     top: 50%;
     -moz-transform: translateX(-50%) translateY(-50%);
@@ -990,6 +998,20 @@ PageTop
     left: 50%;
     z-index: 1000;
     padding: 30px 15px;
+}
+
+.closedAttend {
+    width: 40%;
+    text-align: center;
+    border: 2px solid #98252c;
+    z-index: 1001;
+}
+
+.closedAttend .icon {
+    color: #98252c;
+    font-size: 60px;
+    line-height: 1;
+    margin-bottom: 20px;
 }
 
 #currentCart {
@@ -1369,6 +1391,20 @@ Media
     }
     .leftCriFoot {
         padding: 0 15px;
+    }
+    .viewCart {
+        position: absolute;
+        color: #98252c !important;
+        top: 20px;
+        right: 55px;
+        z-index: 90;
+    }
+    #currentCart {
+        width: 90%;
+    }
+    #currentCart .checkOut {
+        display: block;
+        text-align: center;
     }
 }
 

@@ -108,25 +108,36 @@ function getDistance(destination = '') {
             var originList = response.originAddresses;
             var destinationList = response.destinationAddresses;
             $('#add_field').val(response.rows[0].elements[0].distance.text);
-            var dis = response.rows[0].elements[0].distance.text;
-            var km = parseInt(dis.replace(' km', ''));
+            console.log(response);
+
+            var dc = response.rows[0].elements[0].distance.value;
+            var km = parseInt(dc / 1000);
             var costship = 25000;
-            if (km > 1) {
-                var km_large = km - 1;
-                costship = 25000 + (km_large * 5000);
+            if (km > 35) {
+                alert('Sorry, delivery not available outside of Ho Chi Minh City');
+                $('#autocomplete').val('');
+                $("#autocomplete").focus();
             } else {
-                var costship = 25000;
-            }
-            $('#shipcost').val(costship);
-            createCookie('shipcost', costship, 24);
-            var currentCost = parseInt($('.currentCost').text());
-            var shipCost_now = parseInt(readCookie('shipcost'));
-            if (shipCost_now) {
-                var grandCost = ((currentCost * 10) / 100) + currentCost + shipCost_now;
-            } else {
+                if (km > 1) {
+                    var km_large = km - 1;
+                    costship = 25000 + (km_large * 5000);
+                } else {
+                    var costship = 25000;
+                }
+                var b_costship = numeral(parseInt(costship)).format('0,0') + ' VND';
+                $('#shipcost_fake').val(b_costship);
+                $('.shipFee').html(b_costship);
+                $('#shipcost').val(costship);
+                $('.submitBtn').removeClass('cant');
+
+                createCookie('shipcost', costship, 24);
+                var currentCost = parseInt($('.currentCost').text());
+                var shipCost_now = parseInt(readCookie('shipcost'));
                 var grandCost = ((currentCost * 10) / 100) + currentCost;
+                var grandCost_ship = ((currentCost * 10) / 100) + currentCost + shipCost_now;
+                $('.grandCost').text(grandCost.toLocaleString());
+                $('.grandCost_ship').text(grandCost_ship.toLocaleString());
             }
-            $('.grandCost').text(grandCost.toLocaleString());
         }
     });
 }

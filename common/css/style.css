@@ -665,6 +665,10 @@
     }
     
     #food .listFeature__name a:hover {
+        opacity: 1 !important;
+    }
+    
+    #food .listFeature__name a:hover {
         background: none;
         opacity: .6;
     }
@@ -914,6 +918,9 @@
     
     .greyBox .tabBox .lstCity>li ul {
         padding: 0 46px;
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
     }
     
     .greyBox .tabBox .lstCity>li ul li {
@@ -1218,6 +1225,14 @@
         width: 47%;
         border-bottom: 1px solid #000;
         padding: 10px 0;
+        -moz-transition: all 0.3s ease-out;
+        -o-transition: all 0.3s ease-out;
+        -webkit-transition: all 0.3s ease-out;
+        -ms-transition: all 0.3s ease-out;
+    }
+    
+    #food .listFeature li:hover {
+        background: #e6e6e6;
     }
     
     .foodInfo {
@@ -2191,6 +2206,7 @@
         color: #98252c;
         font-size: 18px;
         margin-bottom: 20px;
+        line-height: 1;
     }
     
     .innerPopcart .thumbPop {
@@ -2207,14 +2223,20 @@
         overflow: hidden;
     }
     
-    .innerPopcart .titlePop {
-        color: #98252c;
-        font-size: 18px;
+    .innerPopcart .titlePop .title {
+        font-size: 30px;
         font-family: 'Conv_LaPresse';
     }
     
+    .innerPopcart .titlePop .price input {
+        border: none;
+        font-size: 22px;
+        font-family: 'Conv_LaPresse';
+        color: #98252c;
+    }
+    
     .innerPopcart .descPop {
-        margin-bottom: 30px;
+        margin-bottom: 20px;
     }
     
     .innerPopcart .flex {
@@ -2277,16 +2299,17 @@
     
     .numbers-row .button {
         position: absolute;
-        right: 5px;
         line-height: 1;
+        top: 25%;
+        cursor: pointer;
     }
     
     .numbers-row .button.inc {
-        top: 0px;
+        right: 8px;
     }
     
     .numbers-row .button.dec {
-        bottom: 0px;
+        left: 8px;
     }
     
     .innerCart {
@@ -2316,10 +2339,23 @@
         text-align: center;
         width: 90px;
         font-size: 16px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+    
+    .tblLoad {
+        width: 100%;
+        margin-top: 20px;
+    }
+    
+    .tblLoad input {
+        border: none;
+        text-align: center;
+        font-size: 16px;
     }
     
     .tblCart .detailPro {
-        width: 50%;
+        width: 45%;
         position: relative;
     }
     
@@ -2327,7 +2363,7 @@
         position: absolute;
         right: 10px;
         bottom: 15px;
-        font-size: 12px;
+        font-size: 16px;
         cursor: pointer;
     }
     
@@ -2344,6 +2380,7 @@
     .tblCart .descPro_tab .title {
         color: #98252c;
         font-size: 16px;
+        width: 90%;
     }
     
     .tblCart .descPro_tab .sku {
@@ -2355,8 +2392,11 @@
         background: #f2f2f2;
         font-weight: 500;
         text-align: center;
-        width: 33.33%;
         border-left: 4px solid #fff;
+    }
+    
+    .subTotal_col {
+        width: 20%;
     }
     
     .tblCart tbody td {
@@ -2496,6 +2536,7 @@
         display: block;
         font-size: 16px;
         margin-bottom: 10px;
+        line-height: 1;
     }
     
     #checkout .boxEstimate {
@@ -2527,6 +2568,7 @@
         text-align: center;
         color: #98252c;
         font-size: 16px;
+        width: 100%;
     }
     
     #about .wrapSlide h2 {
@@ -3013,11 +3055,11 @@
         width: 50%;
     }
     
-    .optionsBox .right textarea {
+    .noteArea textarea {
         border: 1px solid #e6e6e6;
         padding: 5px;
         width: 100%;
-        height: 150px;
+        height: 100px;
         outline: none;
     }
     
@@ -3041,5 +3083,98 @@
     }
     
     .itemChose+.optionsBox__title {
+        margin-top: 20px;
+    }
+    
+    #ggmap {
+        height: 250px;
+    }
+    
+    .distanceBox {
+        margin-top: 20px;
+    }
+    
+    #shipcost {
+        margin-top: 10px;
+    }
+    
+    .disa {
+        background: #f2f2f2;
+        pointer-events: none;
+    }
+    
+    .cant {
+        opacity: .6;
+        pointer-events: none;
+    }
+    
+    .methodPay {
+        background: #98252c;
+        color: #fff !important;
+        line-height: 1;
+        font-size: 14px;
+        letter-spacing: 2px;
+        position: relative;
+        cursor: pointer;
+        padding: 15px 30px 12px;
+        font-family: 'Conv_LaPresse';
+        border: 1px solid #98252c;
+        display: block;
+        text-align: center;
+        width: 290px;
+    }
+    
+    .thumbPop_food {
+        margin-bottom: 20px;
+    }
+    
+    .infoProduct {
+        width: 35%;
+    }
+    
+    .optionProduct {
+        width: 60%;
+    }
+    
+    .unshow {
+        display: none;
+    }
+    
+    .noteArea {
+        margin-top: 20px;
+    }
+    
+    .pricePro {
+        font-family: 'Oswald', sans-serif;
+        width: 20%;
+    }
+    
+    .pricePro span {
+        display: inline-block;
+        vertical-align: middle;
+        line-height: 1;
+        margin-top: -3px;
+        margin-left: -15px;
+        font-size: 15px;
+    }
+    
+    #add_field {
+        margin-bottom: 20px;
+    }
+    
+    .btnPay {
+        padding: 15px 0;
+        display: none;
+    }
+    
+    #note_order {
+        border: 1px solid #e6e6e6;
+        padding: 5px;
+        width: 100%;
+        height: 100px;
+        outline: none;
+    }
+    
+    .mt20 {
         margin-top: 20px;
     }

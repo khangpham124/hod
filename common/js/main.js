@@ -1,4 +1,3 @@
-
 $('.menuCircle').click(function() {
     $(this).toggleClass('active');
     $('#menuSP').slideToggle(200);
@@ -40,9 +39,13 @@ $("#chose2").click(function() {
     }
 });
 
-$('.inputRadio input').click(function() {
-    $('.inputRadio input').parent().removeClass('chosen');
-    $(this).parent().addClass('chosen');
+$('.inputRadio').click(function() {
+    $('.inputRadio').removeClass('chosen');
+    $(this).addClass('chosen');
+    $(this).find('input').prop('checked', 'checked');
+    var method = $(this).find('input').val();
+    createCookie('methodPay', method, 2);
+    eraseCookie('err_pay');
 });
 
 $('.whaton').click(function() {
@@ -63,6 +66,9 @@ function closPop() {
     $('#popupCart').fadeOut(100);
     $('#popupEvent').fadeOut(100);
     $('#currentCart').fadeOut(100);
+    $('.closedAttend').fadeOut(100);
+    $('.overlay_attend').fadeOut(200);
+    // location.reload();
 }
 
 $('.linkRegis').click(function() {
@@ -80,6 +86,10 @@ $('.contBtn').live('click', function() {
 });
 
 $('.closeBtn').live('click', function() {
+    closPop();
+});
+
+$('.overlay_attend').live('click', function() {
     closPop();
 });
 
@@ -152,60 +162,6 @@ $("#submitLogin").click(function() {
 
 $('#framePoster').live('change', function() {
     var v_label = $(this).val();
-    var imgEmbed = $('#p_'+ v_label).text();
-    $('#thumbImg').attr('src',imgEmbed);
+    var imgEmbed = $('#p_' + v_label).text();
+    $('#thumbImg').attr('src', imgEmbed);
 });
-
-//LOGIN FACEBOOK
-// Init application
-window.fbAsyncInit = function () {
-    FB.init({
-        appId: '554020094959929', // Đổi App ID của bạn ở đây
-        cookie: true,
-        xfbml: true,
-        version: 'v2.5'
-    });
-    // Kiểm tra trạng thái hiện tại
-};
-
- function checkLoginState() {
-    FB.getLoginStatus(function(response) {
-        statusChangeCallback(response);
-    });
-    }
-
-
-// Xử lý trạng thái đăng nhập
-function statusChangeCallback(response) {
-    // Người dùng đã đăng nhập FB và đã đăng nhập vào ứng dụng
-    if (response.status === 'connected') {
-        ShowWelcome();
-    }
-    // Người dùng đã đăng nhập FB nhưng chưa đăng nhập ứng dụng
-    else if (response.status === 'not_authorized') {
-        //ShowLoginButton();
-    }
-    // Người dùng chưa đăng nhập FB
-    else {
-        //ShowLoginButton();
-    }
-}
-
-// Gửi yêu cầu đăng nhập tới FB
-function RequestLoginFB() {
-    window.location = 'http://graph.facebook.com/oauth/authorize?' + 'client_id=554020094959929&scopes=' + // Đổi App ID của bạn ở đây
-'public_profile,email,user_likes&redirect_uri=http://heartofdarknessbrewery.com/';
-}
-
-
-// Chào mừng người dùng đã đăng nhập
-function ShowWelcome() {
-    FB.api('/me', function (response) {
-        var name = response.name;
-        var id = response.id;
-        var email = response.email;
-        createCookie('fb_acc', id, 24);
-        createCookie_fb('fb_name', name, 24);
-        setTimeout(location.reload.bind(location), 500);
-    });
-}

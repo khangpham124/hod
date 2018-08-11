@@ -20,7 +20,7 @@ include(APP_PATH."libs/head.php");
     <?php
         $wp_query = new WP_Query();
         $param = array (
-        'posts_per_page' => '-1',
+        'posts_per_page' => '5',
         'post_type' => 'video',
         'post_status' => 'publish',
         'order' => 'DESC',
@@ -433,22 +433,6 @@ include(APP_PATH."libs/head.php");
 			$('.listCountries li').removeClass('active');
 			$(this).addClass('active');
         });
-        
-        $(window).scroll(function() {
-            var sT = $(window).scrollTop();
-            var vWrap = $('#wrapper').offset().top;
-            var vFoot = $('#pageTop').offset().top;
-            var h_btot = $('#pageTop').height();
-            var h_foot = $('#footer').height();
-            var outFix = h_btot + h_foot + 100;
-            var vInfix = vFoot - 450;
-            if ((sT >= vWrap) && (sT < vInfix)) {
-                $(".followBox").addClass("fixedFollow");
-            } else if (sT < vWrap) {
-                $(".followBox").removeClass("fixedFollow");
-            }
-        });
-
     });    
 </script>
 <script src="<?php echo APP_URL; ?>common/js/slick.min.js"></script>

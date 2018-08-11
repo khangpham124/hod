@@ -1,11 +1,168 @@
-[05-Aug-2018 01:38:56 UTC] PHP Warning:  Unexpected character in input:  '' (ASCII=8) state=0 in /home/accroot/public_html/ajax/edit_json.php on line 7
-[05-Aug-2018 01:38:56 UTC] PHP Warning:  Illegal string offset 'id' in /home/accroot/public_html/ajax/edit_json.php on line 10
-[05-Aug-2018 01:38:56 UTC] PHP Warning:  Illegal string offset 'id' in /home/accroot/public_html/ajax/edit_json.php on line 11
-[05-Aug-2018 01:38:56 UTC] PHP Warning:  Illegal string offset 'id' in /home/accroot/public_html/ajax/edit_json.php on line 10
-[05-Aug-2018 01:38:56 UTC] PHP Warning:  Illegal string offset 'id' in /home/accroot/public_html/ajax/edit_json.php on line 11
-[05-Aug-2018 01:38:57 UTC] PHP Warning:  Unexpected character in input:  '' (ASCII=8) state=0 in /home/accroot/public_html/ajax/edit_json.php on line 7
-[05-Aug-2018 01:38:57 UTC] PHP Warning:  Illegal string offset 'id' in /home/accroot/public_html/ajax/edit_json.php on line 10
-[05-Aug-2018 01:38:57 UTC] PHP Warning:  Illegal string offset 'id' in /home/accroot/public_html/ajax/edit_json.php on line 11
-[05-Aug-2018 01:38:57 UTC] PHP Warning:  Illegal string offset 'id' in /home/accroot/public_html/ajax/edit_json.php on line 10
-[05-Aug-2018 01:38:57 UTC] PHP Warning:  Illegal string offset 'id' in /home/accroot/public_html/ajax/edit_json.php on line 11
-[05-Aug-2018 01:41:24 UTC] PHP Notice:  Undefined index: options in /home/accroot/public_html/ajax/create_json.php on line 42
+[08-Aug-2018 06:44:22 UTC] PHP Warning:  Unexpected character in input:  '' (ASCII=28) state=0 in /home/accroot/public_html/ajax/feeCharge.php on line 6
+[08-Aug-2018 06:44:22 UTC] PHP Notice:  Undefined index: method in /home/accroot/public_html/ajax/feeCharge.php on line 3
+[08-Aug-2018 06:44:22 UTC] PHP Notice:  Undefined index: methodPay in /home/accroot/public_html/ajax/feeCharge.php on line 10
+[08-Aug-2018 06:44:22 UTC] PHP Notice:  Undefined index: methodPay in /home/accroot/public_html/ajax/feeCharge.php on line 12
+[08-Aug-2018 06:44:22 UTC] PHP Notice:  Undefined index: methodPay in /home/accroot/public_html/ajax/feeCharge.php on line 21
+[08-Aug-2018 06:44:22 UTC] PHP Notice:  Undefined index: methodPay in /home/accroot/public_html/ajax/feeCharge.php on line 23
+[08-Aug-2018 06:44:22 UTC] PHP Notice:  Undefined variable: vpc_CardType in /home/accroot/public_html/ajax/feeCharge.php on line 30
+[08-Aug-2018 06:44:22 UTC] PHP Notice:  Undefined variable: vpc_PaymentGateway in /home/accroot/public_html/ajax/feeCharge.php on line 30
+[08-Aug-2018 06:44:22 UTC] PHP Notice:  Undefined variable: vpc_PaymentGateway in /home/accroot/public_html/ajax/feeCharge.php on line 34
+[08-Aug-2018 06:44:22 UTC] PHP Notice:  Undefined variable: vpc_CardType in /home/accroot/public_html/ajax/feeCharge.php on line 34
+[08-Aug-2018 06:45:35 UTC] PHP Warning:  Unexpected character in input:  '' (ASCII=28) state=0 in /home/accroot/public_html/ajax/feeCharge.php on line 6
+[08-Aug-2018 06:45:35 UTC] PHP Notice:  Undefined index: method in /home/accroot/public_html/ajax/feeCharge.php on line 3
+[08-Aug-2018 06:45:35 UTC] PHP Notice:  Undefined index: methodPay in /home/accroot/public_html/ajax/feeCharge.php on line 10
+[08-Aug-2018 06:45:35 UTC] PHP Notice:  Undefined index: methodPay in /home/accroot/public_html/ajax/feeCharge.php on line 12
+[08-Aug-2018 06:45:35 UTC] PHP Notice:  Undefined index: methodPay in /home/accroot/public_html/ajax/feeCharge.php on line 21
+[08-Aug-2018 06:45:35 UTC] PHP Notice:  Undefined index: methodPay in /home/accroot/public_html/ajax/feeCharge.php on line 23
+[08-Aug-2018 06:45:35 UTC] PHP Notice:  Undefined variable: vpc_CardType in /home/accroot/public_html/ajax/feeCharge.php on line 30
+[08-Aug-2018 06:45:35 UTC] PHP Notice:  Undefined variable: vpc_PaymentGateway in /home/accroot/public_html/ajax/feeCharge.php on line 30
+[08-Aug-2018 06:45:35 UTC] PHP Notice:  Undefined variable: vpc_PaymentGateway in /home/accroot/public_html/ajax/feeCharge.php on line 34
+[08-Aug-2018 06:45:35 UTC] PHP Notice:  Undefined variable: vpc_CardType in /home/accroot/public_html/ajax/feeCharge.php on line 34
+[08-Aug-2018 06:45:59 UTC] PHP Warning:  Unexpected character in input:  '' (ASCII=28) state=0 in /home/accroot/public_html/ajax/feeCharge.php on line 6
+[08-Aug-2018 06:45:59 UTC] PHP Notice:  Undefined index: method in /home/accroot/public_html/ajax/feeCharge.php on line 3
+[08-Aug-2018 06:45:59 UTC] PHP Notice:  Undefined index: methodPay in /home/accroot/public_html/ajax/feeCharge.php on line 10
+[08-Aug-2018 06:45:59 UTC] PHP Notice:  Undefined index: methodPay in /home/accroot/public_html/ajax/feeCharge.php on line 12
+[08-Aug-2018 06:45:59 UTC] PHP Notice:  Undefined index: methodPay in /home/accroot/public_html/ajax/feeCharge.php on line 21
+[08-Aug-2018 06:45:59 UTC] PHP Notice:  Undefined index: methodPay in /home/accroot/public_html/ajax/feeCharge.php on line 23
+[08-Aug-2018 06:45:59 UTC] PHP Notice:  Undefined variable: vpc_CardType in /home/accroot/public_html/ajax/feeCharge.php on line 30
+[08-Aug-2018 06:45:59 UTC] PHP Notice:  Undefined variable: vpc_PaymentGateway in /home/accroot/public_html/ajax/feeCharge.php on line 30
+[08-Aug-2018 06:45:59 UTC] PHP Notice:  Undefined variable: vpc_PaymentGateway in /home/accroot/public_html/ajax/feeCharge.php on line 34
+[08-Aug-2018 06:45:59 UTC] PHP Notice:  Undefined variable: vpc_CardType in /home/accroot/public_html/ajax/feeCharge.php on line 34
+[08-Aug-2018 06:48:37 UTC] PHP Warning:  Unexpected character in input:  '' (ASCII=28) state=0 in /home/accroot/public_html/ajax/feeCharge.php on line 6
+[08-Aug-2018 06:48:37 UTC] PHP Notice:  Undefined index: method in /home/accroot/public_html/ajax/feeCharge.php on line 3
+[08-Aug-2018 06:48:37 UTC] PHP Notice:  Undefined index: methodPay in /home/accroot/public_html/ajax/feeCharge.php on line 10
+[08-Aug-2018 06:48:37 UTC] PHP Notice:  Undefined index: methodPay in /home/accroot/public_html/ajax/feeCharge.php on line 12
+[08-Aug-2018 06:48:37 UTC] PHP Notice:  Undefined index: methodPay in /home/accroot/public_html/ajax/feeCharge.php on line 21
+[08-Aug-2018 06:48:37 UTC] PHP Notice:  Undefined index: methodPay in /home/accroot/public_html/ajax/feeCharge.php on line 23
+[08-Aug-2018 06:48:37 UTC] PHP Notice:  Undefined variable: vpc_CardType in /home/accroot/public_html/ajax/feeCharge.php on line 30
+[08-Aug-2018 06:48:37 UTC] PHP Notice:  Undefined variable: vpc_PaymentGateway in /home/accroot/public_html/ajax/feeCharge.php on line 30
+[08-Aug-2018 06:48:37 UTC] PHP Notice:  Undefined variable: vpc_PaymentGateway in /home/accroot/public_html/ajax/feeCharge.php on line 34
+[08-Aug-2018 06:48:37 UTC] PHP Notice:  Undefined variable: vpc_CardType in /home/accroot/public_html/ajax/feeCharge.php on line 34
+[08-Aug-2018 06:49:01 UTC] PHP Warning:  Unexpected character in input:  '' (ASCII=28) state=0 in /home/accroot/public_html/ajax/feeCharge.php on line 6
+[08-Aug-2018 06:49:01 UTC] PHP Notice:  Undefined index: method in /home/accroot/public_html/ajax/feeCharge.php on line 3
+[08-Aug-2018 06:49:01 UTC] PHP Notice:  Undefined index: methodPay in /home/accroot/public_html/ajax/feeCharge.php on line 10
+[08-Aug-2018 06:49:01 UTC] PHP Notice:  Undefined index: methodPay in /home/accroot/public_html/ajax/feeCharge.php on line 12
+[08-Aug-2018 06:49:01 UTC] PHP Notice:  Undefined index: methodPay in /home/accroot/public_html/ajax/feeCharge.php on line 21
+[08-Aug-2018 06:49:01 UTC] PHP Notice:  Undefined index: methodPay in /home/accroot/public_html/ajax/feeCharge.php on line 23
+[08-Aug-2018 06:49:01 UTC] PHP Notice:  Undefined variable: vpc_CardType in /home/accroot/public_html/ajax/feeCharge.php on line 30
+[08-Aug-2018 06:49:01 UTC] PHP Notice:  Undefined variable: vpc_PaymentGateway in /home/accroot/public_html/ajax/feeCharge.php on line 30
+[08-Aug-2018 06:49:01 UTC] PHP Notice:  Undefined variable: vpc_PaymentGateway in /home/accroot/public_html/ajax/feeCharge.php on line 34
+[08-Aug-2018 06:49:01 UTC] PHP Notice:  Undefined variable: vpc_CardType in /home/accroot/public_html/ajax/feeCharge.php on line 34
+[08-Aug-2018 07:01:09 UTC] PHP Warning:  Unexpected character in input:  '' (ASCII=28) state=0 in /home/accroot/public_html/ajax/feeCharge.php on line 6
+[08-Aug-2018 07:01:09 UTC] PHP Notice:  Undefined index: method in /home/accroot/public_html/ajax/feeCharge.php on line 3
+[08-Aug-2018 07:56:27 UTC] PHP Warning:  Unexpected character in input:  '' (ASCII=28) state=0 in /home/accroot/public_html/ajax/feeCharge.php on line 6
+[08-Aug-2018 07:56:27 UTC] PHP Notice:  Undefined index: method in /home/accroot/public_html/ajax/feeCharge.php on line 3
+[08-Aug-2018 08:32:06 UTC] PHP Notice:  Undefined index: options in /home/accroot/public_html/ajax/create_json.php on line 43
+[08-Aug-2018 08:33:13 UTC] PHP Notice:  Undefined index: options in /home/accroot/public_html/ajax/create_json.php on line 43
+[08-Aug-2018 08:38:24 UTC] PHP Notice:  Undefined index: options in /home/accroot/public_html/ajax/create_json.php on line 43
+[08-Aug-2018 08:40:07 UTC] PHP Notice:  Undefined index: options in /home/accroot/public_html/ajax/create_json.php on line 43
+[08-Aug-2018 08:51:53 UTC] PHP Notice:  Undefined index: options in /home/accroot/public_html/ajax/create_json.php on line 43
+[08-Aug-2018 08:52:18 UTC] PHP Notice:  Undefined index: options in /home/accroot/public_html/ajax/create_json.php on line 43
+[08-Aug-2018 08:52:27 UTC] PHP Notice:  Undefined index: options in /home/accroot/public_html/ajax/create_json.php on line 43
+[08-Aug-2018 09:02:41 UTC] PHP Notice:  Undefined index: name_pro in /home/accroot/public_html/ajax/create_json.php on line 22
+[08-Aug-2018 09:02:41 UTC] PHP Notice:  Undefined index: qual in /home/accroot/public_html/ajax/create_json.php on line 23
+[08-Aug-2018 09:02:41 UTC] PHP Notice:  Undefined index: price in /home/accroot/public_html/ajax/create_json.php on line 24
+[08-Aug-2018 09:02:41 UTC] PHP Notice:  Undefined index: cost in /home/accroot/public_html/ajax/create_json.php on line 25
+[08-Aug-2018 09:02:41 UTC] PHP Notice:  Undefined index: option_add in /home/accroot/public_html/ajax/create_json.php on line 26
+[08-Aug-2018 09:02:41 UTC] PHP Notice:  Undefined index: option_list in /home/accroot/public_html/ajax/create_json.php on line 27
+[08-Aug-2018 09:02:41 UTC] PHP Notice:  Undefined index: note in /home/accroot/public_html/ajax/create_json.php on line 28
+[08-Aug-2018 09:02:41 UTC] PHP Notice:  Undefined index: qual in /home/accroot/public_html/ajax/create_json.php on line 41
+[08-Aug-2018 09:02:42 UTC] PHP Warning:  Unexpected character in input:  '' (ASCII=8) state=0 in /home/accroot/public_html/ajax/edit_json.php on line 8
+[08-Aug-2018 09:02:42 UTC] PHP Notice:  Undefined index: order_hod in /home/accroot/public_html/ajax/edit_json.php on line 2
+[08-Aug-2018 09:02:42 UTC] PHP Warning:  file_get_contents(./tmp/.json): failed to open stream: No such file or directory in /home/accroot/public_html/ajax/edit_json.php on line 3
+[08-Aug-2018 09:02:42 UTC] PHP Warning:  array_values() expects parameter 1 to be array, null given in /home/accroot/public_html/ajax/edit_json.php on line 6
+[08-Aug-2018 09:02:42 UTC] PHP Warning:  array_values() expects parameter 1 to be array, null given in /home/accroot/public_html/ajax/edit_json.php on line 16
+[08-Aug-2018 09:02:42 UTC] PHP Notice:  Undefined index: incart in /home/accroot/public_html/ajax/edit_json.php on line 23
+[08-Aug-2018 09:02:42 UTC] PHP Notice:  Undefined index: qual in /home/accroot/public_html/ajax/edit_json.php on line 24
+[08-Aug-2018 09:02:42 UTC] PHP Warning:  Unexpected character in input:  '' (ASCII=28) state=0 in /home/accroot/public_html/ajax/feeCharge.php on line 6
+[08-Aug-2018 09:02:42 UTC] PHP Notice:  Undefined index: method in /home/accroot/public_html/ajax/feeCharge.php on line 3
+[08-Aug-2018 09:02:42 UTC] PHP Notice:  Undefined index: grand_total in /home/accroot/public_html/ajax/feeCharge.php on line 4
+[08-Aug-2018 09:02:42 UTC] PHP Notice:  Undefined index: order_code in /home/accroot/public_html/ajax/feeCharge.php on line 5
+[08-Aug-2018 09:02:42 UTC] PHP Notice:  Undefined index: methodPay in /home/accroot/public_html/ajax/feeCharge.php on line 10
+[08-Aug-2018 09:02:42 UTC] PHP Notice:  Undefined index: methodPay in /home/accroot/public_html/ajax/feeCharge.php on line 12
+[08-Aug-2018 09:02:42 UTC] PHP Notice:  Undefined index: methodPay in /home/accroot/public_html/ajax/feeCharge.php on line 21
+[08-Aug-2018 09:02:42 UTC] PHP Notice:  Undefined index: methodPay in /home/accroot/public_html/ajax/feeCharge.php on line 23
+[08-Aug-2018 09:02:42 UTC] PHP Notice:  Undefined variable: vpc_CardType in /home/accroot/public_html/ajax/feeCharge.php on line 30
+[08-Aug-2018 09:02:42 UTC] PHP Notice:  Undefined variable: vpc_PaymentGateway in /home/accroot/public_html/ajax/feeCharge.php on line 30
+[08-Aug-2018 09:02:42 UTC] PHP Notice:  Undefined variable: vpc_PaymentGateway in /home/accroot/public_html/ajax/feeCharge.php on line 34
+[08-Aug-2018 09:02:42 UTC] PHP Notice:  Undefined variable: vpc_CardType in /home/accroot/public_html/ajax/feeCharge.php on line 34
+[08-Aug-2018 09:04:36 UTC] PHP Notice:  Undefined index: options in /home/accroot/public_html/ajax/create_json.php on line 43
+[08-Aug-2018 09:04:42 UTC] PHP Warning:  Unexpected character in input:  '' (ASCII=8) state=0 in /home/accroot/public_html/ajax/edit_json.php on line 8
+[08-Aug-2018 09:04:42 UTC] PHP Notice:  Undefined offset: 5 in /home/accroot/public_html/ajax/edit_json.php on line 10
+[08-Aug-2018 09:04:42 UTC] PHP Notice:  Undefined offset: 5 in /home/accroot/public_html/ajax/edit_json.php on line 11
+[08-Aug-2018 09:04:44 UTC] PHP Warning:  Unexpected character in input:  '' (ASCII=8) state=0 in /home/accroot/public_html/ajax/edit_json.php on line 8
+[08-Aug-2018 09:04:44 UTC] PHP Notice:  Undefined offset: 4 in /home/accroot/public_html/ajax/edit_json.php on line 10
+[08-Aug-2018 09:04:44 UTC] PHP Notice:  Undefined offset: 4 in /home/accroot/public_html/ajax/edit_json.php on line 11
+[08-Aug-2018 09:04:49 UTC] PHP Warning:  Unexpected character in input:  '' (ASCII=8) state=0 in /home/accroot/public_html/ajax/edit_json.php on line 8
+[08-Aug-2018 09:04:49 UTC] PHP Notice:  Undefined offset: 3 in /home/accroot/public_html/ajax/edit_json.php on line 10
+[08-Aug-2018 09:04:49 UTC] PHP Notice:  Undefined offset: 3 in /home/accroot/public_html/ajax/edit_json.php on line 11
+[08-Aug-2018 09:08:48 UTC] PHP Notice:  Undefined index: options in /home/accroot/public_html/ajax/create_json.php on line 43
+[08-Aug-2018 09:08:55 UTC] PHP Warning:  Unexpected character in input:  '' (ASCII=8) state=0 in /home/accroot/public_html/ajax/edit_json.php on line 8
+[08-Aug-2018 09:08:55 UTC] PHP Notice:  Undefined offset: 2 in /home/accroot/public_html/ajax/edit_json.php on line 10
+[08-Aug-2018 09:08:55 UTC] PHP Notice:  Undefined offset: 2 in /home/accroot/public_html/ajax/edit_json.php on line 11
+[08-Aug-2018 09:09:05 UTC] PHP Warning:  Unexpected character in input:  '' (ASCII=8) state=0 in /home/accroot/public_html/ajax/edit_json.php on line 8
+[08-Aug-2018 09:09:05 UTC] PHP Notice:  Undefined offset: 1 in /home/accroot/public_html/ajax/edit_json.php on line 10
+[08-Aug-2018 09:09:05 UTC] PHP Notice:  Undefined offset: 1 in /home/accroot/public_html/ajax/edit_json.php on line 11
+[08-Aug-2018 09:17:36 UTC] PHP Warning:  Unexpected character in input:  '' (ASCII=28) state=0 in /home/accroot/public_html/ajax/feeCharge.php on line 6
+[08-Aug-2018 09:17:36 UTC] PHP Notice:  Undefined index: method in /home/accroot/public_html/ajax/feeCharge.php on line 3
+[08-Aug-2018 09:17:36 UTC] PHP Notice:  Undefined variable: vpc_CardType in /home/accroot/public_html/ajax/feeCharge.php on line 30
+[08-Aug-2018 09:17:36 UTC] PHP Notice:  Undefined variable: vpc_PaymentGateway in /home/accroot/public_html/ajax/feeCharge.php on line 30
+[08-Aug-2018 09:17:36 UTC] PHP Notice:  Undefined variable: vpc_PaymentGateway in /home/accroot/public_html/ajax/feeCharge.php on line 34
+[08-Aug-2018 09:17:36 UTC] PHP Notice:  Undefined variable: vpc_CardType in /home/accroot/public_html/ajax/feeCharge.php on line 34
+[08-Aug-2018 09:20:33 UTC] PHP Parse error:  syntax error, unexpected '{' in /home/accroot/public_html/ajax/feeCharge.php on line 3
+[08-Aug-2018 09:20:37 UTC] PHP Parse error:  syntax error, unexpected '{' in /home/accroot/public_html/ajax/feeCharge.php on line 3
+[08-Aug-2018 09:21:01 UTC] PHP Warning:  Unexpected character in input:  '' (ASCII=28) state=0 in /home/accroot/public_html/ajax/feeCharge.php on line 10
+[08-Aug-2018 09:21:04 UTC] PHP Warning:  Unexpected character in input:  '' (ASCII=28) state=0 in /home/accroot/public_html/ajax/feeCharge.php on line 10
+[08-Aug-2018 10:47:02 UTC] PHP Warning:  Unexpected character in input:  '' (ASCII=28) state=0 in /home/accroot/public_html/ajax/feeCharge.php on line 6
+[08-Aug-2018 10:47:02 UTC] PHP Notice:  Undefined index: method in /home/accroot/public_html/ajax/feeCharge.php on line 3
+[09-Aug-2018 02:28:54 UTC] PHP Notice:  Undefined index: name_pro in /home/accroot/public_html/ajax/create_json.php on line 22
+[09-Aug-2018 02:28:54 UTC] PHP Notice:  Undefined index: qual in /home/accroot/public_html/ajax/create_json.php on line 23
+[09-Aug-2018 02:28:54 UTC] PHP Notice:  Undefined index: price in /home/accroot/public_html/ajax/create_json.php on line 24
+[09-Aug-2018 02:28:54 UTC] PHP Notice:  Undefined index: cost in /home/accroot/public_html/ajax/create_json.php on line 25
+[09-Aug-2018 02:28:54 UTC] PHP Notice:  Undefined index: option_add in /home/accroot/public_html/ajax/create_json.php on line 26
+[09-Aug-2018 02:28:54 UTC] PHP Notice:  Undefined index: option_list in /home/accroot/public_html/ajax/create_json.php on line 27
+[09-Aug-2018 02:28:54 UTC] PHP Notice:  Undefined index: note in /home/accroot/public_html/ajax/create_json.php on line 28
+[09-Aug-2018 02:28:54 UTC] PHP Notice:  Undefined index: qual in /home/accroot/public_html/ajax/create_json.php on line 41
+[09-Aug-2018 02:28:54 UTC] PHP Warning:  Unexpected character in input:  '' (ASCII=8) state=0 in /home/accroot/public_html/ajax/edit_json.php on line 8
+[09-Aug-2018 02:28:54 UTC] PHP Notice:  Undefined index: order_hod in /home/accroot/public_html/ajax/edit_json.php on line 2
+[09-Aug-2018 02:28:54 UTC] PHP Warning:  file_get_contents(./tmp/.json): failed to open stream: No such file or directory in /home/accroot/public_html/ajax/edit_json.php on line 3
+[09-Aug-2018 02:28:54 UTC] PHP Warning:  array_values() expects parameter 1 to be array, null given in /home/accroot/public_html/ajax/edit_json.php on line 6
+[09-Aug-2018 02:28:54 UTC] PHP Warning:  array_values() expects parameter 1 to be array, null given in /home/accroot/public_html/ajax/edit_json.php on line 16
+[09-Aug-2018 02:28:54 UTC] PHP Notice:  Undefined index: incart in /home/accroot/public_html/ajax/edit_json.php on line 23
+[09-Aug-2018 02:28:54 UTC] PHP Notice:  Undefined index: qual in /home/accroot/public_html/ajax/edit_json.php on line 24
+[09-Aug-2018 02:28:54 UTC] PHP Warning:  Unexpected character in input:  '' (ASCII=28) state=0 in /home/accroot/public_html/ajax/feeCharge.php on line 6
+[09-Aug-2018 02:28:54 UTC] PHP Notice:  Undefined index: method in /home/accroot/public_html/ajax/feeCharge.php on line 3
+[09-Aug-2018 02:28:54 UTC] PHP Notice:  Undefined index: grand_total in /home/accroot/public_html/ajax/feeCharge.php on line 4
+[09-Aug-2018 02:28:54 UTC] PHP Notice:  Undefined index: order_code in /home/accroot/public_html/ajax/feeCharge.php on line 5
+[09-Aug-2018 02:28:54 UTC] PHP Notice:  Undefined index: methodPay in /home/accroot/public_html/ajax/feeCharge.php on line 10
+[09-Aug-2018 02:28:54 UTC] PHP Notice:  Undefined index: methodPay in /home/accroot/public_html/ajax/feeCharge.php on line 12
+[09-Aug-2018 02:28:54 UTC] PHP Notice:  Undefined index: methodPay in /home/accroot/public_html/ajax/feeCharge.php on line 21
+[09-Aug-2018 02:28:54 UTC] PHP Notice:  Undefined index: methodPay in /home/accroot/public_html/ajax/feeCharge.php on line 23
+[09-Aug-2018 02:28:54 UTC] PHP Notice:  Undefined variable: vpc_CardType in /home/accroot/public_html/ajax/feeCharge.php on line 30
+[09-Aug-2018 02:28:54 UTC] PHP Notice:  Undefined variable: vpc_PaymentGateway in /home/accroot/public_html/ajax/feeCharge.php on line 30
+[09-Aug-2018 02:28:54 UTC] PHP Notice:  Undefined variable: vpc_PaymentGateway in /home/accroot/public_html/ajax/feeCharge.php on line 34
+[09-Aug-2018 02:28:54 UTC] PHP Notice:  Undefined variable: vpc_CardType in /home/accroot/public_html/ajax/feeCharge.php on line 34
+[09-Aug-2018 03:23:46 UTC] PHP Warning:  Unexpected character in input:  '' (ASCII=8) state=0 in /home/accroot/public_html/ajax/edit_json.php on line 8
+[09-Aug-2018 03:23:46 UTC] PHP Notice:  Undefined index: order_hod in /home/accroot/public_html/ajax/edit_json.php on line 2
+[09-Aug-2018 03:23:46 UTC] PHP Warning:  file_get_contents(./tmp/.json): failed to open stream: No such file or directory in /home/accroot/public_html/ajax/edit_json.php on line 3
+[09-Aug-2018 03:23:46 UTC] PHP Warning:  array_values() expects parameter 1 to be array, null given in /home/accroot/public_html/ajax/edit_json.php on line 6
+[09-Aug-2018 03:23:46 UTC] PHP Notice:  Undefined index: proid in /home/accroot/public_html/ajax/edit_json.php on line 11
+[09-Aug-2018 03:23:46 UTC] PHP Warning:  array_values() expects parameter 1 to be array, null given in /home/accroot/public_html/ajax/edit_json.php on line 16
+[09-Aug-2018 03:23:46 UTC] PHP Notice:  Undefined index: incart in /home/accroot/public_html/ajax/edit_json.php on line 23
+[09-Aug-2018 03:23:46 UTC] PHP Notice:  Undefined index: qual in /home/accroot/public_html/ajax/edit_json.php on line 24
+[09-Aug-2018 08:13:37 UTC] PHP Warning:  Unexpected character in input:  '' (ASCII=28) state=0 in /home/accroot/public_html/ajax/feeCharge.php on line 6
+[09-Aug-2018 08:13:37 UTC] PHP Notice:  Undefined index: method in /home/accroot/public_html/ajax/feeCharge.php on line 3
+[09-Aug-2018 09:18:05 UTC] PHP Warning:  Unexpected character in input:  '' (ASCII=28) state=0 in /home/accroot/public_html/ajax/feeCharge.php on line 6
+[09-Aug-2018 09:18:05 UTC] PHP Notice:  Undefined index: method in /home/accroot/public_html/ajax/feeCharge.php on line 3
+[09-Aug-2018 09:28:07 UTC] PHP Warning:  Unexpected character in input:  '' (ASCII=28) state=0 in /home/accroot/public_html/ajax/feeCharge.php on line 6
+[09-Aug-2018 09:28:07 UTC] PHP Notice:  Undefined index: method in /home/accroot/public_html/ajax/feeCharge.php on line 3
+[09-Aug-2018 09:31:49 UTC] PHP Warning:  Unexpected character in input:  '' (ASCII=28) state=0 in /home/accroot/public_html/ajax/feeCharge.php on line 6
+[09-Aug-2018 09:31:49 UTC] PHP Notice:  Undefined index: method in /home/accroot/public_html/ajax/feeCharge.php on line 3
+[09-Aug-2018 09:35:23 UTC] PHP Warning:  Unexpected character in input:  '' (ASCII=28) state=0 in /home/accroot/public_html/ajax/feeCharge.php on line 6
+[09-Aug-2018 09:35:23 UTC] PHP Notice:  Undefined index: method in /home/accroot/public_html/ajax/feeCharge.php on line 3
+[09-Aug-2018 09:37:59 UTC] PHP Warning:  Unexpected character in input:  '' (ASCII=28) state=0 in /home/accroot/public_html/ajax/feeCharge.php on line 6
+[09-Aug-2018 09:37:59 UTC] PHP Notice:  Undefined index: method in /home/accroot/public_html/ajax/feeCharge.php on line 3
+[09-Aug-2018 09:38:25 UTC] PHP Warning:  Unexpected character in input:  '' (ASCII=28) state=0 in /home/accroot/public_html/ajax/feeCharge.php on line 6
+[09-Aug-2018 09:38:25 UTC] PHP Notice:  Undefined index: method in /home/accroot/public_html/ajax/feeCharge.php on line 3
+[09-Aug-2018 09:39:02 UTC] PHP Warning:  Unexpected character in input:  '' (ASCII=28) state=0 in /home/accroot/public_html/ajax/feeCharge.php on line 6
+[09-Aug-2018 09:39:02 UTC] PHP Notice:  Undefined index: method in /home/accroot/public_html/ajax/feeCharge.php on line 3

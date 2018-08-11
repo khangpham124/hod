@@ -147,6 +147,7 @@ include(APP_PATH."libs/head.php");
     <?php } ?>
     </div>    
     <?php } else if($_GET['step']==2) { ?>
+        <?php setcookie('err_pay','', time() + 86400, "/"); ?>
         <form class="formShipping" action="<?php echo APP_URL; ?>checkout/?step=3" method="POST">
         <div class="clearfix">
             <div class="leffShiping">
@@ -166,7 +167,7 @@ include(APP_PATH."libs/head.php");
             </div>
             <div class="inputForm">
                 <label>Phone <span>*</span></label>
-                <input name="phone" class="orderInput" type="number" placeholder="Your Phone" value="<?php echo $_SESSION['phone'] ?>" required>
+                <input name="phone" class="orderInput" type="tel" placeholder="Your Phone" value="<?php echo $_SESSION['phone'] ?>" required>
             </div>
             
             <!-- <div class="inputForm">
@@ -184,9 +185,21 @@ include(APP_PATH."libs/head.php");
                         <td class="last">GRAND TOTAL</td>
                     </tr>
                     <tr>
-                        <td><span class="currentCost" style="display:none;"><?php echo $_SESSION["totalCost"]; ?></span><?php echo number_format($_SESSION["totalCost"]); ?> <em>VND</em></td>
+                        <td><span class="currentCost" style="display:none;"><?php echo $_SESSION["totalCost"]; ?></span><?php echo number_format($_SESSION["totalCost"]); ?><em>VND</em></td>
                         <td>10%</td>
                         <td class="last"><span class="grandCost"></span> <em>VND</em></td>
+                    </tr>
+
+                    <tr>
+                        <td><i class="fa fa-truck" aria-hidden="true"></i></td>
+                        <td></td>
+                        <td class="last"><span class="shipFee">0</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>TOTAL</td>
+                        <td></td>
+                        <td class="last"><span class="grandCost_ship grandCost"></span> <em>VND</em></td>
                     </tr>
                 </table>
             </div>
@@ -202,7 +215,7 @@ include(APP_PATH."libs/head.php");
         </div>    
         <p class="taC boxBtn">
             <a href="<?php echo APP_URL; ?>checkout" class="contBtn">BACK</a>
-            <input type="submit" class="submitBtn" value="SUBTMIT ORDER">
+            <input type="submit" class="submitBtn cant" value="SUBTMIT ORDER">
         </p>
         <?php
             $totalCost =  (($_SESSION["totalCost"] * 10) /100) + $_SESSION["totalCost"] ;
@@ -211,26 +224,53 @@ include(APP_PATH."libs/head.php");
         <input type="hidden" value="<?php echo $totalCost; ?>" name="grand_total" >    
         </form>
     <?php } else if($_GET['step']==3) { ?>
-        <?php 
+        <?php
+            if($_POST['distance']!='') {
             $_SESSION["distance"] = $_POST['distance'];
+            }
+            if($_POST['shipcost']!='') {
             $_SESSION["shipcost"] = $_POST['shipcost'];
+            }
+
+            if($_POST['grand_total']!='') {
             $grand_total_ship = $_POST['grand_total'] + $_COOKIE['shipcost'];
+            $_SESSION['grand_total'] = $grand_total_ship;
+            }
+
+            if($_POST['order_code']!='') {
+            $_SESSION['order_code'] = $_POST['order_code'];
+            }
+            if($_POST['address']!='') {
+            $_SESSION['address'] = $_POST['address'];
+            }
+            if($_POST['city']!='') {
+            $_SESSION['city'] = $_POST['city'];
+            }
+            if($_POST['country']!='') {
+            $_SESSION['country'] = $_POST['country'];
+            }
+            if($_POST['fullname']!='') {
+            $_SESSION['fullname'] = $_POST['fullname'];
+            }
+            if($_POST['email']!='') {
+            $_SESSION['email'] = $_POST['email'];
+            }
+            if($_POST['phone']!='') {
+            $_SESSION['phone'] = $_POST['phone'];
+            } 
         ?>
         <form class="formShipping" action="<?php echo APP_URL; ?>confirm" method="POST">
             <div class="clearfix">
             <div class="leffShiping">
+                <?php if($_COOKIE['err_pay']!='') { ?>
+                    <p class="errPay"><?php echo $_SESSION['err_pay']; ?></p>
+                <?php } ?>
                 <p class="titleForm">PAYMENT METHOD</p>
-                
-                <p class="inputRadio"><input type="radio" name="payment" value="COD"><label>COD</label></p>
-                <p class="inputRadio"><input type="radio" name="payment" value="ATM"><label>ATM</label></p>
-                <div class="btnPay">
-                    <a href="javascript:void(0)" id="payAtm" class="methodPay" data-pay="atm">Pay with ATM</a>
-                </div>
-                <p class="inputRadio"><input type="radio" name="payment" value="Credit card"><label>Credit Card</label></p>
-                <div class="btnPay">
-                    <a href="javascript:void(0)" id="payVisa" class="methodPay" data-pay="visa">Pay with Credit Card</a>    
-                </div>
-
+                <p class="inputRadio"><input type="radio" name="payment" value="cod"><label>COD</label></p>
+                <p class="inputRadio"><input type="radio" name="payment" value="atm"><label>ATM</label></p>
+                <p class="inputRadio"><input type="radio" name="payment" value="creditcard"><label>Credit Card</label></p>
+                <p class="titleForm mt20">NOTE</p>
+                <textarea id="note_order" name="comt_order"></textarea>
             </div>
             <div class="shipCost">
             <div class="boxSummary">
@@ -242,33 +282,32 @@ include(APP_PATH."libs/head.php");
                         <td class="last">GRAND TOTAL</td>
                     </tr>
                     <tr>
-                        <!-- <td class="current_Cost"><?php echo $_SESSION["totalCost_novat"]; ?></td>
-                        <td>10%</td>
-                        <td class="last grand_Cost"><?php echo $grand_total_ship; ?></td> -->
-                        <td><span class="currentCost" style="display:none;"><?php echo $_SESSION["totalCost"]; ?></span><?php echo number_format($_SESSION["totalCost"]); ?> <em>VND</em></td>
+                        <td><span class="currentCost" style="display:none;"><?php echo $_SESSION["totalCost"]; ?></span><?php echo number_format($_SESSION["totalCost"]); ?><em>VND</em></td>
                         <td>10%</td>
                         <td class="last"><span class="grandCost"></span> <em>VND</em></td>
+                    </tr>
+
+                    <tr>
+                        <td><i class="fa fa-truck" aria-hidden="true"></i></td>
+                        <td></td>
+                        <td class="last"><span class="shipFee"><?php echo number_format($_COOKIE["shipcost"]); ?> VND</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>TOTAL</td>
+                        <td></td>
+                        <td class="last"><span class=""><?php echo number_format($_SESSION['grand_total']); ?></span> <em>VND</em></td>
                     </tr>
                 </table>
             </div>
             </div>
             </div>
             <input type="hidden" value="<?php echo $grand_total_ship; ?>" name="grand_total" >
-            <?php 
-                $_SESSION['order_code'] = $_POST['order_code'];
-                $_SESSION['grand_total'] = $grand_total_ship; 
-                $_SESSION['address'] = $_POST['address'];
-                $_SESSION['city'] = $_POST['city'];
-                $_SESSION['country'] = $_POST['country'];
-                $_SESSION['fullname'] = $_POST['fullname'];
-                $_SESSION['email'] = $_POST['email'];
-                $_SESSION['phone'] = $_POST['phone'];
-                $_SESSION['shipcost'] = $_COOKIE["shipcost"]; 
-            ?>
             <p class="taC boxBtn">
                 <a href="<?php echo APP_URL; ?>checkout?step=2" class="contBtn">BACK</a>
-                <input type="submit" class="submitBtn" value="COMPLETE">
+                <a href="javascript:void(0)" class="methodPay">COMPLETE</a>
             </p>
+            <?php $_SESSION['shipcost'] = $_COOKIE["shipcost"]; ?>
         </form>
     <?php } ?>
     

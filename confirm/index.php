@@ -9,7 +9,10 @@ if(!$_COOKIE['order_cookies']) {
 setcookie('incart', '', time() + 86400, "/");
 setcookie('order_cookies','', time() + 86400, "/");
 setcookie('order_hod','', time() + 86400, "/");
-setcookie('shipcost','', time() + 86400, "/");
+// setcookie('shipcost','', time() + 86400, "/");
+setcookie('methodPay','', time() + 86400, "/");
+setcookie('noteOrder','', time() + 86400, "/");
+setcookie('err_pay','', time() + 86400, "/");
 include(APP_PATH."libs/head.php");
 ?>
 <meta http-equiv="refresh" content="5;url=<?php echo APP_URL; ?>" />
@@ -25,7 +28,6 @@ include(APP_PATH."libs/head.php");
 <div id="wrapper">
     <h2 class="h2_site">Success order</h2>
     <?php
-        $_SESSION['payment'] = $_POST['payment'];
         $order_code = $_SESSION['order_code'];
         $email_book = $_SESSION['email'];
         $address = $_SESSION['address'];
@@ -35,16 +37,23 @@ include(APP_PATH."libs/head.php");
         $phone = $_SESSION['phone'];
         $grandTotal = $_SESSION['grand_total'];
         $grandTotal_novat = $_SESSION['totalCost_novat'];
-        $payment = $_SESSION['payment'];
+        $payment = $_COOKIE['methodPay'];
         $shipcost = $_SESSION['shipcost'];
+        $cmt_order = $_COOKIE['noteOrder'];
         if($_SESSION['paymemnt_status']) {
             $paidstt = $_SESSION['paymemnt_status'];
         } else {
             $paidstt = '';
         }
+        if($_SESSION['transactionNo']) {
+            $pay_info = $_SESSION['transactionNo'];
+        } else {
+            $pay_info = '';
+        }
 
         $order_post = array(
                 'post_title'    => $order_code,
+                'post_content'    => $cmt_order,
                 'post_status'   => 'publish',
                 'post_type' => 'customer_order'
         );
@@ -59,6 +68,7 @@ include(APP_PATH."libs/head.php");
         add_post_meta($pid, 'cf_phone', $phone);
         add_post_meta($pid, 'cf_shipping_cost',$shipcost );
         add_post_meta($pid, 'paymemnt_status',$paidstt );
+        add_post_meta($pid, 'pay_information',$pay_info );
         add_post_meta($pid, 'cf_order_status', 'in progress');
         
 
@@ -94,6 +104,18 @@ include(APP_PATH."libs/head.php");
         <p>Phone : $phone</p>
         <p>Address : $address - $city</p>
         <p>Order Code : $order_code</p>
+        ";
+        if($cmt_order != '') {
+            $msgBody .= "
+            <div>Note : $cmt_order</div>
+            ";
+        }
+        if($paidstt == 'Paid') {
+        $msgBody .= "
+        <p>Paymemnt Status : <strong>$paidstt via $payment</strong></p>
+        ";
+        }
+        $msgBody .= "
         <br>
         <table style='border:1px solid #000;border-collapse: collapse;border-spacing: 0;'>
             <tr style='font-weight:bold; padding:5px'>
@@ -212,6 +234,9 @@ include(APP_PATH."libs/head.php");
             $_SESSION['payment'] = '';
             $_SESSION['shipcost'] = '';
             $_SESSION['order_code'] = '';
+            $_SESSION['paymemnt_status'] = '';
+            $_SESSION['transactionNo'] = '';
+            setcookie('shipcost','', time() + 86400, "/");
         };
 
         

@@ -1,11 +1,9 @@
 /* check and insert number of item */
 var start = readCookie('incart');
 if (start) {
-    $('#numbCart').html(start);
-    $('#itemCarts').html(start);
+    $('.numbCart').html(start);
 } else {
-    $('#numbCart').html(0);
-    $('#itemCarts').html(0);
+    $('.numbCart').html(0);
 }
 
 
@@ -26,38 +24,20 @@ $(".addToCard").live('click', function() {
     setTimeout(function() {
         isThis.html('<i class="fa fa-shopping-cart"></i> Added');
         isThis.addClass('disable');
+        $('.checkOut').removeClass('unshow');
+        $('.checkOut').addClass('showsp');
     }, 500);
     $.ajax({
         data: {},
         url: '/ajax/create_json.php?proid=' + id_pro + '&qual=' + quantity + '&price=' + price_pro + '&cost=' + tcost + '&option_add=' + option_add + '&option_list=' + option_list + '&name_pro=' + name_pro + '&note=' + note_order,
         type: 'GET',
         success: function(data) {
-            $('#currentCart').html(data);
+            var start = readCookie('incart');
+            $('.numbCart').html(start);
         }
     })
 });
 
-
-/* increase ITEM */
-$(".button").click(function() {
-    var $button = $(this);
-    var oldValue = $button.parent().find("input").val();
-    if ($button.attr("rel") == '+') {
-        var newVal = parseFloat(oldValue) + 1;
-    } else {
-        if (oldValue > 0) {
-            var newVal = parseFloat(oldValue) - 1;
-        } else {
-            newVal = 0;
-        }
-    }
-    $('.updateBtn').removeClass('disable');
-    $button.parent().find("input").val(newVal);
-    var dg = $(this).parent().parent().parent().prev().find('.priceNumb').val();
-    var calc = parseInt(dg) * parseInt(newVal);
-    var numb_calc = parseInt(calc);
-    $(this).parent().parent().parent().next().find('.qtyPro .totalNumb').val(numb_calc);
-});
 
 /* Update cart */
 $('.updateBtn').live('click', function() {
@@ -83,7 +63,30 @@ $('.removeItem').live('click', function() {
         url: '/ajax/edit_json.php?proid=' + itemDel + '&qual=' + itemCost,
         type: 'GET',
         success: function(data) {
-
+            var start = readCookie('incart');
+            $('.numbCart').html(start);
         }
     })
+});
+
+
+$('.methodPay').click(function() {
+    var methodPay = readCookie('methodPay');
+    var noteOrder = $('#note_order').val();
+    createCookie('noteOrder', noteOrder, 24);
+    if (methodPay == 'cod') {
+        window.location = ('http://heartofdarknessbrewery.com/confirm/');
+    } else if (methodPay !== null) {
+        $.ajax({
+            data: {},
+            url: '/ajax/feeCharge.php',
+            type: 'GET',
+            success: function(data) {
+                window.location = (data);
+                // window.open(data)
+            }
+        })
+    } else if (methodPay == null) {
+        alert('Please choose a payment method');
+    }
 });
