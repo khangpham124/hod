@@ -15,6 +15,7 @@ $curr_cart  = json_decode(file_get_contents($f_isset));
         $('.numbCart').html(0);
     }
 </script>
+<span class="closeBtn"><i class="fa fa-times" aria-hidden="true"></i></span>
 <h3 class="h3_popup f_lapresse">CART</h3>
 <p class="h3_popup_sub"><span class="numbCart"></span> item(s)</p>
 

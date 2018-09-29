@@ -319,6 +319,15 @@ include(APP_PATH."libs/head.php");
 <!--/wrapper-->
 <!--===================================================-->
 <script type="text/javascript" src="<?php echo APP_URL; ?>common/js/direction.js"></script>
-
+<script>
+    $(document).ready(function() {
+  $(window).keydown(function(event){
+    if(event.keyCode == 13) {
+      event.preventDefault();
+      return false;
+    }
+  });
+});
+</script>
 </body>
 </html>	

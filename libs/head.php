@@ -36,8 +36,8 @@
 
 <!--css-->
 <link rel="stylesheet" href="<?php echo APP_URL; ?>common/css/base.css" media="all">
-<link rel="stylesheet" href="<?php echo APP_URL; ?>common/css/style.css" media="all">
-<link rel="stylesheet" href="<?php echo APP_URL; ?>common/css/media.css" media="all">
+<link rel="stylesheet" href="<?php echo APP_URL; ?>common/css/style.css?v=<?php echo time(); ?>" media="all">
+<link rel="stylesheet" href="<?php echo APP_URL; ?>common/css/media.css?v=<?php echo time(); ?>" media="all">
 <!--/css-->
 
 <!--favicons-->
@@ -53,7 +53,3 @@
 <link rel="apple-touch-icon" sizes="180x180" href="<?php echo APP_URL; ?>common/img/icon/apple-touch-icon-180x180.png" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <link href="https://fonts.googleapis.com/css?family=Oswald:300,400,700&amp;subset=vietnamese" rel="stylesheet">
-    
-<?php
-	//wp_head();
-?>

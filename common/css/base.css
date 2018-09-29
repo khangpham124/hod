@@ -1400,11 +1400,20 @@ Media
         z-index: 90;
     }
     #currentCart {
-        width: 90%;
+        width: 100%;
+        padding: 30px 0;
+    }
+    #currentCart .h3_popup,
+    #currentCart .h3_popup_sub {
+        padding-left: 15px;
     }
     #currentCart .checkOut {
         display: block;
         text-align: center;
+    }
+    #currentCart .taR_popup {
+        padding-left: 15px;
+        padding-right: 15px;
     }
 }
 

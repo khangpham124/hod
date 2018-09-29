@@ -1,10 +1,38 @@
-[14-Jul-2018 09:54:07 UTC] PHP Strict Standards:  Declaration of JPHPMailer::setFrom() should be compatible with PHPMailer::SetFrom($address, $name = '', $auto = 1) in /home/accroot/public_html/book_confirm/jphpmailer.php on line 26
-[14-Jul-2018 09:54:07 UTC] PHP Notice:  Undefined index: book_message in /home/accroot/public_html/book_confirm/index.php on line 32
-[14-Jul-2018 12:24:12 UTC] PHP Strict Standards:  Declaration of JPHPMailer::setFrom() should be compatible with PHPMailer::SetFrom($address, $name = '', $auto = 1) in /home/accroot/public_html/book_confirm/jphpmailer.php on line 26
-[14-Jul-2018 12:24:12 UTC] PHP Notice:  Undefined index: book_message in /home/accroot/public_html/book_confirm/index.php on line 32
-[16-Jul-2018 06:20:23 UTC] PHP Strict Standards:  Declaration of JPHPMailer::setFrom() should be compatible with PHPMailer::SetFrom($address, $name = '', $auto = 1) in /home/accroot/public_html/book_confirm/jphpmailer.php on line 26
-[16-Jul-2018 06:20:23 UTC] PHP Notice:  Undefined index: book_message in /home/accroot/public_html/book_confirm/index.php on line 32
-[16-Jul-2018 07:00:54 UTC] PHP Strict Standards:  Declaration of JPHPMailer::setFrom() should be compatible with PHPMailer::SetFrom($address, $name = '', $auto = 1) in /home/accroot/public_html/book_confirm/jphpmailer.php on line 26
-[16-Jul-2018 07:00:54 UTC] PHP Notice:  Undefined index: book_message in /home/accroot/public_html/book_confirm/index.php on line 32
-[17-Jul-2018 11:49:43 UTC] PHP Strict Standards:  Declaration of JPHPMailer::setFrom() should be compatible with PHPMailer::SetFrom($address, $name = '', $auto = 1) in /home/accroot/public_html/book_confirm/jphpmailer.php on line 26
-[17-Jul-2018 11:49:43 UTC] PHP Notice:  Undefined index: book_message in /home/accroot/public_html/book_confirm/index.php on line 32
+[10-Sep-2018 12:48:28 UTC] PHP Strict Standards:  Declaration of JPHPMailer::setFrom() should be compatible with PHPMailer::SetFrom($address, $name = '', $auto = 1) in /home/accroot/public_html/book_confirm/jphpmailer.php on line 26
+[10-Sep-2018 12:48:28 UTC] PHP Notice:  Undefined index: book_message in /home/accroot/public_html/book_confirm/index.php on line 32
+[12-Sep-2018 02:29:25 UTC] PHP Strict Standards:  Declaration of JPHPMailer::setFrom() should be compatible with PHPMailer::SetFrom($address, $name = '', $auto = 1) in /home/accroot/public_html/book_confirm/jphpmailer.php on line 26
+[12-Sep-2018 02:29:25 UTC] PHP Notice:  Undefined index: book_message in /home/accroot/public_html/book_confirm/index.php on line 32
+[12-Sep-2018 10:14:06 UTC] PHP Strict Standards:  Declaration of JPHPMailer::setFrom() should be compatible with PHPMailer::SetFrom($address, $name = '', $auto = 1) in /home/accroot/public_html/book_confirm/jphpmailer.php on line 26
+[12-Sep-2018 10:14:06 UTC] PHP Notice:  Undefined index: book_message in /home/accroot/public_html/book_confirm/index.php on line 32
+[13-Sep-2018 10:39:50 UTC] PHP Strict Standards:  Declaration of JPHPMailer::setFrom() should be compatible with PHPMailer::SetFrom($address, $name = '', $auto = 1) in /home/accroot/public_html/book_confirm/jphpmailer.php on line 26
+[13-Sep-2018 10:39:50 UTC] PHP Notice:  Undefined index: book_message in /home/accroot/public_html/book_confirm/index.php on line 32
+[15-Sep-2018 12:00:35 UTC] PHP Strict Standards:  Declaration of JPHPMailer::setFrom() should be compatible with PHPMailer::SetFrom($address, $name = '', $auto = 1) in /home/accroot/public_html/book_confirm/jphpmailer.php on line 26
+[15-Sep-2018 12:00:35 UTC] PHP Notice:  Undefined index: book_message in /home/accroot/public_html/book_confirm/index.php on line 32
+[16-Sep-2018 04:52:38 UTC] PHP Strict Standards:  Declaration of JPHPMailer::setFrom() should be compatible with PHPMailer::SetFrom($address, $name = '', $auto = 1) in /home/accroot/public_html/book_confirm/jphpmailer.php on line 26
+[16-Sep-2018 04:52:38 UTC] PHP Notice:  Undefined index: book_message in /home/accroot/public_html/book_confirm/index.php on line 32
+[18-Sep-2018 09:20:32 UTC] PHP Strict Standards:  Declaration of JPHPMailer::setFrom() should be compatible with PHPMailer::SetFrom($address, $name = '', $auto = 1) in /home/accroot/public_html/book_confirm/jphpmailer.php on line 26
+[18-Sep-2018 09:20:32 UTC] PHP Notice:  Undefined index: book_message in /home/accroot/public_html/book_confirm/index.php on line 32
+[18-Sep-2018 10:09:11 UTC] PHP Strict Standards:  Declaration of JPHPMailer::setFrom() should be compatible with PHPMailer::SetFrom($address, $name = '', $auto = 1) in /home/accroot/public_html/book_confirm/jphpmailer.php on line 26
+[18-Sep-2018 10:09:11 UTC] PHP Notice:  Undefined index: book_message in /home/accroot/public_html/book_confirm/index.php on line 32
+[18-Sep-2018 10:24:36 UTC] PHP Strict Standards:  Declaration of JPHPMailer::setFrom() should be compatible with PHPMailer::SetFrom($address, $name = '', $auto = 1) in /home/accroot/public_html/book_confirm/jphpmailer.php on line 26
+[18-Sep-2018 10:24:36 UTC] PHP Notice:  Undefined index: book_message in /home/accroot/public_html/book_confirm/index.php on line 32
+[19-Sep-2018 03:17:41 UTC] PHP Strict Standards:  Declaration of JPHPMailer::setFrom() should be compatible with PHPMailer::SetFrom($address, $name = '', $auto = 1) in /home/accroot/public_html/book_confirm/jphpmailer.php on line 26
+[19-Sep-2018 03:17:41 UTC] PHP Notice:  Undefined index: book_message in /home/accroot/public_html/book_confirm/index.php on line 32
+[20-Sep-2018 05:53:14 UTC] PHP Strict Standards:  Declaration of JPHPMailer::setFrom() should be compatible with PHPMailer::SetFrom($address, $name = '', $auto = 1) in /home/accroot/public_html/book_confirm/jphpmailer.php on line 26
+[20-Sep-2018 05:53:14 UTC] PHP Notice:  Undefined index: book_message in /home/accroot/public_html/book_confirm/index.php on line 32
+[20-Sep-2018 14:05:12 UTC] PHP Strict Standards:  Declaration of JPHPMailer::setFrom() should be compatible with PHPMailer::SetFrom($address, $name = '', $auto = 1) in /home/accroot/public_html/book_confirm/jphpmailer.php on line 26
+[20-Sep-2018 14:05:12 UTC] PHP Notice:  Undefined index: book_message in /home/accroot/public_html/book_confirm/index.php on line 32
+[23-Sep-2018 06:47:37 UTC] PHP Strict Standards:  Declaration of JPHPMailer::setFrom() should be compatible with PHPMailer::SetFrom($address, $name = '', $auto = 1) in /home/accroot/public_html/book_confirm/jphpmailer.php on line 26
+[23-Sep-2018 06:47:37 UTC] PHP Notice:  Undefined index: book_message in /home/accroot/public_html/book_confirm/index.php on line 32
+[23-Sep-2018 09:41:10 UTC] PHP Strict Standards:  Declaration of JPHPMailer::setFrom() should be compatible with PHPMailer::SetFrom($address, $name = '', $auto = 1) in /home/accroot/public_html/book_confirm/jphpmailer.php on line 26
+[23-Sep-2018 09:41:10 UTC] PHP Notice:  Undefined index: book_message in /home/accroot/public_html/book_confirm/index.php on line 32
+[25-Sep-2018 02:51:50 UTC] PHP Strict Standards:  Declaration of JPHPMailer::setFrom() should be compatible with PHPMailer::SetFrom($address, $name = '', $auto = 1) in /home/accroot/public_html/book_confirm/jphpmailer.php on line 26
+[25-Sep-2018 02:51:50 UTC] PHP Notice:  Undefined index: book_message in /home/accroot/public_html/book_confirm/index.php on line 32
+[27-Sep-2018 06:58:04 UTC] PHP Strict Standards:  Declaration of JPHPMailer::setFrom() should be compatible with PHPMailer::SetFrom($address, $name = '', $auto = 1) in /home/accroot/public_html/book_confirm/jphpmailer.php on line 26
+[27-Sep-2018 06:58:04 UTC] PHP Notice:  Undefined index: book_message in /home/accroot/public_html/book_confirm/index.php on line 32
+[27-Sep-2018 09:13:08 UTC] PHP Strict Standards:  Declaration of JPHPMailer::setFrom() should be compatible with PHPMailer::SetFrom($address, $name = '', $auto = 1) in /home/accroot/public_html/book_confirm/jphpmailer.php on line 26
+[27-Sep-2018 09:13:08 UTC] PHP Notice:  Undefined index: book_message in /home/accroot/public_html/book_confirm/index.php on line 32
+[27-Sep-2018 10:30:10 UTC] PHP Strict Standards:  Declaration of JPHPMailer::setFrom() should be compatible with PHPMailer::SetFrom($address, $name = '', $auto = 1) in /home/accroot/public_html/book_confirm/jphpmailer.php on line 26
+[27-Sep-2018 10:30:10 UTC] PHP Notice:  Undefined index: book_message in /home/accroot/public_html/book_confirm/index.php on line 32
+[28-Sep-2018 11:05:25 UTC] PHP Strict Standards:  Declaration of JPHPMailer::setFrom() should be compatible with PHPMailer::SetFrom($address, $name = '', $auto = 1) in /home/accroot/public_html/book_confirm/jphpmailer.php on line 26
+[28-Sep-2018 11:05:25 UTC] PHP Notice:  Undefined index: book_message in /home/accroot/public_html/book_confirm/index.php on line 32

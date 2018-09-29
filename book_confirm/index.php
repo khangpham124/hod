@@ -2,7 +2,7 @@
 //email list
 $aMailto = array("khangpham421@gmail.com", "bookinghodb@gmail.com","ben@heartofdarknessbrewery.com");
 //$aMailto = array("khangpham421@gmail.com");
-$from = "ann@heartofdarknessbrewery.com";
+$from = "bookinghodb@gmail.com";
 
 // 設定
 require("./jphpmailer.php");

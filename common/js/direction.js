@@ -73,6 +73,11 @@ function initMap() {
     // calculateAndDisplayRoute(directionsService, directionsDisplay);
     var onChangeHandler = function() {
         calculateAndDisplayRoute(directionsService, directionsDisplay);
+        $('#shipcost_fake').val('');
+        $('.shipFee').html('');
+        $('#shipcost').val('');
+        $('#add_field').val('');
+        $('.submitBtn').addClass('cant');
     };
     document.getElementById('autocomplete').addEventListener('change', onChangeHandler);
 }
@@ -102,13 +107,12 @@ function getDistance(destination = '') {
         avoidHighways: false,
         avoidTolls: false
     }, function(response, status) {
-        if (status !== 'OK') {
+        if (status !== 'OK') {} else {
 
-        } else {
             var originList = response.originAddresses;
             var destinationList = response.destinationAddresses;
             $('#add_field').val(response.rows[0].elements[0].distance.text);
-            console.log(response);
+            // console.log(response);
 
             var dc = response.rows[0].elements[0].distance.value;
             var km = parseInt(dc / 1000);
@@ -117,6 +121,7 @@ function getDistance(destination = '') {
                 alert('Sorry, delivery not available outside of Ho Chi Minh City');
                 $('#autocomplete').val('');
                 $("#autocomplete").focus();
+                $('.submitBtn').addClass('cant');
             } else {
                 if (km > 1) {
                     var km_large = km - 1;

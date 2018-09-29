@@ -1,6 +1,5 @@
 <?php
-include_once($_SERVER['DOCUMENT_ROOT'] . '/app_config.php');
-include(APP_PATH . '/hod/wp-load.php');
+include('/home/accroot/public_html/hod/wp-load.php');
 $pagename = str_replace(array('/', '.php', '?s='), '', $_SERVER['REQUEST_URI']);
 $pagename = str_replace("wp", '', $_SERVER['REQUEST_URI']);
 $pagename = $pagename ? $pagename : 'default';

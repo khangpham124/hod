@@ -48,7 +48,7 @@ include(APP_PATH."libs/head.php");
                         $termid = $category->term_id;
                         $n++;
             ?>
-            <p class="btnMenu_sp sp" id="menu<?php $n; ?>"><?php echo $category->name; ?></p>
+            <!-- <p class="btnMenu_sp sp" id="menu<?php $n; ?>"><?php echo $category->name; ?></p> -->
             <div class="tabBox" id="tab<?php echo $n; ?>">
             <div class="clearfix mapPlace">
              <div class="leftStore">
@@ -104,7 +104,7 @@ include(APP_PATH."libs/head.php");
                     ?> 
                         <li>
                             <h4><?php echo $cat->name; ?></h4>
-                            <ul class="clearfix">
+                            <ul class="">
                             <?php 
                                 $wp_query = new WP_Query();
                                 $param=array(

@@ -48,8 +48,6 @@
         <p>Copyright HEART OF DARKNESS VIET NAM Co., Ltd. All Rights Reserved.</p>
         </div>
     </div>
-    <!--<p class="addHod pc">31D Ly Tu Trong, District 1, HCMC, Vietnam</p>
-    <p class="copyright pc">Copyright <span class="f_lapresse">HEART OF DARKNESS VIETNAM</span> Co., Ltd. All Rights Reserved.</p> !-->
 </div>
 
 <p class="copyright sp">Copyright <span class="f_lapresse">HEART OF DARKNESS VIETNAM</span> Co., Ltd.<br> All Rights Reserved.</p>
@@ -147,8 +145,10 @@
         $('.matchHeight').matchHeight();
     });
 </script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
 <script type="text/javascript" src="<?php  echo APP_URL; ?>common/js/main.js"></script>
 <script type="text/javascript" src="<?php  echo APP_URL; ?>common/js/addcart.js"></script>
+
 <script type="text/javascript">
 (function(d,s,id){var z=d.createElement(s);z.type="text/javascript";z.id=id;z.async=true;z.src="//static.zotabox.com/d/1/d1b972bbdf6ee10b0c1e806d3a96699d/widgets.js";var sz=d.getElementsByTagName(s)[0];sz.parentNode.insertBefore(z,sz)}(document,"script","zb-embed-code"));
 </script>

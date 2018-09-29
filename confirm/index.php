@@ -98,7 +98,7 @@ include(APP_PATH."libs/head.php");
         
         mb_internal_encoding("UTF-8");
 
-        $subject = "BOOKING SUMMARY FROM HEART OF DARKNESS";
+        $subject = "DELIVERY SUMMARY FROM HEART OF DARKNESS";
         $msgBody = "
         <p>Fullname : $fullname</p>
         <p>Phone : $phone</p>
@@ -160,7 +160,7 @@ include(APP_PATH."libs/head.php");
         </table>
         ";
 
-        $subject1 = "CONFIRM BOOKING SUMMARY FROM HEART OF DARKNESS";
+        $subject1 = "CONFIRM DELIVERY SUMMARY FROM HEART OF DARKNESS";
         $msgBody_customer = "
         <p>Fullname : $fullname</p>
         <p>Phone : $phone</p>
@@ -218,7 +218,7 @@ include(APP_PATH."libs/head.php");
         <p>---------------------------------------------------------------</p>
         ";
 
-        $fromname = "HEART OF DARKNESS BOOKING SYSTEM";
+        $fromname = "HEART OF DARKNESS DELIVERY SYSTEM";
 
         //Mail to Customer
         $email1 = new JPHPmailer();
@@ -246,7 +246,7 @@ include(APP_PATH."libs/head.php");
         {
             $email->addTo($aMailto[$i]);
         }
-        $email->setFrom($email_book, 'HOD Booking System');
+        $email->setFrom($email_book, 'HOD Delivery System');
         $email->setSubject($subject);
         $email->setBody($msgBody);
         $email->CharSet = 'UTF-8';
